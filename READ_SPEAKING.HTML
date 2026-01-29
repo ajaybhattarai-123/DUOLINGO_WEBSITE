@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DET Elite Coach | 140+ Speaking Mastery</title>
+    <style>
+        :root {
+            --primary: #58CC02;
+            /* Duolingo Green */
+            --secondary: #2B70C9;
+            --danger: #FF4B4B;
+            --gold: #FFC800;
+            --dark: #3c3c3c;
+            --light: #f7f7f7;
+            --purple: #9C27B0;
+            --orange: #FF9800;
+        }
+
+        body {
+            font-family: 'DIN Next Rounded LT Pro', 'Nunito', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 0 #e5e5e5;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+
+        h2 {
+            color: var(--dark);
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            color: #555;
+            margin-top: 1.5rem;
+        }
+
+        h4 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        /* Nav Tabs - Adapted to Match Mata.html Buttons */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 4px 0 #e5e5e5;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+            width: fit-content;
+        }
+
+        .nav-tabs a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 15px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-tabs a:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .nav-tabs a:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+
+        /* Specific Colors for Each Tab (Matching the Image) */
+
+        /* 1. The Mission -> Green */
+        .nav-tabs a:nth-child(1) {
+            background-color: var(--primary);
+            /* #58CC02 */
+            box-shadow: 0 4px 0 #46a302;
+        }
+
+        /* 2. The Template -> Blue */
+        .nav-tabs a:nth-child(2) {
+            background-color: var(--secondary);
+            /* #2B70C9 */
+            box-shadow: 0 4px 0 #1e5ba8;
+        }
+
+        /* 3. 5 Examples -> Purple */
+        .nav-tabs a:nth-child(3) {
+            background-color: var(--purple);
+            /* #9C27B0 */
+            box-shadow: 0 4px 0 #7b1fa2;
+        }
+
+        /* 4. Vocab Arsenal -> Gold/Yellow (Dark text for contrast) */
+        .nav-tabs a:nth-child(4) {
+            background-color: var(--gold);
+            /* #FFC800 */
+            box-shadow: 0 4px 0 #e6b400;
+            color: #333;
+        }
+
+        /* 5. Future Prediction -> Red */
+        .nav-tabs a:nth-child(5) {
+            background-color: var(--danger);
+            /* #FF4B4B */
+            box-shadow: 0 4px 0 #d32f2f;
+        }
+
+        /* Specific Content Boxes */
+        .platinum-box {
+            border: 2px solid var(--primary);
+            background-color: #f0fff0;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 0 rgba(88, 204, 2, 0.1);
+        }
+
+        .trap-box {
+            border-left: 5px solid var(--danger);
+            background-color: #fff0f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        /* Typography Highlights */
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+            background-color: #fff9c4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .critical {
+            font-weight: bold;
+            color: var(--danger);
+        }
+
+        .vocab {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .template-text {
+            font-family: 'Courier New', monospace;
+            background: #eee;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border-left: 4px solid var(--purple);
+            display: block;
+            margin: 10px 0;
+        }
+
+        /* Accordion for Examples */
+        .accordion {
+            background-color: var(--light);
+            color: var(--dark);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: 2px solid #e5e5e5;
+            outline: none;
+            transition: 0.3s;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .accordion:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 0 #e5e5e5;
+        }
+
+        .active {
+            background-color: #e8f5e9;
+            border-color: var(--primary);
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 15px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        /* Lists */
+        ul.vocab-list li {
+            margin-bottom: 10px;
+        }
+
+        .vocab-list li .vocab {
+            font-size: 1.1em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #aaa;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .nav-tabs {
+                position: relative;
+                width: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container" style="text-align: center; margin-bottom: 10px;">
+        <h1>DET ELITE COACH</h1>
+        <div class="subtitle">Target Score: 140+ (C1/C2 Advanced Mastery)</div>
+    </div>
+
+    <div class="nav-tabs">
+        <a href="#mission">The Mission</a>
+        <a href="#template">The Template</a>
+        <a href="#examples">5 Examples</a>
+        <a href="#vocab">Vocab Arsenal</a>
+        <a href="#future">Future Prediction</a>
+    </div>
+
+    <div class="container">
+        <section id="mission">
+            <h2>1. The Mission Brief</h2>
+            <p><strong>Task:</strong> Read, Then Speak (Extended Speaking)</p>
+            <ul>
+                <li><strong>Preparation:</strong> 20 Seconds.</li>
+                <li><strong>Speaking Time:</strong> 90 Seconds.</li>
+                <li><strong><span class="critical">CRITICAL RULE:</span></strong> You MUST speak for at least <strong>75
+                        seconds</strong>. Stopping early destroys your Fluency score.</li>
+            </ul>
+            <div class="platinum-box">
+                <h3>The "Platinum" Strategy</h3>
+                <p>To score 140+, you must demonstrate three things simultaneously:</p>
+                <ol>
+                    <li><strong>Fluency:</strong> No pauses longer than 1 second.</li>
+                    <li><strong>Lexical Sophistication:</strong> Use the "5-5-5-5" words (e.g., <em>Facilitate</em>, not
+                        "help").</li>
+                    <li><strong>Grammatical Complexity:</strong> You <span class="critical">MUST</span> use a
+                        <strong>Conditional Sentence</strong> (<em>"If I had not... I would not have..."</em>).
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </div>
+
+    <div class="container">
+        <section id="template">
+            <h2>2. The Master Template (Step-by-Step)</h2>
+            <p>Memorize this structure. It works for <strong>Opinion</strong>, <strong>Argument</strong>, and
+                <strong>Description</strong> tasks.
+            </p>
+
+            <div style="margin-bottom: 15px;">
+                <h4>PHASE 1: The Intro (0:00–0:15)</h4>
+                <p class="template-text">"Regarding the issue of [Topic], I <span class="highlight">firmly
+                        advocate</span> for the notion that [Opinion] is the superior approach."</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <h4>PHASE 2: The Reasoning (0:15–0:40)</h4>
+                <p class="template-text">"The <span class="highlight">most compelling justification</span> for this
+                    stance is that [Point 1]. To be more precise, this strategy <span class="vocab">facilitates</span>
+                    [Positive Result]."</p>
+            </div>
+
+            <div style="margin-bottom: 15px; border: 2px dashed var(--danger); padding: 10px; border-radius: 12px;">
+                <h4>PHASE 3: The Example (0:40–0:65) <span class="critical">[CRITICAL]</span></h4>
+                <p>You must use the <strong>Third Conditional</strong> here to trigger the Grammar Score.</p>
+                <p class="template-text">"To <span class="highlight">illustrate</span> this, consider my own experience
+                    with [Context]. <span class="critical">If I had not [Action], I would never have [Result].</span>
+                    This clearly demonstrates the validity of my argument."</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <h4>PHASE 4: The Pivot (0:65–0:80)</h4>
+                <p class="template-text">"<span class="vocab">Admittedly</span>, some detractors might argue that
+                    [Counter-Point]. However, I contend that the benefits <span class="vocab">inevitably</span> outweigh
+                    the drawbacks."</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <h4>PHASE 5: The Conclusion (0:80–0:90)</h4>
+                <p class="template-text">"<span class="vocab">Consequently</span>, based on these factors, it is <span
+                        class="vocab">imperative</span> that we prioritize [Opinion]."</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="container">
+        <section id="examples">
+            <h2>3. Five Full Examples (Click to Expand)</h2>
+            <p>Here is how to apply the template to 5 different topics. Notice how the <strong>bolded words</strong>
+                (Vocab) and <span class="critical">red text</span> (Grammar Trap) appear in every answer.</p>
+
+            <button class="accordion">Topic 1: Should students have homework?</button>
+            <div class="panel">
+                <p><strong>Intro:</strong> Regarding the issue of education, I <span class="highlight">firmly
+                        advocate</span> for the notion that assigning regular homework is the superior approach for
+                    academic success.</p>
+                <p><strong>Reasoning:</strong> The <span class="highlight">most compelling justification</span> for this
+                    stance is that it reinforces concepts learned in class. To be more precise, this practice <span
+                        class="vocab">facilitates</span> long-term memory retention and discipline.</p>
+                <p><strong>Example:</strong> To <span class="highlight">illustrate</span> this, consider my own
+                    experience with mathematics. <span class="critical">If I had not practiced calculus problems at home
+                        every night, I would never have passed my final exam.</span> This tangible example underscores
+                    the necessity of independent study.</p>
+                <p><strong>Pivot:</strong> <span class="vocab">Admittedly</span>, some detractors might argue that
+                    students need free time to relax. However, I contend that the academic benefits <span
+                        class="vocab">inevitably</span> outweigh the temporary loss of leisure time.</p>
+                <p><strong>Conclusion:</strong> <span class="vocab">Consequently</span>, based on these factors, it is
+                    <span class="vocab">imperative</span> that schools maintain homework as a core requirement.
+                </p>
+            </div>
+
+            <button class="accordion">Topic 2: Is Artificial Intelligence (AI) good for society?</button>
+            <div class="panel">
+                <p><strong>Intro:</strong> Regarding the issue of technology, I <span class="highlight">firmly
+                        advocate</span> for the notion that Artificial Intelligence is a <span
+                        class="vocab">pivotal</span> tool for modern advancement.</p>
+                <p><strong>Reasoning:</strong> The <span class="highlight">most compelling justification</span> for this
+                    stance is that AI automates mundane tasks. To be more precise, this technology <span
+                        class="vocab">facilitates</span> a <span class="vocab">substantial</span> increase in human
+                    productivity and creativity.</p>
+                <p><strong>Example:</strong> To <span class="highlight">illustrate</span> this, consider my own
+                    experience with data analysis. <span class="critical">If I had not used AI tools to process the
+                        data, I would never have finished the project on time.</span> This clearly demonstrates the
+                    efficiency of machine learning.</p>
+                <p><strong>Pivot:</strong> <span class="vocab">Admittedly</span>, some detractors might argue that AI
+                    poses a risk to job security. However, I contend that the economic benefits <span
+                        class="vocab">inevitably</span> outweigh these transitional challenges.</p>
+                <p><strong>Conclusion:</strong> <span class="vocab">Consequently</span>, based on these factors, it is
+                    <span class="vocab">imperative</span> that we embrace AI development responsibly.
+                </p>
+            </div>
+
+            <button class="accordion">Topic 3: Should public transport be free?</button>
+            <div class="panel">
+                <p><strong>Intro:</strong> Regarding the issue of urban infrastructure, I <span class="highlight">firmly
+                        advocate</span> for the notion that free public transport is the superior approach for
+                    sustainable cities.</p>
+                <p><strong>Reasoning:</strong> The <span class="highlight">most compelling justification</span> for this
+                    stance is environmental protection. To be more precise, this policy <span
+                        class="vocab">facilitates</span> a <span class="vocab">drastic</span> reduction in carbon
+                    emissions by reducing private car use.</p>
+                <p><strong>Example:</strong> To <span class="highlight">illustrate</span> this, consider my own
+                    experience living in a congested city. <span class="critical">If the city had not provided
+                        affordable subway access, I would have been forced to drive, contributing to pollution.</span>
+                    This clearly demonstrates the environmental value of mass transit.</p>
+                <p><strong>Pivot:</strong> <span class="vocab">Admittedly</span>, some detractors might argue that this
+                    would place a heavy burden on taxpayers. However, I contend that the environmental savings <span
+                        class="vocab">inevitably</span> outweigh the financial costs.</p>
+                <p><strong>Conclusion:</strong> <span class="vocab">Consequently</span>, based on these factors, it is
+                    <span class="vocab">imperative</span> that governments prioritize accessible transport.
+                </p>
+            </div>
+
+            <button class="accordion">Topic 4: Is remote work better than office work?</button>
+            <div class="panel">
+                <p><strong>Intro:</strong> Regarding the issue of employment, I <span class="highlight">firmly
+                        advocate</span> for the notion that remote work is the superior approach for employee
+                    well-being.</p>
+                <p><strong>Reasoning:</strong> The <span class="highlight">most compelling justification</span> for this
+                    stance is work-life balance. To be more precise, this flexibility <span
+                        class="vocab">facilitates</span> a <span class="vocab">profound</span> improvement in mental
+                    health and job satisfaction.</p>
+                <p><strong>Example:</strong> To <span class="highlight">illustrate</span> this, consider my own
+                    experience working from home. <span class="critical">If I had not had the flexibility to work
+                        remotely, I would have burned out from the daily commute.</span> This tangible example
+                    underscores the value of flexibility.</p>
+                <p><strong>Pivot:</strong> <span class="vocab">Admittedly</span>, some detractors might argue that
+                    remote work kills team collaboration. However, I contend that digital tools <span
+                        class="vocab">inevitably</span> bridge this gap effectively.</p>
+                <p><strong>Conclusion:</strong> <span class="vocab">Consequently</span>, based on these factors, it is
+                    <span class="vocab">imperative</span> that companies offer remote options.
+                </p>
+            </div>
+
+            <button class="accordion">Topic 5: Is social media beneficial?</button>
+            <div class="panel">
+                <p><strong>Intro:</strong> Regarding the issue of digital communication, I <span
+                        class="highlight">firmly advocate</span> for the notion that social media is <span
+                        class="vocab">undeniably</span> beneficial for global connectivity.</p>
+                <p><strong>Reasoning:</strong> The <span class="highlight">most compelling justification</span> for this
+                    stance is the democratization of information. To be more precise, these platforms <span
+                        class="vocab">facilitate</span> the rapid spread of vital news and educational content.</p>
+                <p><strong>Example:</strong> To <span class="highlight">illustrate</span> this, consider my own
+                    experience finding a job. <span class="critical">If I had not utilized professional networking
+                        sites, I would never have connected with my current employer.</span> This clearly demonstrates
+                    the professional utility of these networks.</p>
+                <p><strong>Pivot:</strong> <span class="vocab">Admittedly</span>, some detractors might argue that
+                    social media causes addiction. However, I contend that responsible usage <span
+                        class="vocab">inevitably</span> yields positive outcomes.</p>
+                <p><strong>Conclusion:</strong> <span class="vocab">Consequently</span>, based on these factors, it is
+                    <span class="vocab">imperative</span> that we leverage these tools wisely.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <div class="container">
+        <section id="vocab">
+            <h2>5. The 5-5-5-5 Vocab Arsenal</h2>
+            <p>Memorize these words. Use them in EVERY answer.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3>5 Verbs (Action)</h3>
+                    <ul class="vocab-list">
+                        <li>
+                            <span class="vocab">Facilitate</span> (help)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"The new
+                                software will facilitate smoother communication between departments."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Foster</span> (build/create)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"Teachers
+                                aim to foster a sense of curiosity in their students."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Mitigate</span> (reduce/stop)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"Planting
+                                trees helps to mitigate the negative effects of pollution."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Underscore</span> (highlight)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"Recent
+                                studies underscore the importance of regular exercise."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Entail</span> (involve)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"This
+                                project will entail significant research and development efforts."</div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>5 Adjectives (Description)</h3>
+                    <ul class="vocab-list">
+                        <li>
+                            <span class="vocab">Detrimental</span> (bad/harmful)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"A lack of
+                                sleep can be detrimental to your cognitive health."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Imperative</span> (important)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"It is
+                                imperative that we address climate change immediately."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Pivotal</span> (key/main)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"Education
+                                plays a pivotal role in a nation's economic growth."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Substantial</span> (big)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"We have
+                                observed a substantial increase in renewable energy usage."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Profound</span> (deep)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"The
+                                internet has had a profound impact on social interaction."</div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>5 Adverbs (Intensity)</h3>
+                    <ul class="vocab-list">
+                        <li>
+                            <span class="vocab">Predominantly</span> (mostly)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"The
+                                population in this region is predominantly rural."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Inevitably</span> (will happen)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">
+                                "Technological progress inevitably leads to changes in the job market."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Undeniably</span> (truly)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"Clean
+                                water is undeniably essential for public health."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Admittedly</span> (concession)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">
+                                "Admittedly, the initial cost is high, but the long-term benefits are great."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Drastically</span> (a lot)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"Smartphone
+                                usage has drastically altered how we communicate."</div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>5 Nouns (Concepts)</h3>
+                    <ul class="vocab-list">
+                        <li>
+                            <span class="vocab">Repercussion</span> (result)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"The
+                                economic repercussions of the policy were unexpected."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Endeavor</span> (effort/activity)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"Space
+                                exploration is a challenging scientific endeavor."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Consensus</span> (agreement)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"The
+                                committee finally reached a consensus on the budget."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Discrepancy</span> (difference)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"There was
+                                a noticeable discrepancy between the two witness accounts."</div>
+                        </li>
+                        <li>
+                            <span class="vocab">Proficiency</span> (skill)
+                            <div style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 4px;">"Achieving
+                                proficiency in a new language requires consistent practice."</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="container">
+        <section id="future">
+            <h2>4. The Panic Button: Future Prediction</h2>
+            <div class="trap-box">
+                <strong>Problem:</strong> You finish your story at 60 seconds. You have 30 seconds left. You are
+                panic-stricken.
+                <br><strong>Solution:</strong> Do not repeat yourself. Shift to the FUTURE tense.
+            </div>
+
+            <h3>The "Future Prediction" Formula</h3>
+            <p>Use this exact sentence structure to fill 15-20 seconds with high-level vocabulary:</p>
+
+            <p class="template-text">"Looking ahead, I predict that if this trend continues, we will see <span
+                    class="vocab">substantial</span> changes in the way society approaches [Topic]. Specifically, it
+                will likely lead to [Prediction]."</p>
+
+            <h3>Examples:</h3>
+            <ul>
+                <li><strong>Topic (Environment):</strong> "Looking ahead, I predict that if we ignore climate change, we
+                    will see <span class="vocab">drastic</span> alterations in global weather patterns. Specifically, it
+                    will likely lead to severe economic instability."</li>
+                <li><strong>Topic (Education):</strong> "Looking ahead, I predict that if technology integration
+                    continues, we will see a <span class="vocab">profound</span> shift in how students learn.
+                    Specifically, it will likely lead to the end of traditional textbooks."</li>
+            </ul>
+        </section>
+    </div>
+
+    <div class="container">
+        <section style="border-left: 5px solid gold; padding-left: 15px;">
+            <h2>6. The Expert Secrets (Non-Verbal)</h2>
+            <ul>
+                <li><strong>Eye Contact:</strong> Look at the CAMERA, not the screen. 80% of the time.</li>
+                <li><strong>The 3-Second Rule:</strong> Start speaking within 2 seconds. Do not wait.</li>
+                <li><strong>Self-Correction:</strong> <span class="critical">NEVER</span> correct your grammar. If you
+                    say "He go," do NOT say "I mean, he goes." Just keep moving. Correcting breaks fluency.</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>Generated by your DET Elite Coach | 2024 Edition</p>
+    </footer>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

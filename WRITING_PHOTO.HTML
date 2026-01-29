@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DET 140+ Photo Mastery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --duo-green: #58CC02;
+            --duo-green-dark: #46A302;
+            --duo-blue: #1CB0F6;
+            --duo-blue-dark: #1899D6;
+            --duo-purple: #CE82FF;
+            --duo-purple-dark: #A568CC;
+            --duo-red: #FF4B4B;
+            --duo-yellow: #FFC800;
+            --duo-gray: #E5E5E5;5 
+            --duo-text: #4B4B4B;
+            --bg-color: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #F7F7F7;
+            color: var(--duo-text);
+            padding-bottom: 50px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: white;
+            border-bottom: 2px solid var(--duo-gray);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--duo-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .streak-badge {
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 12px;
+            padding: 5px 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--duo-text);
+        }
+
+        .badge.target {
+            border-color: var(--duo-yellow);
+            color: #D7A800;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--duo-text);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* --- SECTION CONTAINERS --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--duo-text);
+            border-bottom: 2px solid var(--duo-gray);
+            padding-bottom: 10px;
+        }
+
+        /* --- STRATEGY GRID --- */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .strategy-card {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-bottom: 5px solid var(--duo-gray);
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.1s;
+        }
+
+        .strategy-card h3 {
+            color: var(--duo-blue);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .strategy-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* --- THE MASTER TEMPLATE --- */
+        .template-builder {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .template-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: var(--duo-green);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 2px 0 var(--duo-green-dark);
+        }
+
+        .step-content h4 {
+            margin-bottom: 5px;
+            font-weight: 800;
+        }
+
+        .step-content p {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .c2-upgrade {
+            background: #F0F4F8;
+            border-left: 4px solid var(--duo-blue);
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--duo-blue-dark);
+        }
+
+        /* --- SAMPLE ANSWER BROWSER --- */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-bottom: 4px solid var(--duo-gray);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: #777;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.1s;
+        }
+
+        .filter-btn.active {
+            background: var(--duo-blue);
+            color: white;
+            border-color: var(--duo-blue-dark);
+        }
+
+        .filter-btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .samples-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .sample-card {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .sample-image-box {
+            width: 100%;
+            height: 250px;
+            background-color: #eee;
+            border-bottom: 2px solid var(--duo-gray);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sample-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sample-header {
+            background: #F7F7F7;
+            padding: 12px 20px;
+            border-bottom: 2px solid var(--duo-gray);
+            font-weight: 700;
+            color: var(--duo-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background: var(--duo-purple);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 8px;
+            text-transform: uppercase;
+        }
+
+        .sample-body {
+            padding: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .highlight {
+            color: var(--duo-green);
+            font-weight: 700;
+        }
+
+        /* --- FLOATING ACTION --- */
+        .cta-box {
+            background: var(--duo-yellow);
+            color: #5c4300;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border-bottom: 6px solid #dcb500;
+            font-weight: 700;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <span>🦉</span> DET Coach
+        </div>
+        <div class="streak-badge">
+            <div class="badge target">
+                <span>🎯</span> 140+
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Write About the Photo</h1>
+        <p class="subtitle">Master the 1-minute strategy with C1/C2 Templates and 50+ Real Examples.</p>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">The 140+ Strategy Rules</h2>
+        <div class="strategy-grid">
+            <div class="strategy-card">
+                <h3>⏱️ The 1-Minute Rule</h3>
+                <p>Start writing immediately. You do not have time to think. Type your first impression instantly, then
+                    refine.</p>
+            </div>
+            <div class="strategy-card">
+                <h3>👁️ Foreground & Background</h3>
+                <p>Don't just say what is in the center. Mention the environment, the weather, the lighting, and
+                    background details.</p>
+            </div>
+            <div class="strategy-card">
+                <h3>🎭 Emotions & Adjectives</h3>
+                <p>Use high-level adjectives (e.g., <em>charismatic, agitated, serene</em>). Describe facial expressions
+                    clearly.</p>
+            </div>
+            <div class="strategy-card">
+                <h3>🔮 Speculation</h3>
+                <p>Make a prediction. "It seems that...", "I believe this shot was taken...", "One might speculate
+                    that..."</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">The Master Template</h2>
+        <div class="template-builder">
+
+            <div class="template-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Introduction (The Anchor)</h4>
+                    <p>Describe the main action immediately.</p>
+                    <div class="c2-upgrade">
+                        <strong>Template:</strong> "In the picture, [Subject] is [Action]... " <br>
+                        <em>Better: "This image is dominated by [Subject] who appears to be..."</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Setting & Context</h4>
+                    <p>Where are they? What is the atmosphere?</p>
+                    <div class="c2-upgrade">
+                        <strong>Template:</strong> "[Subject] is in a [Location]. It looks [Adjective]." <br>
+                        <em>Better: "The setting appears to be a [Location], characterized by [Detail] and
+                            [Lighting]."</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Emotions & Interactions</h4>
+                    <p>How do they feel? How do they relate?</p>
+                    <div class="c2-upgrade">
+                        <strong>Template:</strong> "They look happy." <br>
+                        <em>Better: "Their expressions exude a sense of [jollity/focus], suggesting a moment of..."</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>Conclusion (Speculation)</h4>
+                    <p>Add a final thought or prediction.</p>
+                    <div class="c2-upgrade">
+                        <strong>Template:</strong> "Overall, it is a nice picture." <br>
+                        <em>Better: "Overall, the atmosphere seems [Adjective], implying that [Prediction]."</em>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="background: #eef; padding: 15px; border-radius: 10px; margin-top: 20px; font-style: italic; border: 1px dashed var(--duo-blue);">
+                "In the picture, I see a group of students sitting at desks. They are studying and engaged in a lesson.
+                The classroom has windows letting natural light in. Some students appear focused, while others are
+                discussing. Overall, the atmosphere seems calm and educational."
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">50+ Sample Answers Database</h2>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterSamples('all')">All</button>
+            <button class="filter-btn" onclick="filterSamples('people')">People</button>
+            <button class="filter-btn" onclick="filterSamples('nature')">Nature</button>
+            <button class="filter-btn" onclick="filterSamples('urban')">Urban</button>
+            <button class="filter-btn" onclick="filterSamples('objects')">Objects</button>
+        </div>
+
+        <div class="samples-grid" id="samplesContainer">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cta-box">
+            Practice these templates daily to hit 140+!<br>
+            <span style="font-size:0.8rem; font-weight:normal; margin-top:5px; display:block;">(Based on official
+                scoring criteria: Lexical Sophistication & Grammatical Accuracy)</span>
+        </div>
+    </div>
+
+    <script>
+        // DATA: All 55 examples from your text, categorized
+        const samples = [
+            { id: 1, cat: 'nature', title: 'Horses in Meadow', text: "It’s a close-up picture of three different-colored horses standing in a meadow with air flowing smoothly. The horses on the right and left sides are brown in color, and the middle one is black in color. Also, there is a tinge of white hues on their faces. In this picture, it can also be seen waving grass and little white flowers." },
+            { id: 2, cat: 'people', title: 'Teacher & Students', text: "This image illustrates a female teacher and a group of female students who have worn school dress in a classroom setup. That educator is sharing information or asking questions to her students in a standing position. The students are sitting on the ground, and the surrounding is lush green. Out of 6, two students are raising their hands to answer something." },
+            { id: 3, cat: 'objects', title: 'Hot Air Balloon', text: "This picture illustrates a hot air balloon with a written ‘Pealz Gas’ in capital letters on it. The hot air balloon color is red, white, and yellow. Also, it’s in the middle of a plowed field – rising slowly towards the sky – with some trees visible from far behind it. A few things or people can be seen in the balloon’s basket." },
+            { id: 4, cat: 'nature', title: 'Seal/Sea Lion', text: "This image portrays a seal (or sea lion) with white whiskers. The aquatic animal is coming out of the water and has created waves around it. Its skin is wet and shiny. Looking at his sleepy eyes, it can be guessed that he is in a relaxed mood and the surroundings are not crowded." },
+            { id: 5, cat: 'nature', title: 'Blue Lake & Mountains', text: "This picture vividly illustrates an explicit blue lake enclosed by snow-capped mountains in the background and a lush green forest surrounding its waters. The shadows of the picturesque mountains, trees, and clean sky can be observed in the transparent water of the lake." },
+            { id: 6, cat: 'people', title: 'Soldiers on Patrol', text: "This image shows two soldiers standing in an open field, wearing camouflage uniforms and helmets. They are also holding rifles and carrying backpacks filled with pieces of equipment. The setting looks like an old industrial site with damaged metal structures in the background." },
+            { id: 7, cat: 'nature', title: 'Boats at Sunset', text: "This image depicts several boats gently floating on the calm sea as the sun sets. The sky glows with stunning orange, pink, and purple hues, and their reflections shimmer on the water’s surface; in the center, a large boat with people enjoying the scenery, while smaller boats are visible further away." },
+            { id: 8, cat: 'people', title: 'Gamer Girl', text: "The picture describes a young woman sitting at her desk, playing a computer game, wearing a gaming headset, and looking surprised as the words “You Win” appear on the screen. Her gaming setup includes a colorful, glowing PC and a large monitor." },
+            { id: 9, cat: 'objects', title: 'Chicken Stir Fry', text: "In this picture, a delicious bowl of chicken stir fry is placed on a wooden surface. The colorful dish has chicken pieces, bell peppers, tomatoes, and fresh greens. Around the bowl, there are fresh vegetables like garlic, carrots, and chili peppers." },
+            { id: 10, cat: 'people', title: 'Friends in Cinema', text: "The picture depicts a group of friends sitting in a movie theater, enjoying a film. They are seated in red chairs and holding big buckets of popcorn. The expressions on their faces show that they are focused on the screen. The person in the front looks excited, possibly because of a thrilling scene." },
+            { id: 11, cat: 'people', title: 'Trumpet Player', text: "The image represents a man playing a shiny silver trumpet in a calm and focused setting. He looks professional and passionate, dressed in a black jacket and white shirt. His eyes are closed, reflecting his deep connection to the music." },
+            { id: 12, cat: 'people', title: 'Woman on Bridge', text: "This scene depicts a cheerful woman standing on a bridge, holding a coffee cup in one hand and raising the other joyfully. She is dressed stylishly in jeans, a red sweater, a coat, and a red beret. The sunny weather highlights the historic city in the background." },
+            { id: 13, cat: 'people', title: 'Man in Gym', text: "The picture displays a man working in a gym, lifting a heavy barbell. He is seated on a bench and wearing a black T-shirt and shorts, and his focused expression shows that he is putting effort into his exercise. The gym has advanced equipment and other gym-goers." },
+            { id: 14, cat: 'people', title: 'Hikers at Sunrise', text: "The scene describes three hikers standing on a grassy hill, looking at a beautiful sunrise over a lake and mountains. They are wearing backpacks, indicating they are on a trek. The view is serene, with green hills and calm water below." },
+            { id: 15, cat: 'people', title: 'Swimmer Diving', text: "The image guides as a swimmer captured mid-air, diving into an indoor pool. He is wearing swimming goggles and a black-and-yellow swimsuit. The pool features marked lanes, orange floats, and a bright, spacious facility with other swimmers practicing in the background." },
+            { id: 16, cat: 'people', title: 'Office Presentation', text: "The picture depicts a woman leading a modern office presentation, pointing at a screen displaying graphs and charts. Four team members sit around a table and engage in a discussion. The bright room, with large windows and sleek decor, creates a professional atmosphere." },
+            { id: 17, cat: 'people', title: 'Family Sightseeing', text: "This image represents a family of four standing on a bridge, enjoying a sightseeing trip. The parents point at something in the distance while the children watch with excitement. Everyone is warmly dressed in winter coats, hats, and scarves." },
+            { id: 18, cat: 'people', title: 'Tourists in City', text: "The scene involves two women enjoying a sunny day in a vibrant city center. One holds a map and points excitedly, while the other captures the moment with a camera. They are wearing hats and sunglasses; they look stylish and ready for adventure." },
+            { id: 19, cat: 'people', title: 'Classroom Discussion', text: "This picture discloses a man leading a discussion in a modern classroom. He is holding books and speaking to a group seated around a table with computers. The attendees are listening attentively, creating an atmosphere of focus and learning." },
+            { id: 20, cat: 'urban', title: 'Industrial Factory', text: "This image shows a factory with tall chimneys releasing smoke into the sky during sunset. The smoke is thick and spreads across the horizon, contrasting with the warm orange glow of the setting sun. The silhouettes of industrial structures and cranes add to the scene’s dramatic effect." },
+            { id: 21, cat: 'people', title: 'VR Headset User', text: "The picture appears as a man sitting at his desk, fully immersed in a virtual reality (VR) experience, and he is wearing a VR headset; he interacts with digital objects while his computer screen displays a 3D image of a human face." },
+            { id: 22, cat: 'people', title: 'Office Teamwork', text: "The image reveals two people working together at an office desk using laptops. One screen displays graphs and charts. The desk is organized with documents, a cup of coffee, and office supplies. The environment feels professional and focused." },
+            { id: 23, cat: 'people', title: 'Skateboarder', text: "This image demonstrates a man skateboarding on a sunny day, performing a trick on the road. He is dressed casually in a T-shirt and shorts and wears a helmet for safety. The backdrop features green grass and sleek modern buildings." },
+            { id: 24, cat: 'urban', title: 'Historic Building', text: "This scene showcases a grand historic building in the heart of a city. Its detailed architecture, featuring tall towers and statues, exudes a sense of cultural significance. A bright yellow tram passing in front adds a modern contrast to the cobblestone square surrounding it." },
+            { id: 25, cat: 'people', title: 'Dancers in Studio', text: "The picture exhibits a young man and woman dancing energetically in a colorful studio. The lighting creates vibrant green and red shadows, adding drama to the scene. Both dancers are wearing casual clothes, reflecting a street-style vibe." },
+            { id: 26, cat: 'people', title: 'Bakery Worker', text: "This image displays a bakery worker carefully packing baked goods into a paper bag. Wearing a pink sweater, a cap, and an apron, the worker appears focused on their task. The display case is filled with a variety of fresh pastries." },
+            { id: 27, cat: 'nature', title: 'Beach Wedding', text: "This image captures the elegance and romance of a beachside wedding. A white aisle covered with vibrant pink flower petals leads to an altar adorned with flowing white drapes and floral arrangements. Rows of chairs decorated with pink accents are filled with guests." },
+            { id: 28, cat: 'people', title: 'Family Sunset Walk', text: "This image shows a family walking along a wooden pier during a beautiful sunset. The silhouettes of two adults and two children are visible as they enjoy a peaceful moment together. The calm waves of the ocean reflect the vibrant hues of orange and pink." },
+            { id: 29, cat: 'people', title: 'Market Shopping', text: "This image discloses three women shopping at a bustling market. They are gathered around a fruit stand, inspecting fresh produce, with one woman holding an apple. All three appear to be enjoying themselves, laughing and chatting as they sip coffee." },
+            { id: 30, cat: 'urban', title: 'Night Carnival', text: "This image captures the vibrant energy of a night carnival. A large Ferris wheel, illuminated with colorful lights, dominates the scene, while smaller stalls and rides surround it. Groups of people, including families and friends, are enjoying the lively atmosphere." },
+            { id: 31, cat: 'urban', title: 'Football Stadium', text: "This image captures the vibrant atmosphere of a packed football stadium during a major event. Thousands of fans fill the seats, cheering for their teams. The lush green field is adorned with giant banners, and players are lined up." },
+            { id: 32, cat: 'urban', title: 'Airport Terminal', text: "This image depicts a busy airport terminal filled with travelers moving in different directions. Information boards and signage guide passengers to various destinations while people stand in lines with their luggage, waiting for check-ins." },
+            { id: 33, cat: 'people', title: 'Cozy Cafe', text: "This picture shows a cozy café with a warm and inviting atmosphere. Two people are standing near the counter, engaging in a casual conversation, while another pair is seated at a table, discussing something over a laptop." },
+            { id: 34, cat: 'people', title: 'Boys Playing Soccer', text: "This vibrant image captures a group of young boys playing soccer on a dirt field under a bright blue sky. Their colorful uniforms and lively movements exude joy and energy. In the background, a rustic school building and tall trees set the scene." },
+            { id: 35, cat: 'people', title: 'Campfire Gathering', text: "This image depicts a group of friends sitting around a campfire at night, roasting marshmallows on sticks. The scene is illuminated by string lights in the background, creating a warm and inviting atmosphere." },
+            { id: 36, cat: 'people', title: 'Gardening Woman', text: "This picture shows a woman wearing a red shirt, jeans, and gardening gloves, immersed in tending to her garden. She is crouched down, carefully planting or nurturing small seedlings in the rich, brown soil." },
+            { id: 37, cat: 'people', title: 'Science Class', text: "This image shows a lively science class where a teacher dressed in a white lab coat demonstrates an experiment to a group of curious children. Beakers filled with colorful liquids, test tubes, and a microscope are spread across the table." },
+            { id: 38, cat: 'people', title: 'Family Dinner', text: "This image shows a family gathered around a dining table, enjoying a cheerful meal together. They are raising their glasses to toast, with smiles and laughter visible on their faces. The table is filled with a variety of dishes." },
+            { id: 39, cat: 'urban', title: 'Subway Station', text: "This scene shows a busy covered walkway in what appears to be a subway or train station. People of all ages, dressed in warm clothing, are walking through the area, some wearing masks and carrying bags. Bright advertisements line the walls." },
+            { id: 40, cat: 'people', title: 'Teacher in Classroom', text: "This image shows a teacher holding a notebook in a modern classroom. The students seated at wooden desks appear engaged and enthusiastic. Some raise their hands to answer the teacher’s question, while others listen attentively." },
+            { id: 41, cat: 'people', title: 'Forest Hikers', text: "This image discloses a group of hikers walking along a lush forest trail beside a flowing river. They are wearing outdoor gear and carrying backpacks, prepared for their journey. The dense greenery and tranquil water create a sense of adventure." },
+            { id: 42, cat: 'people', title: 'Supermarket Shopping', text: "This image shows a mother and her young daughter shopping in a supermarket. The girl points excitedly at something on the shelves while the mother pushes a cart filled with groceries. The brightly lit aisles are stocked with various items." },
+            { id: 43, cat: 'people', title: 'Library Reader', text: "This image shows a cozy, book-filled space with towering shelves crammed with books of all sizes. At the center, a man sits on a chair, engrossed in reading, surrounded by stacks of books on the floor and nearby shelves." },
+            { id: 44, cat: 'people', title: 'Orchestra', text: "This image shows a group of musicians seated in an orchestra, playing their instruments. They are dressed in formal black attire, and the music sheets are carefully positioned on stands in front of them. The musicians are focused." },
+            { id: 45, cat: 'objects', title: 'Modern Kitchen', text: "The photograph showcases a sleek and modern kitchen with a minimalist design. The clean lines of the cabinetry, paired with the neutral tones of beige and brown, give the space a contemporary feel. A polished stone countertop reflects the natural light." },
+            { id: 46, cat: 'urban', title: 'Rainy City Street', text: "This image captures the vibrancy of a busy urban street on a rainy day. Pedestrians holding colorful umbrellas moving across the wet pavement, which reflects their silhouettes and the grand architecture of a colonial-era building in the background." },
+            { id: 47, cat: 'nature', title: 'Train in Nature', text: "The photo showcases a long passenger train winding through a picturesque landscape. Framed by towering trees with golden autumn leaves and majestic mountains in the background, the scene is bathed in warm sunlight." },
+            { id: 48, cat: 'people', title: 'Tug-of-War', text: "This picture shows three boys enthusiastically participating in a tug-of-war game on a grassy field. Wearing headbands and casual clothes, they pull the rope with determination, showcasing their teamwork and competitive spirit." },
+            { id: 49, cat: 'people', title: 'Rice Farmers', text: "This image shows a group of farmers planting rice seedlings in a flooded paddy field. Wearing traditional hats and working in the water, they are bent over, diligently tending to the crops. The background features lush greenery." },
+            { id: 50, cat: 'people', title: 'Artist in Studio', text: "This image portrays a serene and creative workspace where a young woman is engrossed in her artwork. She stands in front of an easel, holding a palette and brush, painting with focus and precision. Surrounding her are various completed and unfinished pieces." },
+            { id: 51, cat: 'people', title: 'Library Corner', text: "This image depicts a cozy corner of a library where people are engrossed in reading. Comfortable bean bags and chairs are scattered around, with bookshelves lining the background. A woman flips through a book while another person focuses on their reading." },
+            { id: 52, cat: 'people', title: 'Sprinter on Track', text: "This image exhibits a young man sprinting on an outdoor track in a stadium. He is dressed in athletic gear, with black shorts and a gray T-shirt, and appears focused as he pushes himself forward mid-stride. The green grass and empty bleachers in the background provide a quiet setting." },
+            { id: 53, cat: 'nature', title: 'Rustic Countryside', text: "This image displays a serene countryside landscape featuring a small, weathered house with a rusty roof. Next to the house stands a tall tree and an old windmill, adding to the rustic charm. The open field is filled with tall golden grass swaying in the breeze." },
+            { id: 54, cat: 'urban', title: 'Night City Street', text: "This image captures a bustling city street at night, illuminated by bright neon signs and the glow of streetlights. Pedestrians walk along the crosswalks, while cars and taxis navigate the busy roads. The modern architecture and vibrant energy reflect the dynamic pace of urban life." },
+            { id: 55, cat: 'people', title: 'Snowy Forest Walk', text: "This image shows a couple enjoying a playful moment with their dog on a snow-covered trail in a serene forest. The man is crouched down, reaching out to pet the dog, while the woman stands nearby, smiling warmly at the interaction." }
+        ];
+
+        function filterSamples(category) {
+            // Update Buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const container = document.getElementById('samplesContainer');
+            container.innerHTML = '';
+
+            const filtered = category === 'all' ? samples : samples.filter(s => s.cat === category);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'sample-card';
+                card.innerHTML = `
+                    <div class="sample-image-box">
+                        <img src="IMAGES/${item.id}.png" alt="${item.title}">
+                    </div>
+                    <div class="sample-header">
+                        <span>Example ${item.id}: ${item.title}</span>
+                        <span class="tag">${item.cat}</span>
+                    </div>
+                    <div class="sample-body">
+                        ${highlightText(item.text)}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function highlightText(text) {
+            // Very basic highlighter for transitions and adjectives
+            const keywords = ['However', 'Furthermore', 'Overall', 'Specifically', 'Presumably', 'Also', 'In addition', 'Consequently'];
+            let newText = text;
+            keywords.forEach(word => {
+                const reg = new RegExp(`\\b${word}\\b`, 'g');
+                newText = newText.replace(reg, `<span class="highlight">${word}</span>`);
+            });
+            return newText;
+        }
+
+        // Initialize
+        filterSamples('all');
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DET Elite: 140+ Lexical Engine</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            /* Fresh Green */
+            --primary-dark: #388E3C;
+            --secondary: #2196F3;
+            /* Bright Blue */
+            --secondary-dark: #1976D2;
+            --purple: #9C27B0;
+            --gold: #FFC107;
+            --danger: #F44336;
+            --dark: #333333;
+            --gray: #666666;
+            --light: #F5F7FA;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'DIN Next Rounded LT Pro', 'Nunito', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 4px 0 #e5e5e5;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 2px solid #e5e5e5;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            font-size: 2.8em;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .coach-note {
+            background: #e5f6d3;
+            border-left: 5px solid var(--primary);
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* --- Stats Bar --- */
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 50%, var(--secondary) 50%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 0;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            padding: 20px 10px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 800;
+            display: block;
+            color: var(--white);
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* --- Progress Bar --- */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #E0E0E0;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 4px;
+        }
+
+        /* --- Controls & Filter --- */
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        input#search {
+            width: 100%;
+            padding: 12px 15px;
+            padding-left: 45px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        input#search:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(43, 112, 201, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s;
+            color: var(--gray);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-btn.active {
+            color: white;
+            border-color: transparent;
+            transform: translateY(0);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-btn[data-filter="all"].active {
+            background: var(--primary);
+        }
+
+        .filter-btn.lvl-2.active {
+            background: var(--purple);
+        }
+
+        .filter-btn.lvl-3.active {
+            background: var(--gold);
+            color: #333;
+        }
+
+        .filter-btn.lvl-trap.active {
+            background: var(--danger);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 25px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--secondary);
+            color: white;
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+            border: none;
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 2px solid #f0f0f0;
+            vertical-align: top;
+            background: white;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .word-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .word-text {
+            font-weight: 800;
+            font-size: 1.3em;
+            color: var(--dark);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            width: fit-content;
+            color: white;
+        }
+
+        .b-lvl-1 {
+            /* Assuming Default/Lvl 1 is Blue if added later, but for now Primary/Green usage or Custom */
+            background: var(--secondary);
+            /* The image shows Level 1 as Blue */
+        }
+
+        .b-lvl-2 {
+            background: var(--purple);
+        }
+
+        .b-lvl-3 {
+            background: var(--gold);
+            color: #333;
+        }
+
+        .b-lvl-trap {
+            background: var(--danger);
+        }
+
+        .meaning-text {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .strategy-tip {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #f0f7ff;
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .trap-warning {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #fff0f0;
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .page-btn {
+            background: white;
+            color: var(--gray);
+            border: 2px solid #e5e5e5;
+            border-bottom-width: 4px;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: #f0f0f0;
+        }
+
+        .page-btn:active:not(:disabled) {
+            border-bottom-width: 2px;
+            transform: translateY(2px);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-bottom-width: 2px;
+            transform: translateY(2px);
+        }
+
+        .export-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gold);
+            color: #333;
+            border: 2px solid #e5b400;
+            border-bottom-width: 4px;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .export-btn:active {
+            border-bottom-width: 2px;
+            transform: translateY(2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid #e5e5e5;
+                padding-bottom: 10px;
+            }
+
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>DET Elite: 140+ Engine</h1>
+        <div class="subtitle">Vocabulary Strategy for Advanced Scores</div>
+
+        <div class="coach-note">
+            <i class="fas fa-bullhorn" style="color: var(--primary); margin-right: 8px;"></i>
+            <strong>Coach's Order:</strong> I have loaded your requested list plus 20+ "Secret Weapons" for the
+            DET/IELTS. Review the <strong>Lvl 3 (C2)</strong> words immediately.
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-number" id="total-words">0</span>
+                <span class="stat-label">Total Words</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="filtered-words">0</span>
+                <span class="stat-label">Displayed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="current-page-display">1</span>
+                <span class="stat-label">Current Page</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="total-pages">1</span>
+                <span class="stat-label">Total Pages</span>
+            </div>
+        </div>
+
+
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-indicator"></div>
+        </div>
+
+        <div class="controls">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search" placeholder="Search strategy... (e.g. 'help', 'fake')">
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Words</button>
+                <!-- <button class="filter-btn lvl-1" data-filter="Lvl 1">Level 1 (B2)</button> -->
+                <button class="filter-btn lvl-2" data-filter="Lvl 2">Level 2 (C1)</button>
+                <button class="filter-btn lvl-3" data-filter="Lvl 3">Level 3 (C2)</button>
+                <button class="filter-btn lvl-trap" data-filter="Trap">Spelling Traps</button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%;">Word & Level</th>
+                    <th style="width: 70%;">Meaning & Strategy</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <button id="prevBtn" class="page-btn"><i class="fas fa-chevron-left"></i> Prev</button>
+            <button id="nextBtn" class="page-btn">Next <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <button class="export-btn" id="exportBtn">
+        <i class="fas fa-file-export"></i> Download List
+    </button>
+
+    <script>
+        const rawData = [
+            // --- COACH'S ELITE STASH (140+ / BAND 8.0+) ---
+            { w: "Myriad", t: "Lvl 3", m: "A countless or extremely great number.", s: "Example: 'There are a myriad of options.' (Use instead of 'many')." },
+            { w: "Mitigate", t: "Lvl 3", m: "Make less severe, serious, or painful.", s: "Example: 'We must mitigate the risks.' (Use instead of 'reduce')." },
+            { w: "Deleterious", t: "Lvl 3", m: "Causing harm or damage.", s: "Example: 'Pollution has deleterious effects.' (Use instead of 'bad/harmful')." },
+            { w: "Bolster", t: "Lvl 3", m: "Support or strengthen.", s: "Example: 'We need to bolster the economy.' (Use instead of 'support')." },
+            { w: "Elucidate", t: "Lvl 3", m: "Make (something) clear; explain.", s: "Example: 'Please elucidate your point.' (Use instead of 'explain')." },
+            { w: "Ephemeral", t: "Lvl 3", m: "Lasting for a very short time.", s: "Example: 'Fashion trends are often ephemeral.'" },
+            { w: "Stark", t: "Lvl 3", m: "Severe or bare in appearance or outline.", s: "Example: 'A stark contrast between rich and poor.'" },
+            { w: "Epitome", t: "Lvl 3", m: "A perfect example of a particular quality or type.", s: "Example: 'She is the epitome of dedication.'" },
+            { w: "Scrutinize", t: "Lvl 3", m: "Examine or inspect closely and thoroughly.", s: "Example: 'The manager scrutinized the report.'" },
+            { w: "Placate", t: "Lvl 3", m: "Make (someone) less angry or hostile.", s: "Example: 'He tried to placate the angry customer.'" },
+            { w: "Cacophony", t: "Lvl 3", m: "A harsh, discordant mixture of sounds.", s: "Example: 'A cacophony of alarm bells.'" },
+            { w: "Nefarious", t: "Lvl 3", m: "Wicked or criminal.", s: "Example: 'The nefarious activities of the gang.'" },
+            { w: "Zealous", t: "Lvl 3", m: "Having or showing zeal; passionate.", s: "Example: 'A zealous supporter of the cause.'" },
+            { w: "Prolific", t: "Lvl 3", m: "Present in large numbers or quantities.", s: "Example: 'A prolific writer.'" },
+
+            // --- DET REAL TRAPS (FAKE WORDS) ---
+            { w: "Unpossible", t: "Trap", m: "Not a word.", s: "Look closely! The word is 'Impossible'." },
+            { w: "Deround", t: "Trap", m: "Nonsense word.", s: "Do not click this. It looks like 'Around' but it is fake." },
+            { w: "Agrovation", t: "Trap", m: "Spelling error.", s: "The real word is 'Aggravation' (double g)." },
+            { w: "Involvementment", t: "Trap", m: "Suffix error.", s: "Too many suffixes. Real word: 'Involvement'." },
+            { w: "Understandment", t: "Trap", m: "Fake noun.", s: "The noun is 'Understanding'." },
+            { w: "Fistly", t: "Trap", m: "Fake adverb.", s: "The word is 'Firstly' (with an r)." },
+            { w: "Memoize", t: "Trap", m: "Typo/Fake.", s: "Real word: 'Memorize'. Watch for missing letters." },
+            { w: "Recieved", t: "Trap", m: "Spelling Rule (i before e).", s: "Incorrect. It must be 'Received'." },
+
+            // --- YOUR REQUESTED LIST (Adjectives/Descriptive) ---
+            { w: "Vibrant", t: "Lvl 2", m: "Full of energy and life.", s: "Example: The city has a vibrant nightlife with many restaurants and clubs." },
+            { w: "Serene", t: "Lvl 2", m: "Calm, peaceful, and untroubled.", s: "Example: The serene lake was a perfect place for meditation." },
+            { w: "Bustling", t: "Lvl 2", m: "Full of busy activity.", s: "Example: The bustling market was crowded with shoppers and vendors." },
+            { w: "Dilapidated", t: "Lvl 2", m: "In a state of disrepair or ruin.", s: "Example: The old, dilapidated house had been abandoned for years." },
+            { w: "Contemporary", t: "Lvl 2", m: "Belonging to or occurring in the present.", s: "Example: The museum features contemporary art from around the world." },
+            { w: "Pensive", t: "Lvl 2", m: "Reflecting deep or serious thought.", s: "Example: The person in the photograph has a pensive expression." },
+            { w: "Meticulous", t: "Lvl 3", m: "Showing great attention to detail.", s: "Example: He is a meticulous worker who never makes mistakes." },
+            { w: "Gregarious", t: "Lvl 3", m: "Fond of company; sociable.", s: "Example: She is a gregarious person who loves parties." },
+            { w: "Tranquil", t: "Lvl 2", m: "Free from disturbance; calm.", s: "Example: I enjoy the tranquil atmosphere of the countryside." },
+            { w: "Majestic", t: "Lvl 2", m: "Having or showing impressive beauty.", s: "Example: The majestic mountains were covered in snow." },
+            { w: "Sparse", t: "Lvl 2", m: "Thinly dispersed or scattered.", s: "Example: The vegetation in the desert is sparse." },
+            { w: "Dense", t: "Lvl 2", m: "Closely compacted in substance.", s: "Example: The dense forest was difficult to navigate." },
+            { w: "Elated", t: "Lvl 2", m: "Ecstatically happy.", s: "Example: The children were elated when they saw the presents." },
+            { w: "Solemn", t: "Lvl 2", m: "Formal and dignified; serious.", s: "Example: A solemn mood filled the room during the ceremony." },
+            { w: "Intricate", t: "Lvl 2", m: "Very complicated or detailed.", s: "Example: The intricate patterns on the tapestry were beautiful." },
+            { w: "Verdant", t: "Lvl 3", m: "Green with grass or other rich vegetation.", s: "Example: The verdant hills of Ireland are a famous sight." },
+            { w: "Quaint", t: "Lvl 2", m: "Attractively unusual or old-fashioned.", s: "Example: We stayed in a quaint little cottage in the village." },
+            { w: "Industrious", t: "Lvl 2", m: "Diligent and hard-working.", s: "Example: The industrious student completed all of her assignments early." },
+            { w: "Lethargic", t: "Lvl 2", m: "Sluggish and apathetic.", s: "Example: I felt tired and lethargic after the long flight." },
+            { w: "Ornate", t: "Lvl 2", m: "Decorated with complex patterns.", s: "Example: The ornate palace was decorated with gold and jewels." },
+
+            // --- EXPRESSING IDEAS (Verbs) ---
+            { w: "Advocate", t: "Lvl 3", m: "To publicly recommend or support.", s: "Example: I advocate for policies that protect the environment." },
+            { w: "Assert", t: "Lvl 2", m: "To state a fact or belief confidently.", s: "Example: He asserted that he was innocent of the crime." },
+            { w: "Clarify", t: "Lvl 2", m: "To make a statement less confused.", s: "Example: Could you please clarify what you mean by that?" },
+            { w: "Concur", t: "Lvl 3", m: "To agree.", s: "Example: I concur with the previous speaker's opinion." },
+            { w: "Contend", t: "Lvl 3", m: "To state something as a position in an argument.", s: "Example: Some scientists contend that climate change is irreversible." },
+            { w: "Convey", t: "Lvl 2", m: "To make an idea known or understandable.", s: "Example: The novel effectively conveys the horrors of war." },
+            { w: "Crucial", t: "Lvl 2", m: "Of great importance.", s: "Example: It is crucial that we find a solution to this problem." },
+            { w: "Elaborate", t: "Lvl 2", m: "To develop or present a theory in detail.", s: "Example: Could you elaborate on your proposal?" },
+            { w: "Emphasize", t: "Lvl 2", m: "To give special importance to something.", s: "Example: I want to emphasize the importance of teamwork." },
+            { w: "Illustrate", t: "Lvl 2", m: "To explain by using examples.", s: "Example: Let me illustrate my point with a personal story." },
+            { w: "Imply", t: "Lvl 2", m: "To strongly suggest the truth.", s: "Example: His silence seemed to imply his agreement." },
+            { w: "Justify", t: "Lvl 2", m: "To show or prove to be right.", s: "Example: Can you justify your decision to quit your job?" },
+            { w: "Nuance", t: "Lvl 3", m: "A subtle difference in meaning.", s: "Example: He was able to capture every nuance of her expression." },
+            { w: "Pertinent", t: "Lvl 3", m: "Relevant or applicable.", s: "Example: Please stick to the pertinent facts of the case." },
+            { w: "Plausible", t: "Lvl 2", m: "Seeming reasonable or probable.", s: "Example: His explanation sounds plausible." },
+            { w: "Postulate", t: "Lvl 3", m: "To suggest or assume existence.", s: "Example: Scientists postulate that there may be life on other planets." },
+            { w: "Refute", t: "Lvl 3", m: "To prove a statement to be wrong.", s: "Example: The new evidence refutes the defendant's claim." },
+            { w: "Stance", t: "Lvl 2", m: "The attitude of a person; standpoint.", s: "Example: What is your stance on the new environmental policy?" },
+            { w: "Substantiate", t: "Lvl 3", m: "To provide evidence to support truth.", s: "Example: You need to substantiate your claims with facts." },
+            { w: "Viable", t: "Lvl 3", m: "Capable of working successfully.", s: "Example: Is this business plan economically viable?" },
+
+            // --- ACTIONS & PROCESSES ---
+            { w: "Accelerate", t: "Lvl 2", m: "To begin to move more quickly.", s: "Example: The car accelerated to overtake the truck." },
+            { w: "Acquire", t: "Lvl 2", m: "To buy or obtain an asset.", s: "Example: She acquired a large collection of rare books." },
+            { w: "Adapt", t: "Lvl 2", m: "To become adjusted to new conditions.", s: "Example: Humans must adapt to a changing climate." },
+            { w: "Allocate", t: "Lvl 3", m: "To distribute resources.", s: "Example: The government will allocate more funding for education." },
+            { w: "Collaborate", t: "Lvl 2", m: "To work jointly on an activity.", s: "Example: The two artists collaborated on the mural." },
+            { w: "Commence", t: "Lvl 3", m: "To begin (formal).", s: "Example: The meeting will commence at 10 a.m." },
+            { w: "Comprehend", t: "Lvl 2", m: "To grasp mentally; understand.", s: "Example: I could not comprehend what she was trying to say." },
+            { w: "Cultivate", t: "Lvl 2", m: "To try to acquire or develop.", s: "Example: It is important to cultivate good study habits." },
+            { w: "Diminish", t: "Lvl 2", m: "To make or become less.", s: "Example: The country's influence has diminished over the years." },
+            { w: "Eradicate", t: "Lvl 3", m: "To destroy completely.", s: "Example: Scientists are working to eradicate the disease." },
+            { w: "Facilitate", t: "Lvl 3", m: "To make an action easier.", s: "Example: The new software will facilitate communication." },
+            { w: "Implement", t: "Lvl 2", m: "To put a decision into effect.", s: "Example: The government will implement the new policy." },
+            { w: "Innovate", t: "Lvl 2", m: "To make changes in something established.", s: "Example: The company continues to innovate in technology." },
+            { w: "Integrate", t: "Lvl 2", m: "To combine one thing with another.", s: "Example: We need to integrate the new system with our existing one." },
+            { w: "Leverage", t: "Lvl 3", m: "To use something to maximum advantage.", s: "Example: We can leverage our brand to expand into new markets." },
+            { w: "Maintain", t: "Lvl 2", m: "To cause or enable a condition to continue.", s: "Example: It is important to maintain a healthy diet." },
+            { w: "Optimize", t: "Lvl 3", m: "To make the best use of a resource.", s: "Example: We need to optimize our website for mobile devices." },
+            { w: "Resolve", t: "Lvl 2", m: "To settle or find a solution.", s: "Example: They finally resolved their differences." },
+            { w: "Sustain", t: "Lvl 2", m: "To strengthen or support.", s: "Example: It is difficult to sustain a high level of performance." },
+            { w: "Undertake", t: "Lvl 3", m: "To commit oneself to and begin.", s: "Example: She decided to undertake the challenging project." },
+
+            // --- CONNECTIONS (Transition Words) ---
+            { w: "Adjacent", t: "Lvl 2", m: "Next to or adjoining.", s: "Example: My office is adjacent to the conference room." },
+            { w: "Albeit", t: "Lvl 3", m: "Although.", s: "Example: The plan was successful, albeit very risky." },
+            { w: "Ambiguous", t: "Lvl 3", m: "Open to more than one interpretation.", s: "Example: The instructions were ambiguous and confusing." },
+            { w: "Apparent", t: "Lvl 2", m: "Clearly visible or understood.", s: "Example: It was apparent that she was not happy." },
+            { w: "Arbitrary", t: "Lvl 3", m: "Based on random choice.", s: "Example: The selection of the winner seemed completely arbitrary." },
+            { w: "Conversely", t: "Lvl 3", m: "Introduces an opposing idea.", s: "Example: He prefers morning; conversely, I am more productive at night." },
+            { w: "Discrepancy", t: "Lvl 3", m: "A lack of compatibility.", s: "Example: There was a discrepancy between the two witness statements." },
+            { w: "Furthermore", t: "Lvl 2", m: "In addition; besides.", s: "Example: The hotel is great; furthermore, the service is excellent." },
+            { w: "Hence", t: "Lvl 3", m: "As a consequence.", s: "Example: He was late, and hence, he missed the meeting." },
+            { w: "Inevitable", t: "Lvl 2", m: "Certain to happen.", s: "Example: Change is an inevitable part of life." },
+            { w: "Subsequently", t: "Lvl 3", m: "Afterward.", s: "Example: He graduated and subsequently found a job." },
+            { w: "Thereby", t: "Lvl 3", m: "By that means.", s: "Example: He studied hard, thereby ensuring his success." },
+            { w: "Nevertheless", t: "Lvl 3", m: "In spite of that.", s: "Example: The task was difficult; nevertheless, she completed it." },
+            { w: "Paradox", t: "Lvl 3", m: "A seemingly absurd statement that may be true.", s: "Example: It is a paradox that a wealthy country can have poverty." },
+            { w: "Predominantly", t: "Lvl 2", m: "Mainly; for the most part.", s: "Example: The audience was predominantly female." },
+            { w: "Prevalent", t: "Lvl 2", m: "Widespread in a particular area.", s: "Example: That fashion trend is prevalent among young people." },
+            { w: "Proportion", t: "Lvl 2", m: "A part considered in relation to a whole.", s: "Example: A large proportion of the budget is spent on healthcare." },
+            { w: "Respective", t: "Lvl 2", m: "Belonging separately to each.", s: "Example: The two friends went back to their respective homes." },
+            { w: "Simultaneously", t: "Lvl 2", m: "At the same time.", s: "Example: The two events happened simultaneously." },
+            { w: "Whereas", t: "Lvl 2", m: "In contrast with the fact that.", s: "Example: My brother is tall, whereas I am short." },
+
+            // --- ADVANCED DESCRIPTORS ---
+            { w: "Abundant", t: "Lvl 2", m: "Existing in large quantities.", s: "Example: The country has abundant natural resources." },
+            { w: "Adept", t: "Lvl 3", m: "Very skilled or proficient.", s: "Example: She is adept at playing the piano." },
+            { w: "Candid", t: "Lvl 2", m: "Truthful and straightforward.", s: "Example: Please be candid with me about your concerns." },
+            { w: "Conspicuous", t: "Lvl 3", m: "Standing out so as to be clearly visible.", s: "Example: His bright red car was conspicuous in the parking lot." },
+            { w: "Deficient", t: "Lvl 2", m: "Not having enough of a specified quality.", s: "Example: The diet was deficient in essential vitamins." },
+            { w: "Deteriorate", t: "Lvl 2", m: "To become progressively worse.", s: "Example: The patient's condition began to deteriorate." },
+            { w: "Explicit", t: "Lvl 3", m: "Stated clearly and in detail.", s: "Example: The instructions were explicit and easy to follow." },
+            { w: "Feasible", t: "Lvl 2", m: "Possible to do easily.", s: "Example: Is it feasible to complete the project by Friday?" },
+            { w: "Inherent", t: "Lvl 3", m: "Existing in something as a permanent attribute.", s: "Example: There is an inherent risk in any adventure sport." },
+            { w: "Integral", t: "Lvl 3", m: "Necessary to make a whole complete.", s: "Example: Teamwork is an integral part of our company culture." },
+            { w: "Lucrative", t: "Lvl 3", m: "Producing a great deal of profit.", s: "Example: He started a lucrative online business." },
+            { w: "Obsolete", t: "Lvl 2", m: "No longer produced or used.", s: "Example: Typewriters have become obsolete." },
+            { w: "Omit", t: "Lvl 2", m: "To leave out or exclude.", s: "Example: Please do not omit any details from your report." },
+            { w: "Pervasive", t: "Lvl 3", m: "Spreading widely throughout an area.", s: "Example: The influence of social media is pervasive." },
+            { w: "Pragmatic", t: "Lvl 3", m: "Dealing with things sensibly and realistically.", s: "Example: We need a pragmatic solution to this problem." },
+            { w: "Profound", t: "Lvl 3", m: "Very great or intense.", s: "Example: The book had a profound impact on my thinking." },
+            { w: "Robust", t: "Lvl 2", m: "Strong and healthy; vigorous.", s: "Example: The company has a robust financial position." },
+            { w: "Tangible", t: "Lvl 2", m: "Perceptible by touch.", s: "Example: The project produced tangible results that we can measure." },
+            { w: "Ubiquitous", t: "Lvl 3", m: "Present, appearing, or found everywhere.", s: "Example: Smartphones are now ubiquitous around the world." },
+        ];
+
+        let currentData = [...rawData];
+        let currentPage = 1;
+        const rowsPerPage = 7;
+        let currentFilter = 'all';
+
+        const tableBody = document.getElementById('table-body');
+        const searchInput = document.getElementById('search');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const exportBtn = document.getElementById('exportBtn');
+
+        function init() {
+            renderTable();
+            updateStats();
+            setupEvents();
+        }
+
+        function setupEvents() {
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                filterData(currentFilter, term);
+            });
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.dataset.filter;
+                    filterData(currentFilter, searchInput.value.toLowerCase());
+                });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if ((currentPage * rowsPerPage) < currentData.length) {
+                    currentPage++;
+                    renderTable();
+                }
+            });
+
+            exportBtn.addEventListener('click', exportCSV);
+        }
+
+        function filterData(category, searchTerm) {
+            currentData = rawData.filter(item => {
+                const matchesCategory = category === 'all' || item.t === category;
+                const matchesSearch = item.w.toLowerCase().includes(searchTerm) || item.m.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+            currentPage = 1;
+            renderTable();
+            updateStats();
+        }
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageItems = currentData.slice(start, end);
+
+            if (pageItems.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="2" style="text-align:center; padding:30px; color:#999;">No results found.</td></tr>`;
+                return;
+            }
+
+            pageItems.forEach(item => {
+                const row = document.createElement('tr');
+
+                let badgeClass = 'b-lvl-1'; // Default to Blue/Level 1 style if unknown
+                if (item.t === 'Lvl 2') badgeClass = 'b-lvl-2';
+                if (item.t === 'Lvl 3') badgeClass = 'b-lvl-3';
+                if (item.t === 'Trap') badgeClass = 'b-lvl-trap';
+
+                let tipBox = '';
+                if (item.t === 'Trap') {
+                    tipBox = `<div class="trap-warning"><i class="fas fa-exclamation-triangle"></i> ${item.s}</div>`;
+                } else {
+                    tipBox = `<div class="strategy-tip"><i class="fas fa-chess-knight"></i> ${item.s}</div>`;
+                }
+
+                row.innerHTML = `
+                    <td>
+                        <div class="word-cell">
+                            <span class="word-text">${item.w}</span>
+                            <span class="badge ${badgeClass}">${item.t}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="meaning-text">${item.m}</div>
+                        ${tipBox}
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            document.getElementById('current-page-display').innerText = currentPage;
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = end >= currentData.length;
+        }
+
+        function updateStats() {
+            document.getElementById('total-words').innerText = rawData.length;
+            document.getElementById('filtered-words').innerText = currentData.length;
+
+            const totalPages = Math.ceil(currentData.length / rowsPerPage) || 1;
+            document.getElementById('total-pages').innerText = totalPages;
+
+            const progress = (currentPage / totalPages) * 100;
+            document.getElementById('progress-indicator').style.width = `${progress}%`;
+        }
+
+        function exportCSV() {
+            let csv = "Word,Level,Meaning,Strategy\n";
+            currentData.forEach(row => {
+                csv += `"${row.w}","${row.t}","${row.m}","${row.s}"\n`;
+            });
+
+            const blob = new Blob([csv], {
+                type: 'text/csv'
+            });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'DET_Elite_Vocab.csv';
+            a.click();
+        }
+
+        init();
+    </script>
+
+</body>
+
+</html>

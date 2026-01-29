@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DET 150+ Interactive Writing Masterclass</title>
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-blue: #1cb0f6;
+            --duo-dark: #4b4b4b;
+            --high-level: #d97706;
+            --bg-gray: #f7f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--duo-dark);
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-box {
+            text-align: center;
+            border-bottom: 4px solid var(--duo-green);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--duo-green);
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .scoring-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .pillar {
+            background: white;
+            border: 2px solid #e5e5e5;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .pillar strong {
+            color: var(--duo-green);
+            display: block;
+            font-size: 1.1em;
+        }
+
+        .section-title {
+            background: var(--duo-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 50px;
+            display: inline-block;
+        }
+
+        /* THE THREE BOX STRUCTURE */
+        .box-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .box {
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        .box::before {
+            content: attr(data-label);
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: white;
+            padding: 0 10px;
+            font-weight: bold;
+            color: var(--duo-blue);
+            font-size: 0.9em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .template-box {
+            background-color: #fff;
+            border-left: 6px solid #ccc;
+        }
+
+        .answer-box {
+            background-color: #f0fdf4;
+            border-left: 6px solid var(--duo-green);
+        }
+
+        .followup-box {
+            background-color: #eff6ff;
+            border-left: 6px solid var(--duo-blue);
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .power-word {
+            color: var(--high-level);
+            font-weight: bold;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1px;
+            background: #ddd;
+            margin-top: 30px;
+            border: 1px solid #ddd;
+        }
+
+        .vocab-grid div {
+            background: white;
+            padding: 12px;
+        }
+
+        .vocab-head {
+            background: #f4f4f4 !important;
+            font-weight: bold;
+            color: var(--duo-green);
+        }
+
+        .vocab-grid div:nth-child(4n+3) {
+            color: #ff8c00;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .vocab-word {
+            color: #ff8c00;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .grammar-powerups {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            color: #1a237e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 2px solid var(--duo-blue);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="header-box">
+            <h1>DUOLINGO INTERACTIVE WRITING – 150+ TEMPLATE</h1>
+            <p>Official C1/C2 Advanced Level Curriculum</p>
+        </div>
+
+        <div class="scoring-pillars">
+            <div class="pillar"><strong>Grammatical</strong>Complexity (Inversions/Passive)</div>
+            <div class="pillar"><strong>Lexical</strong>Sophistication (C1/C2 Nouns)</div>
+            <div class="pillar"><strong>Discourse</strong>Coherence (Logic/Flow)</div>
+            <div class="pillar"><strong>Relevance</strong>Direct Prompt Answer</div>
+            <div class="pillar"><strong>Fluency</strong>110+ Words / 70+ Words</div>
+        </div>
+
+        <div class="grammar-powerups">
+            <h3 style="margin-top:0">⚡ GRAMMAR POWER-UPS</h3>
+            <p>• <strong>Inversion:</strong> <span class="highlight">"Not only did I face this challenge, but I
+                    also…"</span></p>
+            <p>• <strong>Cleft:</strong> <span class="highlight">"It was this decision that fundamentally altered my
+                    perspective."</span></p>
+            <p>• <strong>Passive:</strong> <span class="highlight">"The lesson was solidified through repeated
+                    exposure."</span></p>
+            <p>• <strong>Conditional:</strong> <span class="highlight">"Had I not undertaken this, I would never have
+                    realized…"</span></p>
+        </div>
+
+        <h2 class="section-title">1. PERSONAL EXPERIENCE / NARRATIVE</h2>
+        <p style="margin-left:20px;"><em>Use for: Challenges, surprises, decisions</em></p>
+
+        <div class="box-container">
+            <div class="box template-box" data-label="TEMPLATES">
+                <strong>Part 1 – Initial (5 minutes)</strong><br><br>
+
+                <strong>Hook / Context (Rotate Hooks):</strong><br>
+                "<span class="power-word">Amidst</span> the unpredictable dynamics of personal growth, certain
+                experiences reveal latent strengths."<br>
+                "Throughout the evolving landscape of my personal journey, <span class="power-word">pivotal</span>
+                moments often define character."<br><br>
+
+                <strong>Thesis / Position:</strong><br>
+                "I distinctly recall a time when [Answer the prompt here], which proved to be a turning point in shaping
+                my approach."<br><br>
+
+                <strong>Evidence / Example:</strong><br>
+                "During this event, it became apparent that [Detail] was essential for achieving a successful
+                outcome."<br><br>
+
+                <strong>Complexity / Counterpoint:</strong><br>
+                "While some might argue this was a minor incident, it fundamentally influenced my subsequent decisions
+                and mindset."<br><br>
+
+                <strong>Conclusion / Synthesis:</strong><br>
+                "Ultimately, this experience reinforced the importance of [Lesson / Value], which continues to guide my
+                actions today."<br><br>
+
+                <strong>Part 2 – Follow-up (3 minutes)</strong><br><br>
+
+                <strong>Bridge:</strong><br>
+                "Reflecting upon that event, I realized that the most <span class="power-word">profound</span> lesson
+                was [Lesson]."<br><br>
+
+                <strong>Logic / Explanation:</strong><br>
+                "This connects directly to my previous point because without it, I would not have understood how to
+                navigate [Topic]."<br><br>
+
+                <strong>Future / Implication:</strong><br>
+                "Consequently, I now approach similar circumstances with greater confidence and strategic foresight."
+            </div>
+
+            <div class="box answer-box" data-label="EXAMPLE ANSWER - PART 1 (5 MINUTES)">
+                <strong>Prompt: Describe a time you overcame a challenge.</strong><br><br>
+                Amidst the unpredictable dynamics of personal growth, certain experiences reveal latent strengths. I
+                distinctly recall a time when I had to present a project to senior engineers with minimal preparation,
+                which proved to be a turning point. During this event, it became apparent that staying calm and
+                organizing thoughts quickly was essential for a successful outcome. While some might argue this was
+                minor, it fundamentally influenced my confidence in high-pressure situations. Ultimately, this
+                experience reinforced the importance of composure and adaptability, which continues to guide my actions
+                today.
+            </div>
+
+            <div class="box followup-box" data-label="EXAMPLE ANSWER - PART 2 (3 MINUTES)">
+                Reflecting upon that event, I realized that the most <span class="power-word">profound</span> lesson was
+                the value of adaptability. This connects directly to my previous point because without it, I would not
+                have known how to navigate unexpected challenges effectively. Consequently, I now approach similar
+                circumstances with greater confidence and strategic foresight.
+            </div>
+        </div>
+
+        <h2 class="section-title">2. OPINION / SOCIAL ISSUE / ARGUMENTATIVE</h2>
+        <p style="margin-left:20px;"><em>Use for: Technology, school uniforms, government policies</em></p>
+
+        <div class="box-container">
+            <div class="box template-box" data-label="TEMPLATES">
+                <strong>Part 1 – Initial (5 minutes)</strong><br><br>
+
+                <strong>Hook / Context:</strong><br>
+                "The ongoing debate surrounding [Topic] has sparked significant academic and societal discourse."<br>
+                "In contemporary society, the question of [Topic] has become a focal point due to its wide-reaching
+                consequences."<br><br>
+
+                <strong>Thesis / Opinion:</strong><br>
+                "I firmly <span class="power-word">contend</span> that [Your Opinion] is of <span
+                    class="power-word">paramount</span> importance because it <span
+                    class="power-word">facilitates</span> [Benefit] and <span class="power-word">mitigates</span>
+                potential [Risks]."<br><br>
+
+                <strong>Evidence / Example:</strong><br>
+                "For instance, when [Example] is implemented, it illustrates how proactive measures can lead to
+                beneficial outcomes for society."<br><br>
+
+                <strong>Complexity / Counterpoint:</strong><br>
+                "<span class="power-word">Conversely</span>, critics argue that [Opposing View]; however, this
+                perspective often overlooks the <span class="power-word">nuanced</span> ramifications of
+                inaction."<br><br>
+
+                <strong>Conclusion / Synthesis:</strong><br>
+                "Ultimately, evidence suggests that supporting [Your Opinion] remains critical for sustainable
+                development and societal progress."<br><br>
+
+                <strong>Part 2 – Follow-up (3 minutes)</strong><br><br>
+
+                <strong>Bridge:</strong><br>
+                "Expanding on this discussion, it is important to consider the potential drawbacks, such as [Answer
+                follow-up]."<br><br>
+
+                <strong>Logic / Explanation:</strong><br>
+                "This is significant because even well-designed systems require careful management to avoid unintended
+                consequences."<br><br>
+
+                <strong>Future / Implication:</strong><br>
+                "Hence, with strategic implementation, we can maximize the benefits while minimizing any adverse
+                effects."
+            </div>
+
+            <div class="box answer-box" data-label="EXAMPLE ANSWER - PART 1 (5 MINUTES)">
+                <strong>Prompt: Should school uniforms be mandatory?</strong><br><br>
+                In contemporary society, the question of school uniforms has become a focal point due to its
+                wide-reaching consequences. I firmly contend that mandatory uniforms are essential because they promote
+                equality and reduce social pressure among students. For instance, when schools implement uniforms,
+                students are less likely to be judged based on attire, creating a more focused academic environment.
+                Conversely, critics argue that this limits self-expression; however, this perspective overlooks the
+                broader benefits of equity and discipline. Ultimately, evidence suggests that uniforms remain critical
+                for fostering a cohesive school culture.
+            </div>
+
+            <div class="box followup-box" data-label="EXAMPLE ANSWER - PART 2 (3 MINUTES)">
+                Expanding on this discussion, it is important to consider the potential drawbacks, such as reduced
+                individuality. This is significant because even well-designed systems must balance freedom and
+                discipline. Hence, with strategic policies like themed dress days, schools can maximize benefits while
+                allowing personal expression.
+            </div>
+        </div>
+
+        <h2 class="section-title">3. VALUES / PERSONALITY / TRAITS</h2>
+        <p style="margin-left:20px;"><em>Use for: Admiration, success traits, leadership qualities</em></p>
+
+        <div class="box-container">
+            <div class="box template-box" data-label="TEMPLATES">
+                <strong>Part 1 – Initial (5 minutes)</strong><br><br>
+
+                <strong>Hook / Context:</strong><br>
+                "In today's professional landscape, specific personal qualities are often decisive in achieving
+                success."<br><br>
+
+                <strong>Thesis / Opinion:</strong><br>
+                "I consider [Trait] to be an attribute of <span class="power-word">paramount</span> significance because
+                it fosters [Reason 1] and encourages [Reason 2]."<br><br>
+
+                <strong>Evidence / Example:</strong><br>
+                "For example, individuals who possess this trait can navigate complex challenges effectively, ensuring
+                superior outcomes."<br><br>
+
+                <strong>Complexity / Counterpoint:</strong><br>
+                "While intelligence or technical skill is important, the impact of [Trait] on long-term stability and
+                collaboration is unmatched."<br><br>
+
+                <strong>Conclusion / Synthesis:</strong><br>
+                "Ultimately, cultivating this quality is essential for anyone aspiring to reach their full
+                potential."<br><br>
+
+                <strong>Part 2 – Follow-up (3 minutes)</strong><br><br>
+
+                <strong>Bridge:</strong><br>
+                "Reflecting on this trait, I argue that its universal adoption would greatly benefit society."<br><br>
+
+                <strong>Logic / Explanation:</strong><br>
+                "This is because [Trait] fosters accountability and resilience, reinforcing my earlier point about
+                professional success."<br><br>
+
+                <strong>Future / Implication:</strong><br>
+                "Consequently, individuals who internalize this quality are better equipped for challenges and
+                leadership roles."
+            </div>
+
+            <div class="box answer-box" data-label="EXAMPLE ANSWER - PART 1 (5 MINUTES)">
+                <strong>Prompt: What trait do you admire most?</strong><br><br>
+                In today's professional landscape, specific personal qualities are often decisive in achieving success.
+                I consider resilience to be an attribute of paramount significance because it fosters perseverance and
+                encourages problem-solving under pressure. For example, individuals who possess resilience can navigate
+                setbacks effectively, ensuring superior outcomes. While intelligence is important, the impact of
+                resilience on long-term stability and collaboration is unmatched. Ultimately, cultivating this quality
+                is essential for anyone aspiring to reach their full potential.
+            </div>
+
+            <div class="box followup-box" data-label="EXAMPLE ANSWER - PART 2 (3 MINUTES)">
+                Reflecting on this trait, I argue that its universal adoption would greatly benefit society. This is
+                because resilience fosters accountability and reinforces the ability to manage challenges, aligning with
+                my previous point. Consequently, individuals who internalize this quality are better equipped for
+                leadership roles and complex problem-solving.
+            </div>
+        </div>
+
+        <h2 class="section-title">4. HYPOTHETICAL / CONDITIONAL / REFLECTION</h2>
+        <p style="margin-left:20px;"><em>Use for: Changing habits, ideal schools, "what if" scenarios</em></p>
+
+        <div class="box-container">
+            <div class="box template-box" data-label="TEMPLATES">
+                <strong>Part 1 – Initial (5 minutes)</strong><br><br>
+
+                <strong>Hook / Context:</strong><br>
+                "Imagining alternative scenarios provides valuable <span class="power-word">insight</span> into how
+                current decisions shape future outcomes."<br><br>
+
+                <strong>Thesis / Opinion:</strong><br>
+                "If I had the opportunity to [Change / Implement], I believe it would <span
+                    class="power-word">profoundly</span> transform [Result]."<br><br>
+
+                <strong>Evidence / Example:</strong><br>
+                "For instance, adopting this approach could allow for [Positive Outcome], which is currently
+                unattainable."<br><br>
+
+                <strong>Complexity / Counterpoint:</strong><br>
+                "Although challenging at first, the long-term advantages of this change outweigh the initial
+                difficulties."<br><br>
+
+                <strong>Conclusion / Synthesis:</strong><br>
+                "Ultimately, reflecting on these hypothetical scenarios enhances decision-making and future
+                preparedness."<br><br>
+
+                <strong>Part 2 – Follow-up (3 minutes)</strong><br><br>
+
+                <strong>Bridge:</strong><br>
+                "Regarding the consequences of this change, the most immediate effect would be [Answer
+                follow-up]."<br><br>
+
+                <strong>Logic / Explanation:</strong><br>
+                "This is crucial because it addresses the underlying issue of [Topic], reinforcing the relevance of my
+                earlier point."<br><br>
+
+                <strong>Future / Implication:</strong><br>
+                "Accordingly, I plan to apply the lessons learned from this hypothetical scenario to my real-life
+                decisions."
+            </div>
+
+            <div class="box answer-box" data-label="EXAMPLE ANSWER - PART 1 (5 MINUTES)">
+                <strong>Prompt: What would you change in your school system if you could?</strong><br><br>
+                Imagining alternative scenarios provides valuable insight into how current decisions shape future
+                outcomes. If I had the opportunity to implement project-based learning in my school, I believe it would
+                profoundly transform student engagement and understanding. For instance, adopting this approach could
+                allow for practical application of theoretical knowledge, which is currently unattainable. Although
+                challenging initially, the long-term advantages of hands-on learning outweigh the early difficulties.
+                Ultimately, reflecting on these hypothetical scenarios enhances decision-making and prepares students
+                for real-world challenges.
+            </div>
+
+            <div class="box followup-box" data-label="EXAMPLE ANSWER - PART 2 (3 MINUTES)">
+                Regarding the consequences of this change, the most immediate effect would be increased student
+                motivation and retention. This is crucial because it addresses the core issue of disengagement,
+                reinforcing the relevance of my earlier point. Accordingly, I plan to apply the lessons learned from
+                this hypothetical scenario to future learning initiatives.
+            </div>
+        </div>
+
+        <h2>💎 50+ ADVANCED VOCABULARY (C1/C2 LEVEL)</h2>
+        <div class="vocab-grid">
+            <div class="vocab-head">Word</div>
+            <div class="vocab-head">Example</div>
+            <div>pivotal</div>
+            <div>This experience was <span class="vocab-word">pivotal</span> in shaping my worldview.</div>
+            <div>profound</div>
+            <div>It had a <span class="vocab-word">profound</span> impact on my personal growth.</div>
+            <div>indispensable</div>
+            <div>Time management is <span class="vocab-word">indispensable</span> for success.</div>
+            <div>facilitate</div>
+            <div>Technology <span class="vocab-word">facilitates</span> communication across distances.</div>
+            <div>mitigate</div>
+            <div>Policies must <span class="vocab-word">mitigate</span> the risks of climate change.</div>
+            <div>exemplify</div>
+            <div>This scenario <span class="vocab-word">exemplifies</span> the importance of planning.</div>
+            <div>elucidate</div>
+            <div>The data <span class="vocab-word">elucidates</span> the connection between effort and results.</div>
+            <div>paramount</div>
+            <div>Honesty is of <span class="vocab-word">paramount</span> importance in leadership.</div>
+            <div>detrimental</div>
+            <div>Excessive screen time is <span class="vocab-word">detrimental</span> to mental health.</div>
+            <div>contend</div>
+            <div>I <span class="vocab-word">contend</span> that education is a lifelong process.</div>
+            <div>postulate</div>
+            <div>Scholars <span class="vocab-word">postulate</span> that social interaction improves cognitive skills.
+            </div>
+            <div>augment</div>
+            <div>This approach <span class="vocab-word">augments</span> our understanding of complex systems.</div>
+            <div>consequential</div>
+            <div>The decision had <span class="vocab-word">consequential</span> effects on the team.</div>
+            <div>transformative</div>
+            <div>Education can be <span class="vocab-word">transformative</span> for disadvantaged communities.</div>
+            <div>nuanced</div>
+            <div>We must consider the <span class="vocab-word">nuanced</span> realities of urban development.</div>
+            <div>constraint</div>
+            <div>Financial <span class="vocab-word">constraints</span> limit the implementation of reforms.</div>
+            <div>reinforce</div>
+            <div>This evidence <span class="vocab-word">reinforces</span> the argument for sustainable policies.</div>
+            <div>underscore</div>
+            <div>These examples <span class="vocab-word">underscore</span> the necessity of careful planning.</div>
+            <div>deliberation</div>
+            <div>After careful <span class="vocab-word">deliberation</span>, I decided to pursue engineering.</div>
+            <div>attain</div>
+            <div>Students must <span class="vocab-word">attain</span> a high level of proficiency in English.</div>
+            <div>viable</div>
+            <div>Remote work is a <span class="vocab-word">viable</span> solution for many companies.</div>
+            <div>inherent</div>
+            <div>Risk is <span class="vocab-word">inherent</span> in entrepreneurial ventures.</div>
+            <div>optimal</div>
+            <div>Choosing the <span class="vocab-word">optimal</span> strategy ensures better outcomes.</div>
+            <div>adverse</div>
+            <div>The policy had <span class="vocab-word">adverse</span> effects on local businesses.</div>
+            <div>exemplification</div>
+            <div>The report provides <span class="vocab-word">exemplification</span> of the proposed method.</div>
+            <div>hypothetical</div>
+            <div>In a <span class="vocab-word">hypothetical</span> scenario, this could lead to success.</div>
+            <div>leverage</div>
+            <div>We can <span class="vocab-word">leverage</span> technology to improve education.</div>
+            <div>scrutiny</div>
+            <div>The plan underwent close <span class="vocab-word">scrutiny</span> before approval.</div>
+            <div>paradigm</div>
+            <div>The new <span class="vocab-word">paradigm</span> shifts focus from quantity to quality.</div>
+            <div>efficacy</div>
+            <div>The <span class="vocab-word">efficacy</span> of this method has been well-documented.</div>
+            <div>proficiency</div>
+            <div><span class="vocab-word">Proficiency</span> in English is necessary for international collaboration.
+            </div>
+            <div>rationale</div>
+            <div>The <span class="vocab-word">rationale</span> behind the decision was sound.</div>
+            <div>cohesion</div>
+            <div><span class="vocab-word">Cohesion</span> between team members ensures project success.</div>
+            <div>initiative</div>
+            <div>Taking <span class="vocab-word">initiative</span> demonstrates leadership skills.</div>
+            <div>insight</div>
+            <div>The workshop provided valuable <span class="vocab-word">insight</span> into urban planning.</div>
+            <div>perspective</div>
+            <div>This experience broadened my <span class="vocab-word">perspective</span> on sustainability.</div>
+            <div>repercussion</div>
+            <div>Every decision carries potential <span class="vocab-word">repercussions</span>.</div>
+            <div>adaptability</div>
+            <div><span class="vocab-word">Adaptability</span> is crucial in a fast-changing world.</div>
+            <div>collaboration</div>
+            <div><span class="vocab-word">Collaboration</span> between departments improves efficiency.</div>
+            <div>resilience</div>
+            <div><span class="vocab-word">Resilience</span> helps individuals overcome setbacks.</div>
+            <div>competence</div>
+            <div>Technical <span class="vocab-word">competence</span> is essential in engineering.</div>
+            <div>innovation</div>
+            <div><span class="vocab-word">Innovation</span> drives technological progress.</div>
+            <div>methodology</div>
+            <div>The research <span class="vocab-word">methodology</span> must be rigorous.</div>
+            <div>discern</div>
+            <div>I can <span class="vocab-word">discern</span> patterns in complex data.</div>
+            <div>implication</div>
+            <div>The <span class="vocab-word">implications</span> of this decision are far-reaching.</div>
+            <div>intervention</div>
+            <div>Timely <span class="vocab-word">intervention</span> can prevent escalation of problems.</div>
+            <div>optimization</div>
+            <div><span class="vocab-word">Optimization</span> of resources improves performance.</div>
+            <div>strategy</div>
+            <div>Developing a clear <span class="vocab-word">strategy</span> is essential.</div>
+            <div>accountability</div>
+            <div><span class="vocab-word">Accountability</span> ensures ethical behavior in organizations.</div>
+            <div>sustainability</div>
+            <div><span class="vocab-word">Sustainability</span> is a key principle in urban planning.</div>
+            <div>efficacy</div>
+            <div>The <span class="vocab-word">efficacy</span> of this approach is evident in results.</div>
+        </div>
+    </div>
+
+</body>
+</html>

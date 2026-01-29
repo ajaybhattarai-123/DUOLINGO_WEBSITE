@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DET 140+ Photo Mastery (C2 Edition)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --duo-green: #58CC02;
+            --duo-green-dark: #46A302;
+            --duo-blue: #1CB0F6;
+            --duo-blue-dark: #1899D6;
+            --duo-purple: #CE82FF;
+            --duo-purple-dark: #A568CC;
+            --duo-red: #FF4B4B;
+            --duo-yellow: #FFC800;
+            --duo-gray: #E5E5E5;
+            --duo-text: #4B4B4B;
+            --bg-color: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #F7F7F7;
+            color: var(--duo-text);
+            padding-bottom: 50px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: white;
+            border-bottom: 2px solid var(--duo-gray);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--duo-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .streak-badge {
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 12px;
+            padding: 5px 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--duo-text);
+        }
+
+        .badge.target {
+            border-color: var(--duo-yellow);
+            color: #D7A800;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--duo-text);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* --- SECTION CONTAINERS --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--duo-text);
+            border-bottom: 2px solid var(--duo-gray);
+            padding-bottom: 10px;
+        }
+
+        /* --- STRATEGY GRID --- */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .strategy-card {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-bottom: 5px solid var(--duo-gray);
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.1s;
+        }
+
+        .strategy-card h3 {
+            color: var(--duo-blue);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .strategy-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* --- THE MASTER TEMPLATE --- */
+        .template-builder {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .template-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: var(--duo-green);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 2px 0 var(--duo-green-dark);
+        }
+
+        .step-content h4 {
+            margin-bottom: 5px;
+            font-weight: 800;
+        }
+
+        .step-content p {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .c2-upgrade {
+            background: #F0F4F8;
+            border-left: 4px solid var(--duo-blue);
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--duo-blue-dark);
+        }
+
+        /* --- SAMPLE ANSWER BROWSER --- */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-bottom: 4px solid var(--duo-gray);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: #777;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.1s;
+        }
+
+        .filter-btn.active {
+            background: var(--duo-blue);
+            color: white;
+            border-color: var(--duo-blue-dark);
+        }
+
+        .filter-btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .samples-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .sample-card {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .sample-header {
+            background: #F7F7F7;
+            padding: 12px 20px;
+            border-bottom: 2px solid var(--duo-gray);
+            font-weight: 700;
+            color: var(--duo-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background: var(--duo-purple);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 8px;
+            text-transform: uppercase;
+        }
+
+        .sample-body {
+            padding: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .highlight {
+            color: var(--duo-green);
+            font-weight: 700;
+        }
+
+        /* --- FLOATING ACTION --- */
+        .cta-box {
+            background: var(--duo-yellow);
+            color: #5c4300;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border-bottom: 6px solid #dcb500;
+            font-weight: 700;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- INTERACTIVE FRAMEWORK --- */
+        .framework-interactive {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 0 #dedede;
+        }
+
+        .framework-tabs {
+            display: flex;
+            background: #f0f4f8;
+            border-bottom: 2px solid var(--duo-gray);
+            overflow-x: auto;
+        }
+
+        .fw-tab {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background: none;
+            font-weight: 700;
+            color: #777;
+            cursor: pointer;
+            border-bottom: 4px solid transparent;
+            transition: all 0.2s;
+            min-width: 150px;
+            font-size: 1rem;
+        }
+
+        .fw-tab:hover {
+            background: #e1e8ed;
+        }
+
+        .fw-tab.active {
+            color: var(--duo-blue);
+            border-bottom-color: var(--duo-blue);
+            background: white;
+        }
+
+        .framework-content {
+            padding: 30px;
+        }
+
+        .fw-rule-box {
+            background: #fff8e1;
+            border-left: 5px solid var(--duo-yellow);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .fw-rule-title {
+            font-weight: 800;
+            color: #bfa004;
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .fw-template-box {
+            background: #e3f2fd;
+            border: 2px dashed var(--duo-blue);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.6;
+            color: var(--duo-blue-dark);
+        }
+
+        .fw-example-box {
+            font-style: italic;
+            color: #555;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--duo-gray);
+        }
+
+        .fw-badge-verb {
+            display: inline-block;
+            background: var(--duo-purple);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .fw-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .fw-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .fw-list li::before {
+            content: "•";
+            color: var(--duo-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .h4-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--duo-text);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <span>🦉</span> DET Elite Coach
+        </div>
+        <div class="streak-badge">
+            <div class="badge target">
+                <span>🎯</span> 140+ C2
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Speak About the Photo</h1>
+        <p class="subtitle">Master the 90-second strategy. These answers are designed to score 150+.</p>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">The Universal 150+ Framework</h2>
+        <p style="margin-bottom: 20px; color: #666;">Memorize this structure. It consists of 4 distinct sentences to
+            guarantee a high score.</p>
+
+        <div class="framework-interactive">
+            <div class="framework-tabs">
+                <button class="fw-tab active" onclick="showStep(1)">1. The Opener</button>
+                <button class="fw-tab" onclick="showStep(2)">2. The Visual Anchor</button>
+                <button class="fw-tab" onclick="showStep(3)">3. The Atmosphere</button>
+                <button class="fw-tab" onclick="showStep(4)">4. The Deduction</button>
+                <button class="fw-tab" onclick="showStep(5)">✨ Full Example</button>
+            </div>
+            <div class="framework-content" id="fw-content">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">50+ Sample Answers (140+ Standard)</h2>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterSamples('all')">All</button>
+            <button class="filter-btn" onclick="filterSamples('people')">People</button>
+            <button class="filter-btn" onclick="filterSamples('nature')">Nature</button>
+            <button class="filter-btn" onclick="filterSamples('urban')">Urban</button>
+            <button class="filter-btn" onclick="filterSamples('objects')">Objects</button>
+        </div>
+
+        <div class="samples-grid" id="samplesContainer">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cta-box">
+            Read these aloud. If you finish in under 60 seconds, you are speaking too fast!<br>
+        </div>
+    </div>
+
+    <script>
+        // DATA: UPDATED WITH LONG, 90-SECOND ANSWERS
+        const samples = [
+            { id: 1, cat: 'nature', title: 'Horses in Meadow', text: "This picturesque image captures a serene pastoral scene featuring three distinct horses standing in a windswept meadow. In the foreground, the horses—one black and two brown—are positioned amidst waving grass and delicate white flowers, creating a balanced composition. The lighting appears to be natural and soft, highlighting the white markings on their faces and the texture of their coats. The atmosphere radiates a sense of tranquility and freedom, typical of an undisturbed natural habitat. One could speculate that they are resting after grazing, as their posture is relaxed and unalert. Ultimately, this image perfectly encapsulates the raw, unbridled beauty of the countryside." },
+            { id: 2, cat: 'people', title: 'Teacher & Students', text: "This educational scene depicts a female teacher instructing a group of students in an outdoor, grassy setting. The teacher stands confidently, gesturing as she speaks, while the students, seated on the ground in school uniforms, listen attentively. Two students are raising their hands, indicating an interactive and engaging lesson. The lush green background suggests this might be a rural school or an open-air class session. The atmosphere is one of curiosity and disciplined learning. It is evident that despite the lack of a traditional classroom, the process of education is thriving. This image underscores the universal importance of knowledge sharing." },
+            { id: 3, cat: 'objects', title: 'Hot Air Balloon', text: "This colorful image features a large hot air balloon rising above a rural landscape. The balloon is patterned with red, white, and yellow panels and bears the text ‘Pealz Gas’. It is floating over a plowed field with trees and mountains visible in the distance. The sky is a clear, pale blue, suggesting early morning conditions which are ideal for ballooning. The atmosphere is one of freedom and adventure. The tiny figures in the basket emphasize the scale of the balloon. This scene captures the peaceful yet exhilarating experience of flight and human ingenuity." },
+            { id: 4, cat: 'nature', title: 'Seal/Sea Lion', text: "This captivating shot features an aquatic mammal, likely a seal or sea lion, emerging from the water. Visually, the image is anchored by the creature's glossy, wet skin and prominent white whiskers, which glisten under the light. The ripples in the water around it suggest calm movement, while its half-closed eyes imply a state of relaxation or drowsiness. The background is nondescript, keeping the focus entirely on the animal. Judging by its leisurely demeanor, it is likely enjoying a moment of rest in a safe harbor. This image evokes a sense of harmony between wildlife and their aquatic environment." },
+            { id: 5, cat: 'nature', title: 'Blue Lake & Mountains', text: "A breathtaking example of landscape photography, this image illustrates a crystal-clear blue lake nestled between towering snow-capped mountains. The composition is defined by the sharp contrast between the lush green forest bordering the water and the rugged, icy peaks in the distance. The reflection of the mountains on the lake's surface indicates that the water is perfectly still. The lighting suggests it is arguably mid-morning, as the sun is bright enough to illuminate the snow but casts defined shadows. This scene exudes a profound sense of isolation and peace, inviting the viewer to contemplate the vastness of the natural world." },
+            { id: 6, cat: 'people', title: 'Soldiers on Patrol', text: "This serious image depicts two soldiers in camouflage gear standing in a desolate, industrial-looking field. They are holding rifles and wearing helmets. One soldier is looking through binoculars while the other stands guard. The background features rusted metal structures. The atmosphere is tense and vigilant. It highlights the reality of military service—preparedness, discipline, and the harsh conditions often faced by peacekeepers or soldiers in conflict zones. One might speculate they are on a reconnaissance mission given their alert posture." },
+            { id: 7, cat: 'nature', title: 'Boats at Sunset', text: "This mesmerizing seascape depicts a cluster of boats gently floating on a calm ocean during a spectacular sunset. The sky is a canvas of vibrant oranges, pinks, and purples, which are beautifully mirrored on the water's surface. In the center, a larger vessel filled with passengers suggests a leisure cruise, while smaller boats dot the horizon. The atmosphere is undeniably romantic and soothing, characteristic of the 'golden hour.' One can infer that the day is drawing to a close and these individuals are soaking in the final moments of light. It serves as a visual metaphor for tranquility." },
+            { id: 8, cat: 'people', title: 'Gamer Girl', text: "This modern, vibrant image captures a young woman at her desk, celebrating a victory in a video game. She is wearing a professional gaming headset and looking at her monitor with an expression of genuine surprise and delight as “You Win” flashes on the screen. The room is dimly lit but accented with colorful LED lights from her PC setup, creating a high-tech, cozy vibe. This scene encapsulates the thrill of digital competition. Presumably, she has just completed a difficult level or match. It highlights how technology and gaming have become central to modern entertainment." },
+            { id: 9, cat: 'objects', title: 'Chicken Stir Fry', text: "This is a mouth-watering, high-angle shot of a freshly cooked chicken stir-fry dish. The bowl is placed on a rustic wooden table, surrounded by raw ingredients like garlic, chili peppers, and carrots. The dish itself features glistening pieces of chicken, green vegetables, and red peppers, steaming slightly. The lighting is professional and warm, designed to enhance the texture and color of the food. The mood is inviting and domestic. It suggests a focus on healthy, home-cooked meals. This image appeals to the senses and celebrates the art of culinary preparation." },
+            { id: 10, cat: 'people', title: 'Friends in Cinema', text: "In this low-light composition, a group of friends is seated in a movie theater, their faces illuminated by the glow of the screen. They are holding large buckets of popcorn and appear thoroughly engrossed in the film. The central figure's wide-eyed expression suggests they are watching a thrilling or shocking scene. The red seats and dark surroundings create a classic cinematic atmosphere. This image radiates a sense of camaraderie and shared experience. It reminds us that despite the rise of streaming, the communal act of watching stories unfold on a big screen remains a cherished ritual." },
+            { id: 11, cat: 'people', title: 'Trumpet Player', text: "This artistic portrait features a musician playing a silver trumpet. He is dressed in formal attire, eyes closed, completely absorbed in the melody. The background is a solid dark color, isolating the subject and the instrument. The lighting highlights the curve of the brass and the player's facial expression. The atmosphere is soulful and expressive. It captures the emotional power of music and the individual talent required to master an instrument. Judging by his attire, he may be performing a solo during a jazz concert or classical recital." },
+            { id: 12, cat: 'people', title: 'Woman on Bridge', text: "This cheerful travel photo features a stylish woman standing on a bridge, raising one arm in a gesture of triumph or joy while holding a coffee cup. She is dressed in a red sweater, coat, and beret, which pop against the bright, sunny background of a historic city. The architecture behind her suggests a European location. The mood is exuberant and carefree, typical of a tourist enjoying a vacation. One might speculate she is posing for a photo to share on social media, capturing the highlight of her trip. The image celebrates the freedom of exploring new cultures." },
+            { id: 13, cat: 'people', title: 'Man in Gym', text: "This intense, action-oriented shot focuses on a muscular man performing a bench press or similar lift in a well-equipped gym. He is wearing athletic wear, and his facial expression is one of sheer focus and physical strain. The background is somewhat blurred but shows other gym-goers and equipment, establishing a busy, energetic environment. The atmosphere is one of discipline and self-improvement. It is clear that he is in the middle of a rigorous workout regimen. This image serves as a visual representation of dedication, strength, and the pursuit of physical fitness." },
+            { id: 14, cat: 'people', title: 'Hikers at Sunrise', text: "Captured from a high vantage point, this image portrays three hikers standing atop a grassy hill, gazing out at a magnificent sunrise. They are equipped with heavy backpacks, implying they are in the midst of a multi-day trek. The backdrop features rolling green hills and a body of water bathed in a warm, golden glow. The mood is one of accomplishment and awe, as the hikers appear to be pausing to appreciate the reward of their physical exertion. This scene highlights the deep connection between humans and nature, celebrating the spirit of exploration." },
+            { id: 15, cat: 'people', title: 'Swimmer Diving', text: "Frozen in mid-air, this dynamic image shows a swimmer executing a dive into an indoor pool. The subject is wearing a black-and-yellow swimsuit and goggles, their body perfectly streamlined. The background reveals a professional facility with marked lanes and orange lane dividers. The lighting is bright and artificial, reflecting off the water's surface. The mood is filled with kinetic energy and anticipation. One can infer this is either a competitive race or a high-level training session. The photo captures the split-second moment of commitment before entering the water, symbolizing focus and athletic precision." },
+            { id: 16, cat: 'people', title: 'Office Presentation', text: "Set in a sleek, modern conference room, this image depicts a professional woman leading a presentation. She is standing and pointing at a screen displaying colorful charts and data, while four colleagues seated at a table listen intently. The room is bathed in natural light from large windows, creating a productive and transparent atmosphere. The dynamic suggests a collaborative business meeting, likely regarding financial performance or project strategy. The attentive posture of the team members implies the information is critical. This image epitomizes the modern corporate world and the importance of data-driven communication." },
+            { id: 17, cat: 'people', title: 'Family Sightseeing', text: "This heartwarming image captures a family of four—parents and two children—standing on a bridge during a winter day. The parents are pointing towards a distant landmark, guiding the children's gaze. They are all wrapped in warm winter clothing, and the background features colorful historic buildings, possibly in a town square. The atmosphere is familial and educational, as the parents appear to be teaching their kids about the location. It is likely they are on a holiday vacation. The scene beautifully illustrates the bond formed through shared travel experiences and discovery." },
+            { id: 18, cat: 'people', title: 'Tourists in City', text: "This lively urban shot features two young women navigating a sunny city center. One is holding a paper map and pointing excitedly, while the other is readying her camera to take a photo. They are dressed in summery, fashionable clothes with hats and sunglasses. The background is filled with pedestrians and city architecture, creating a bustling vibe. The mood is one of adventure and curiosity. It is highly probable they are trying to locate a specific landmark or museum. This image captures the essence of tourism: the joy of getting lost and finding one's way." },
+            { id: 19, cat: 'people', title: 'Classroom Discussion', text: "This image illustrates a pedagogical scene where a male teacher is leading a discussion with a small group of students seated around a table. He is holding a textbook and appears to be explaining a concept, while the students have laptops open in front of them. A world map on the wall suggests this might be a geography or international studies class. The environment is bright, clean, and conducive to learning. The atmosphere is interactive rather than passive. This scene highlights the shift in modern education towards collaborative, seminar-style learning rather than traditional lectures." },
+            { id: 20, cat: 'urban', title: 'Industrial Factory', text: "This dramatic and somewhat ominous image depicts a large industrial complex silhouetted against a setting sun. Thick smoke is billowing from several tall chimneys, spreading across the orange and grey sky. In the distance, wind turbines are visible, creating a visual contrast between fossil fuel industry and renewable energy. The atmosphere is heavy and thought-provoking. It serves as a visual commentary on environmental pollution and the impact of industrialization. The beauty of the sunset contrasts sharply with the dirty smoke, highlighting the conflict between nature and human activity." },
+            { id: 21, cat: 'people', title: 'VR Headset User', text: "This futuristic image shows a man sitting at a desk, completely immersed in a Virtual Reality experience. He is wearing a large VR headset and his hands are raised as if manipulating invisible objects. His computer screen in the background displays a 3D model of a face, hinting that he might be designing or gaming. The room is dimly lit with ambient lighting, enhancing the high-tech feel. The mood is one of engagement and innovation. It is likely he is testing a new software or playing an immersive game. The image symbolizes the blurring line between the physical and digital worlds." },
+            { id: 22, cat: 'people', title: 'Office Teamwork', text: "This professional close-up shows two colleagues, a man and a woman, working side-by-side at a cluttered but organized desk. They are both looking at a laptop screen that displays graphical data. The desk is strewn with papers, coffee cups, and stationery, making the scene feel authentic and busy. The lighting is soft office lighting. The atmosphere is collaborative and focused. One can speculate they are working against a deadline to finish a report. This image highlights the day-to-day reality of office life, emphasizing cooperation and shared responsibility." },
+            { id: 23, cat: 'people', title: 'Skateboarder', text: "This action-packed shot captures a skateboarder in mid-air, performing a trick over a paved road. He is wearing casual streetwear and a helmet, prioritizing safety. The background features a juxtaposition of green grass and modern glass buildings, suggesting an urban park setting. The lighting is bright and sunny, casting a sharp shadow of the skater on the ground. The mood is energetic and rebellious yet disciplined. It is evident that this requires a high level of skill and practice. The image celebrates youth culture and the use of urban spaces for creative physical expression." },
+            { id: 24, cat: 'urban', title: 'Historic Building', text: "This architectural shot showcases a grand, historic building with ornate towers and statues, located in a bustling city square. In the foreground, a bright yellow modern tram is passing by, creating a striking contrast between the old and the new. Pedestrians can be seen walking on the cobblestones. The lighting is bright and sunny. The atmosphere is vibrant and culturally rich. This scene captures the essence of a European city where history is seamlessly integrated into modern daily life and public transport. The scene invites the viewer to appreciate architectural heritage." },
+            { id: 25, cat: 'people', title: 'Dancers in Studio', text: "This vibrant, artistic image displays a male and a female dancer performing an energetic hip-hop routine in a studio. The lighting is dramatic, casting green and red shadows on the wall behind them, which adds a sense of movement and intensity. They are dressed in loose, comfortable clothing suitable for dancing. Their poses are dynamic and synchronized. The atmosphere is electric and expressive. One might guess they are rehearsing for a performance or a music video. This photo captures the passion of dance and the physical language of rhythm." },
+            { id: 26, cat: 'people', title: 'Bakery Worker', text: "This warm, interior shot features a bakery employee carefully packaging pastries into a paper bag. She is wearing a pink sweater, an apron, and a cap, looking down with concentration. The glass display case in front of her is filled with an array of delicious-looking muffins, breads, and cakes, illuminated by warm, golden lighting. The atmosphere is inviting and domestic. It suggests a busy morning rush where customers are buying fresh breakfast items. The image evokes the sensory pleasures of smell and taste, highlighting the care that goes into small-business service." },
+            { id: 27, cat: 'nature', title: 'Beach Wedding', text: "This romantic image captures the pristine setup of a beach wedding ceremony. A white aisle strewn with pink petals leads to a floral altar, framed by the turquoise ocean in the background. Rows of white chairs are filled with guests waiting for the ceremony to begin. The sky is clear and blue, indicating perfect weather for the occasion. The atmosphere is jubilant and serene. It is likely the ceremony is about to start or has just finished. This scene symbolizes love, celebration, and the popularity of destination weddings in scenic locations." },
+            { id: 28, cat: 'people', title: 'Family Sunset Walk', text: "This image shows a family walking along a wooden pier during a beautiful sunset. The silhouettes of two adults and two children are visible as they enjoy a peaceful moment together. The calm waves of the ocean reflect the vibrant hues of orange and pink. The atmosphere is serene and familial. Judging by the silhouettes, they are relaxed and holding hands. This photo captures a perfect end to a day, emphasizing the simple joy of being together in nature." },
+            { id: 29, cat: 'people', title: 'Market Shopping', text: "This candid lifestyle shot shows three women laughing and chatting while shopping at an outdoor fruit market. They are holding takeaway coffee cups and examining fresh apples at a stall. The background is blurred but colorful, indicating other stalls and shoppers. The mood is relaxed and social, suggesting a weekend morning routine. They appear to be close friends catching up while running errands. This image highlights the importance of social connection in everyday activities and the vibrancy of local community markets." },
+            { id: 30, cat: 'urban', title: 'Night Carnival', text: "This dazzling image captures the vibrant chaos of a carnival at night. The focal point is a massive Ferris wheel illuminated with multicolored neon lights, towering over the scene. Below, smaller rides and game stalls are crowded with people. The sky is dark, making the artificial lights pop vividly. The atmosphere is festive, noisy, and full of excitement. One can imagine the sounds of laughter and music. This image represents a classic setting for leisure and family entertainment, evoking a sense of nostalgia and joy." },
+            { id: 31, cat: 'urban', title: 'Football Stadium', text: "This sweeping panoramic shot captures the electric atmosphere of a packed football stadium. The stands are filled with thousands of fans, creating a sea of color, while the green pitch is perfectly manicured. Players are lined up in formation, likely for the national anthem or kick-off. Banners and flags are visible in the crowd. The mood is one of intense anticipation and tribal loyalty. This image illustrates the cultural phenomenon of mass spectator sports and the collective emotion of a live match." },
+            { id: 32, cat: 'urban', title: 'Airport Terminal', text: "This busy, high-angle shot depicts the interior of a modern airport terminal. Passengers are moving in all directions, pulling wheeled luggage, while others stand in queues at check-in counters. Electronic flight information boards display schedules. The architecture is spacious with high ceilings and glass walls. The atmosphere is frantic yet organized, filled with the stress and excitement of travel. This scene is a microcosm of globalization, capturing the constant movement of people across borders." },
+            { id: 33, cat: 'people', title: 'Cozy Cafe', text: "This inviting interior shot shows a warm, rustic café. There are wooden tables and shelves filled with books and decorations. In the background, a barista is chatting with a customer at the counter, while in the foreground, two people are working on a laptop. The lighting is soft and golden, creating a relaxing ambiance. The mood is social and productive. It represents the 'third place' in modern society—a spot between home and work where people gather to connect or focus." },
+            { id: 34, cat: 'people', title: 'Boys Playing Soccer', text: "This vibrant image captures a group of young boys playing soccer on a dirt field under a bright blue sky. Their colorful uniforms and lively movements exude joy and energy. In the background, a rustic school building and tall trees set the scene. The atmosphere is pure, unadulterated fun. It highlights the universality of sport, showing how a simple game can bring joy regardless of the setting or facilities. The dust kicking up around their feet adds a sense of action and realism." },
+            { id: 35, cat: 'people', title: 'Campfire Gathering', text: "This cozy image depicts a group of friends sitting around a campfire at night, roasting marshmallows on sticks. The scene is illuminated by string lights in the background, creating a warm and inviting atmosphere. The individuals, dressed casually in jackets, enjoy each other’s company, share stories, and laugh. The smoke rising from the fire adds a rustic charm to the image, symbolizing togetherness and simple outdoor pleasures. It creates a nostalgic feeling of summer nights and friendship." },
+            { id: 36, cat: 'people', title: 'Gardening Woman', text: "This peaceful picture shows a woman wearing a red shirt, jeans, and gardening gloves, immersed in tending to her garden. She is crouched down, carefully planting or nurturing small seedlings in the rich, brown soil. The surrounding greenery, including tall leafy plants, creates a vibrant atmosphere. The scene reflects a deep connection with nature, portraying the hard work and patience involved in gardening as a fulfilling activity. It suggests a slow, mindful lifestyle." },
+            { id: 37, cat: 'people', title: 'Science Class', text: "This engaging classroom photo shows a science experiment in progress. A teacher in a white lab coat is pouring a liquid into a beaker, causing a reaction, while young students wearing safety goggles watch with open-mouthed amazement. The table is covered with test tubes and equipment. The mood is one of discovery and excitement. This image underlines the importance of practical, hands-on learning in sparking children's interest in STEM subjects." },
+            { id: 38, cat: 'people', title: 'Family Dinner', text: "This cozy indoor scene depicts a multi-generational family gathered around a dining table, raising their glasses for a toast. The table is laden with bowls of pasta, salad, and bread. The lighting is warm and domestic, likely from a chandelier above. The expressions on their faces are joyful and engaged. The atmosphere resonates with love, tradition, and togetherness. One can assume they are celebrating a special occasion. The image serves as a universal symbol of family bonding and the cultural importance of sharing food." },
+            { id: 39, cat: 'urban', title: 'Subway Station', text: "This gritty, realistic image captures a busy underground subway station walkway. Commuters wrapped in winter coats are walking briskly in both directions. The walls are lined with bright, illuminated advertisements, contrasting with the artificial tunnel lighting. Some people are wearing masks, adding a contemporary context. The atmosphere is hurried and anonymous, typical of the daily grind in a metropolis. This image reflects the fast-paced nature of urban life and the infrastructure that supports it." },
+            { id: 40, cat: 'people', title: 'Teacher in Classroom', text: "This image shows a teacher holding a notebook in a modern classroom. The students seated at wooden desks appear engaged and enthusiastic. Some raise their hands to answer the teacher’s question, while others listen attentively. The classroom is well-organized, with bookshelves, plants, and educational maps decorating the background. The large windows let in natural light, creating a welcoming learning environment. This scene captures an interactive teaching moment where students actively participate." },
+            { id: 41, cat: 'people', title: 'Forest Hikers', text: "This image discloses a group of hikers walking along a lush forest trail beside a flowing river. They are wearing outdoor gear and carrying backpacks, prepared for their journey. The dense greenery and tranquil water create a sense of adventure and connection with nature. The hikers appear focused and determined, emphasizing the thrill of exploring the wilderness. The lighting filtering through the canopy adds a mystical quality to the scene." },
+            { id: 42, cat: 'people', title: 'Supermarket Shopping', text: "This slice-of-life image captures a mother pushing a shopping cart while her young daughter points excitedly at an item on the shelf. The supermarket aisle is brightly lit and stocked with colorful products. The mother is smiling down at the child, creating a tender moment amidst a mundane chore. The cart contains fresh produce and household items. The mood is cheerful and nurturing. It highlights how parents turn everyday errands into learning experiences for their children." },
+            { id: 43, cat: 'people', title: 'Library Reader', text: "This quiet, intellectual image shows a man sitting alone in a narrow aisle of a library, surrounded by towering stacks of books. He is reading intently, with more books piled on the floor beside him. The lighting is soft and ambient, creating a sanctuary-like atmosphere. The mood is one of profound focus and solitude. It appears he is conducting deep research or completely lost in a story. This image celebrates the value of literacy and the library as a haven for the mind." },
+            { id: 44, cat: 'people', title: 'Orchestra', text: "This formal and sophisticated image captures a section of an orchestra during a performance. The musicians, dressed in black formal wear, are playing string instruments, with sheet music on stands before them. The stage is dimly lit, focusing the spotlight on the performers. The atmosphere is intense and harmonious, requiring collective concentration. One can imagine the sound of a symphony filling the hall. This image represents the pinnacle of artistic collaboration." },
+            { id: 45, cat: 'objects', title: 'Modern Kitchen', text: "This architectural interior shot showcases a pristine, modern kitchen. It features minimalist design with sleek brown cabinetry, stainless steel appliances, and a white stone countertop. Sunlight is streaming in through a window, reflecting off the polished surfaces. A few items like a kettle and a knife block are neatly arranged, but the space is largely uncluttered. The atmosphere is aspirational and clean. It represents the heart of the modern home, designed for both functionality and aesthetic pleasure." },
+            { id: 46, cat: 'urban', title: 'Rainy City Street', text: "This atmospheric street photography captures a city scene during a downpour. Pedestrians are walking with colorful umbrellas, their reflections shimmering on the wet pavement. In the background, a grand colonial-style building adds a sense of history. The sky is grey and overcast, setting a moody tone. The atmosphere is melancholic yet beautiful, highlighting the resilience of city life. The image focuses on textures—the rain, the stone, and the fabric—creating a sensory experience." },
+            { id: 47, cat: 'nature', title: 'Train in Nature', text: "This scenic image features a long passenger train curving through a stunning landscape of autumn trees and mountains. The train tracks lead the eye into the distance. The leaves are golden and orange, indicating the fall season. The lighting is soft, likely from a setting sun. The mood is peaceful and nostalgic, evoking the romance of rail travel. This image creates a harmony between technology (the train) and the majesty of the natural world." },
+            { id: 48, cat: 'people', title: 'Tug-of-War', text: "This energetic image shows three young boys engaged in a fierce game of tug-of-war on a grassy field. They are leaning back, pulling a rope with grimaces of effort on their faces. They are wearing casual sports clothes and headbands. The background includes concrete structures, suggesting a school sports day or a community park. The atmosphere is competitive and fun. It captures the essence of childhood play and teamwork." },
+            { id: 49, cat: 'people', title: 'Rice Farmers', text: "This culturally rich image shows a group of farmers diligently working in a flooded rice paddy. They are bent over at the waist, planting seedlings into the water, wearing traditional conical hats. The lush greenery surrounding the field suggests a tropical climate. The atmosphere is one of hard work and communal effort. It is highly probable that this is the planting season. The image stands as a tribute to human resilience and sustainable agriculture." },
+            { id: 50, cat: 'people', title: 'Artist in Studio', text: "This inspiring image portrays a young female artist working in her sunlit studio. She is standing at an easel, brush in hand, applying paint to a canvas. The room is cluttered with art supplies, finished paintings, and sketches, reflecting a creative chaotic energy. The lighting is natural, streaming in from a window to illuminate her work. The mood is serene and meditative. It is clear she is in a 'flow state,' deeply connected to her creation." },
+            { id: 51, cat: 'people', title: 'Library Corner', text: "This relaxed interior shot depicts a casual reading corner in a modern library. There are colorful bean bag chairs on the floor where a few people are lounging with books. Wooden bookshelves line the walls in the background. The lighting is bright and conducive to reading. The atmosphere is informal and comfortable, distinctly different from a traditional, rigid library. This image highlights the evolution of learning spaces to become more user-friendly and inviting." },
+            { id: 52, cat: 'people', title: 'Sprinter on Track', text: "This freeze-frame action shot shows a male sprinter running at full speed on an outdoor athletic track. He is in mid-stride, his muscles tense and face focused. He wears a grey t-shirt and black shorts. The background shows empty stadium bleachers and green grass. The atmosphere is one of solitude and determination. It is likely a practice session. The image captures the essence of individual sport—the drive to push one's physical limits." },
+            { id: 53, cat: 'nature', title: 'Rustic Countryside', text: "This evocative image displays a solitary, weathered house with a rusty roof, set against a vast countryside landscape. Adjacent to the structure stands a leafless tree and an old windmill, reinforcing the rural, perhaps abandoned, aesthetic. The foreground is filled with tall, golden grass swaying in the wind. The atmosphere feels somewhat melancholic yet hopeful, symbolizing resilience against the elements. It is likely a farmstead that has seen generations of history." },
+            { id: 54, cat: 'urban', title: 'Night City Street', text: "This vibrant urban nightscape captures a busy intersection in a metropolis. Neon signs in various languages illuminate the street, while car headlights and taillights create streaks of red and white. Pedestrians are crossing the street in a large crowd. The buildings are tall and modern. The atmosphere is frenetic and stimulating. This image epitomizes the 'city that never sleeps,' highlighting the energy and density of modern urban living." },
+            { id: 55, cat: 'people', title: 'Snowy Forest Walk', text: "Radiating warmth despite the cold setting, this image features a couple interacting with their dog on a snow-covered forest trail. The man is crouched down, affectionately petting the enthusiastic dog, while the woman looks on with a smile. They are heavily bundled in winter gear. The mood is joyful and intimate, capturing a candid moment of family bonding. One can surmise they are taking a weekend leisure walk to enjoy the winter scenery." }
+        ];
+
+        function filterSamples(category) {
+            // Update Buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const container = document.getElementById('samplesContainer');
+            container.innerHTML = '';
+
+            const filtered = category === 'all' ? samples : samples.filter(s => s.cat === category);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'sample-card';
+                card.innerHTML = `
+                    <div class="sample-header">
+                        <span>Example ${item.id}: ${item.title}</span>
+                        <span class="tag">${item.cat}</span>
+                    </div>
+                    <div class="sample-body">
+                        ${highlightText(item.text)}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function highlightText(text) {
+            // Highlight Transition words and C2 Adjectives/Nouns
+            const keywords = [
+                'However', 'Furthermore', 'Overall', 'Specifically', 'Presumably', 'Also',
+                'In addition', 'Consequently', 'Ultimately', 'One could speculate', 'It is highly probable',
+                'Atmosphere', 'Exudes', 'Depicts', 'Illustrates', 'Portrays', 'Surmise', 'Epitomizes',
+                'Picturesque', 'Serene', 'Captivating', 'Breathtaking', 'Mesmerizing', 'Vibrant'
+            ];
+
+            let newText = text;
+            // Complex Regex to match words without breaking HTML tags if we added them later
+            keywords.forEach(word => {
+                const reg = new RegExp(`\\b${word}\\b`, 'gi');
+                newText = newText.replace(reg, `<span class="highlight">$&</span>`);
+            });
+            return newText;
+        }
+
+        // FRAMEWORK DATA
+        const frameworkData = {
+            1: {
+                title: "Part 1: The Analytical Opener",
+                rule: "Never say 'This picture shows' (A1 Level). Use specific verbs based on the subject.",
+                content: `
+                    <div class="fw-template-box">
+                        "This [Adjective] composition [High-Level Verb] a [Subject], set against the backdrop of a [Setting]."
+                    </div>
+                    <h4 class="h4-title">Choosing the Right Verb:</h4>
+                    <p style="margin-bottom:10px"><strong>People/Emotion:</strong> <span class="fw-badge-verb">Portrays</span> <span class="fw-badge-verb">Captures</span> (Implies artistic representation)</p>
+                    <p style="margin-bottom:10px"><strong>Scenery/Action:</strong> <span class="fw-badge-verb">Depicts</span> <span class="fw-badge-verb">Illustrates</span> (Describes broader scenes)</p>
+                    <p style="margin-bottom:20px"><strong>Feeling/Concept:</strong> <span class="fw-badge-verb">Encapsulates</span> <span class="fw-badge-verb">Exudes</span> (Describes abstract vibes)</p>
+                    
+                    <h4 class="h4-title">Example:</h4>
+                    <div class="fw-example-box">
+                        "This <strong style="color:var(--duo-blue)">arresting</strong> composition <strong style="color:var(--duo-green)">portrays</strong> a solitary figure, set against the backdrop of a bustling urban intersection."
+                    </div>
+                `
+            },
+            2: {
+                title: "Part 2: The Visual Anchor (Foreground)",
+                rule: "Start with a Participle Phrase (-ing or -ed). This guarantees Grammar Complexity points.",
+                content: `
+                    <div class="fw-template-box">
+                        "[Participle Phrase], the [Subject] appears to be [Action], which draws the viewer's eye to the [Specific Detail]."
+                    </div>
+                    <h4 class="h4-title">Participle Starters:</h4>
+                    <ul class="fw-list">
+                        <li>Dominated by the foreground,...</li>
+                        <li>Positioned centrally,...</li>
+                        <li>Engrossed in their activity,...</li>
+                        <li>Framed by the surrounding architecture,...</li>
+                    </ul>
+                    
+                    <h4 class="h4-title">Example:</h4>
+                    <div class="fw-example-box">
+                        "<strong style="color:var(--duo-blue)">Positioned centrally</strong>, the young woman appears to be checking her watch, which draws the viewer's eye to the expression of urgency on her face."
+                    </div>
+                `
+            },
+            3: {
+                title: "Part 3: The Atmospheric Scan",
+                rule: "Do not list background objects. Explain how the environment creates a mood.",
+                content: `
+                    <div class="fw-template-box">
+                        "The setting is characterized by [Lighting/Weather], which contributes to an overall atmosphere of [Abstract Noun]."
+                    </div>
+                    <h4 class="h4-title">Atmosphere Cheat Sheet:</h4>
+                    <ul class="fw-list">
+                        <li><strong>Lighting:</strong> Bathed in natural sunlight / Shrouded in shadow / Diffused soft lighting</li>
+                        <li><strong>Sky:</strong> An azure cloudless expanse / An ominous overcast sky / The golden hour</li>
+                        <li><strong>Background:</strong> The bokeh effect / The energetic bustle / The lush pastoral surroundings</li>
+                    </ul>
+                    
+                    <h4 class="h4-title">Example:</h4>
+                    <div class="fw-example-box">
+                        "The setting is characterized by <strong style="color:var(--duo-blue)">diffused, soft lighting filtering through the trees</strong>, which contributes to an overall atmosphere of <strong style="color:var(--duo-green)">serenity and isolation</strong>."
+                    </div>
+                `
+            },
+            4: {
+                title: "Part 4: The Logical Deduction",
+                rule: "You must speculate. If you don't guess why or what next, you are stuck at B2 level.",
+                content: `
+                    <div class="fw-template-box">
+                        "Judging by the [Visual Evidence], one could reasonably surmise that [Prediction], ultimately serving as a visual metaphor for [Theme]."
+                    </div>
+                    <h4 class="h4-title">Common High-Level Themes:</h4>
+                    <p>Modern isolation, the joy of youth, the beauty of nature, urban decay, professional dedication, passion overcoming adversity.</p>
+                    
+                    <br>
+                    <h4 class="h4-title">Example:</h4>
+                    <div class="fw-example-box">
+                        "Judging by <strong style="color:var(--duo-blue)">the stacks of books and her focused demeanor</strong>, one could reasonably surmise that <strong style="color:var(--duo-green)">she is preparing for a crucial exam</strong>, ultimately serving as a visual metaphor for academic dedication."
+                    </div>
+                `
+            },
+            5: {
+                title: "Putting It All Together (150+ Answer)",
+                rule: "A complete response connecting all 4 parts. (Image: A boy playing soccer in the rain)",
+                content: `
+                    <div style="background: white; border-left: 5px solid var(--duo-green); padding: 20px; line-height: 1.8;">
+                        <p style="margin-bottom:15px"><strong>1. Opener:</strong> "This dynamic composition captures a young athlete, set against the backdrop of a muddy, rain-slicked field."</p>
+                        <p style="margin-bottom:15px"><strong>2. Anchor:</strong> "Frozen in mid-motion, the boy appears to be striking the ball with precision, which draws the viewer's eye to the intense determination etched on his face."</p>
+                        <p style="margin-bottom:15px"><strong>3. Atmosphere:</strong> "The setting is characterized by grey, overcast skies and falling rain, which contributes to an overall atmosphere of grit and resilience."</p>
+                        <p><strong>4. Deduction:</strong> "Judging by the professional gear and the intensity of the play, one could reasonably surmise that this is a competitive tournament match, ultimately serving as a visual metaphor for passion overcoming adversity."</p>
+                    </div>
+                    <div style="margin-top: 20px; text-align: center; color: var(--duo-green); font-weight: 800;">
+                        Total Score: 150+ (Max Vocab, Max Grammar, Perfect Structure)
+                    </div>
+                `
+            }
+        };
+
+        function showStep(stepId) {
+            // Update Tabs
+            document.querySelectorAll('.fw-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.fw-tab')[stepId - 1].classList.add('active'); // 0-indexed
+
+            // Update Content
+            const data = frameworkData[stepId];
+            const contentDiv = document.getElementById('fw-content');
+
+            contentDiv.innerHTML = `
+                <h3 class="h4-title" style="font-size: 1.4rem; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px;">${data.title}</h3>
+                <div class="fw-rule-box">
+                    <span class="fw-rule-title">The Golden Rule</span>
+                    ${data.rule}
+                </div>
+                ${data.content}
+            `;
+        }
+
+        // Initialize First Step
+        showStep(1);
+
+        // Initialize Samples
+        filterSamples('all');
+
+    </script>
+</body>
+
+</html>

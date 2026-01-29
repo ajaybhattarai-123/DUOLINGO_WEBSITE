@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DET 150+ Write About the Photo Guide</title>
+    <style>
+        :root {
+            --primary-color: #58CC02;
+            /* Duolingo Green */
+            --accent-color: #2B70C9;
+            /* Duolingo Blue */
+            --highlight-color: #FFC800;
+            /* Gold */
+            --danger-color: #FF4B4B;
+            --bg-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --text-color: #3c3c3c;
+            --purple: #9C27B0;
+            --orange: #FF9800;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DIN Next Rounded LT Pro', 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 0;
+        }
+
+        /* Navigation - Styled like Mata Stats Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 0 #2a8a00;
+            margin-bottom: 30px;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+            padding: 8px 15px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 30px 0;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 2rem;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        /* Master Template Section */
+        .template-box {
+            background-color: var(--card-bg);
+            border: none;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 4px 0 #e5e5e5;
+            position: relative;
+            border: 2px solid #e5e5e5;
+        }
+
+        .template-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            line-height: 1.9;
+        }
+
+        .highlight-bracket {
+            color: var(--accent-color);
+            font-weight: 800;
+            background: #f0f7ff;
+            padding: 0 5px;
+            border-radius: 6px;
+        }
+
+        .btn-copy {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 #46a302;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-copy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #46a302;
+        }
+
+        .btn-copy:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #46a302;
+        }
+
+        /* Examples Section (Accordions) */
+        details {
+            background-color: var(--card-bg);
+            margin-bottom: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 0 #e5e5e5;
+            border: 2px solid #e5e5e5;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        details:hover {
+            transform: translateY(-2px);
+        }
+
+        summary {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-weight: 700;
+            background-color: white;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        summary::marker {
+            display: none;
+        }
+
+        summary:after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1rem;
+            color: #ccc;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        details[open] summary:after {
+            transform: rotate(180deg);
+            color: var(--accent-color);
+        }
+
+        details[open] summary {
+            border-bottom: 2px solid #f0f0f0;
+            color: var(--accent-color);
+        }
+
+        .example-content {
+            padding: 25px;
+            background-color: #fafafa;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Vocabulary Section (Grid) */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .vocab-category {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 0 #e5e5e5;
+            border: 2px solid #e5e5e5;
+        }
+
+        .vocab-category h3 {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+            margin-top: 0;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .vocab-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid #eee;
+            transition: transform 0.2s;
+        }
+
+        .vocab-item:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .vocab-word {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .vocab-example {
+            font-style: italic;
+            color: #777;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Sentence Starters Section */
+        .starter-group {
+            margin-bottom: 50px;
+        }
+
+        .starter-card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            border: 2px solid #e5e5e5;
+            box-shadow: 0 4px 0 #e5e5e5;
+            transition: transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .starter-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--primary-color);
+        }
+
+        .starter-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 0 #e5e5e5;
+        }
+
+        .starter-template {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.15rem;
+        }
+
+        .starter-example {
+            color: #555;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: none;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: transparent;
+            color: #aaa;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            border-top: 2px solid #e5e5e5;
+            font-weight: bold;
+        }
+
+        strong {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* Mobile fixes */
+        @media (max-width: 768px) {
+            nav h1 {
+                font-size: 1.2rem;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                font-size: 0.9rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .template-box {
+                padding: 20px;
+            }
+
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="container">
+            <h1>DET 150+ Expert Guide</h1>
+            <ul>
+                <li><a href="#template">Master Template</a></li>
+                <li><a href="#examples">5 Examples</a></li>
+                <li><a href="#vocabulary">Vocabulary</a></li>
+                <li><a href="#starters">Sentence Starters</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="template">
+        <div class="container">
+            <h2>The Final Master Template (150+ Score)</h2>
+            <p style="margin-bottom: 20px; text-align: center;">This is the refined version of the Universal Template.
+                Memorize this exact structure.</p>
+
+            <div class="template-box">
+                <p class="template-text" id="masterTemplate">
+                    “This well-composed image captures a scene set in <strong>[General Setting]</strong>, with the main
+                    focus on <strong>[Primary Subject]</strong>. In the foreground, <strong>[Subject A]</strong> is
+                    <strong>[Action + Adverb]</strong>, while in the background, <strong>[Secondary
+                        Subject/Environment]</strong> can be observed. The surrounding elements, such as
+                    <strong>[Specific Detail]</strong>, help provide additional context. Judging by <strong>[Visual
+                        Evidence]</strong>, it appears that <strong>[Logical Inference]</strong>, creating a sense of
+                    <strong>[Atmosphere/Mood]</strong>.”
+                </p>
+                <button class="btn-copy" onclick="copyTemplate()">Copy Template to Clipboard</button>
+            </div>
+
+            <h3 style="margin-top: 40px;">THE "SINGLE OBJECT" TEMPLATE</h3>
+            <p style="margin-bottom: 15px; font-style: italic; color: #666;">(Use for: A chair, a phone, a fruit, a
+                shoe, a bottle)</p>
+            <div class="template-box">
+                <p class="template-text">
+                    “This minimalistic image clearly shows a single <strong>[Object Name]</strong> resting on
+                    <strong>[Surface/Background]</strong>. The object is characterized by its <strong>[Adjective: e.g.,
+                        smooth/rough/bright]</strong> texture and <strong>[Color]</strong> appearance. Lighting hits the
+                    <strong>[Top/Side]</strong> of the item, creating a sharp contrast against the simple surroundings.
+                    Judging by its isolation and condition, it appears to be <strong>[Inference: e.g., brand
+                        new/recently used/a display item]</strong>, creating a sense of <strong>[Mood:
+                        Simplicity/Functionality]</strong>.”
+                </p>
+            </div>
+
+            <h3 style="margin-top: 40px;">THE "FLAT DOCUMENT/SIGN" TEMPLATE</h3>
+            <p style="margin-bottom: 15px; font-style: italic; color: #666;">(Use for: A map, a street sign, a graph, a
+                handwritten note, a logo)</p>
+            <div class="template-box">
+                <p class="template-text">
+                    “This image illustrates a clear <strong>[Type: Sign/Map/Chart]</strong> designed to convey specific
+                    information. The central text or symbol reads ‘<strong>[Insert Text or Describe Symbol]</strong>’,
+                    which is prominently displayed in <strong>[Color/Font Style]</strong>. The layout is
+                    <strong>[Adjective: Organized/Bold/Simple]</strong>, utilizing <strong>[Design Element: e.g.,
+                        Arrows/Colors]</strong> to guide the viewer's attention. Based on the content, this visual is
+                    likely intended for <strong>[Context: e.g., Drivers/Students/Tourists]</strong>, serving the purpose
+                    of <strong>[Purpose: Warning/Direction/Instruction]</strong>.”
+                </p>
+            </div>
+
+            <h3 style="margin-top: 40px;">THE "CLOSE-UP PORTRAIT" TEMPLATE</h3>
+            <p style="margin-bottom: 15px; font-style: italic; color: #666;">(Use for: A zoomed-in face, a selfie, a
+                headshot where the background is invisible)</p>
+            <div class="template-box">
+                <p class="template-text">
+                    “This intimate close-up shot focuses entirely on the face of <strong>[Subject: e.g., a young
+                        woman/an elderly man]</strong>. Their expression is <strong>[Adjective:
+                        Cheerful/Serious/Pensive]</strong>, characterized by <strong>[Detail: e.g., a bright smile/deep
+                        wrinkles/intense eyes]</strong>. The background is <strong>[Blurred/Solid/Minimal]</strong>,
+                    ensuring that no distractions take away from the subject's features. Judging by <strong>[Visual Cue:
+                        e.g., the soft lighting/their relaxed muscles]</strong>, the person appears to be feeling
+                    <strong>[Emotion]</strong>, creating a sense of <strong>[Mood: Human
+                        connection/Intensity/Joy]</strong>.”
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples">
+        <div class="container">
+            <h2>5 Examples (Using The Master Template)</h2>
+            <p style="margin-bottom: 20px; text-align: center;">Click on the tabs below to see how to apply the template
+                to the 5 most common Duolingo image types.</p>
+
+            <details>
+                <summary>Example 1: A Busy City Street (Urban)</summary>
+                <div class="example-content">
+                    <p>“This well-composed image captures a scene set in <strong>a bustling metropolitan
+                            district</strong>, with the main focus on <strong>the heavy flow of traffic</strong>. In the
+                        foreground, <strong>several pedestrians</strong> are <strong>crossing the street
+                            hurriedly</strong>, while in the background, <strong>towering skyscrapers</strong> can be
+                        observed. The surrounding elements, such as <strong>bright digital billboards</strong>, help
+                        provide additional context. Judging by <strong>the overcast sky and wet pavement</strong>, it
+                        appears that <strong>it has recently rained</strong>, creating a sense of <strong>urgent daily
+                            routine</strong>.”</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Example 2: A Library or Classroom (Academic)</summary>
+                <div class="example-content">
+                    <p>“This well-composed image captures a scene set in <strong>a quiet academic environment</strong>,
+                        with the main focus on <strong>a group of students</strong>. In the foreground, <strong>a young
+                            woman</strong> is <strong>reading intensely</strong>, while in the background, <strong>rows
+                            of filled bookshelves</strong> can be observed. The surrounding elements, such as
+                        <strong>laptops and open notebooks</strong>, help provide additional context. Judging by
+                        <strong>their focused expressions</strong>, it appears that <strong>they are preparing for an
+                            upcoming exam</strong>, creating a sense of <strong>concentration and diligence</strong>.”
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Example 3: A Park or Nature Scene (Landscape)</summary>
+                <div class="example-content">
+                    <p>“This well-composed image captures a scene set in <strong>a serene natural park</strong>, with
+                        the main focus on <strong>a winding pathway</strong>. In the foreground, <strong>an elderly
+                            couple</strong> is <strong>strolling leisurely</strong>, while in the background,
+                        <strong>dense green foliage</strong> can be observed. The surrounding elements, such as
+                        <strong>wooden benches and blooming flowers</strong>, help provide additional context. Judging
+                        by <strong>the golden lighting and long shadows</strong>, it appears that <strong>it is late
+                            afternoon</strong>, creating a sense of <strong>tranquility and peace</strong>.”
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Example 4: A Business Meeting (Professional)</summary>
+                <div class="example-content">
+                    <p>“This well-composed image captures a scene set in <strong>a modern corporate office</strong>,
+                        with the main focus on <strong>a team of professionals</strong>. In the foreground, <strong>a
+                            man in a suit</strong> is <strong>gesturing expressively while speaking</strong>, while in
+                        the background, <strong>a presentation screen</strong> can be observed. The surrounding
+                        elements, such as <strong>glasses of water and notepads</strong>, help provide additional
+                        context. Judging by <strong>the attentive body language of the colleagues</strong>, it appears
+                        that <strong>they are discussing a crucial project</strong>, creating a sense of
+                        <strong>collaboration and professionalism</strong>.”
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Example 5: A Restaurant/Café (Social)</summary>
+                <div class="example-content">
+                    <p>“This well-composed image captures a scene set in <strong>a cozy café</strong>, with the main
+                        focus on <strong>two individuals sitting at a table</strong>. In the foreground,
+                        <strong>they</strong> are <strong>holding coffee cups and smiling</strong>, while in the
+                        background, <strong>blurred patrons and baristas</strong> can be observed. The surrounding
+                        elements, such as <strong>warm lighting and rustic decor</strong>, help provide additional
+                        context. Judging by <strong>their cheerful demeanor</strong>, it appears that <strong>they are
+                            enjoying a casual conversation</strong>, creating a sense of <strong>warmth and
+                            friendship</strong>.”
+                    </p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section id="vocabulary">
+        <div class="container">
+            <h2>Top 50 High-Scoring Vocabulary (With Examples)</h2>
+            <div class="vocab-grid">
+
+                <div class="vocab-category">
+                    <h3>Verbs</h3>
+                    <div class="vocab-item"><span class="vocab-word">Conversing</span><span class="vocab-example">"The
+                            two men are <strong>conversing</strong> intently near the doorway."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Strolling</span><span class="vocab-example">"A
+                            family is <strong>strolling</strong> along the beach during sunset."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Observing</span><span class="vocab-example">"The
+                            scientist is carefully <strong>observing</strong> the sample through a microscope."</span>
+                    </div>
+                    <div class="vocab-item"><span class="vocab-word">Gesturing</span><span class="vocab-example">"The
+                            speaker is <strong>gesturing</strong> with his hands to emphasize his point."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Residing</span><span class="vocab-example">"A large
+                            statue is <strong>residing</strong> in the center of the plaza."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Illuminate</span><span
+                            class="vocab-example">"Several streetlamps <strong>illuminate</strong> the wet pavement
+                            below."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Dominate</span><span class="vocab-example">"Large
+                            skyscrapers <strong>dominate</strong> the skyline in the background."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Resemble</span><span class="vocab-example">"The
+                            architectural style appears to <strong>resemble</strong> a classical Greek design."</span>
+                    </div>
+                    <div class="vocab-item"><span class="vocab-word">Interact</span><span class="vocab-example">"The
+                            children are learning to <strong>interact</strong> with the animals at the petting
+                            zoo."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Commute</span><span class="vocab-example">"Many
+                            cyclists appear to be on their morning <strong>commute</strong> to work."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Collaborate</span><span class="vocab-example">"The
+                            students are gathered around a table to <strong>collaborate</strong> on a group
+                            project."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Inspect</span><span class="vocab-example">"The
+                            mechanic is stooping down to <strong>inspect</strong> the car's tire."</span></div>
+                </div>
+
+                <div class="vocab-category">
+                    <h3>Adjectives</h3>
+                    <div class="vocab-item"><span class="vocab-word">Bustling</span><span class="vocab-example">"The
+                            market is <strong>bustling</strong> with shoppers and vendors."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Serene</span><span class="vocab-example">"The lake
+                            creates a <strong>serene</strong> reflection of the mountains."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Dilapidated</span><span class="vocab-example">"In
+                            the distance, a <strong>dilapidated</strong> barn stands alone in the field."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Vibrant</span><span class="vocab-example">"The
+                            participants are wearing <strong>vibrant</strong> costumes for the festival."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Monochromatic</span><span
+                            class="vocab-example">"The image is <strong>monochromatic</strong>, emphasizing the textures
+                            rather than colors."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Candid</span><span class="vocab-example">"This
+                            appears to be a <strong>candid</strong> shot, as no one is looking at the camera."</span>
+                    </div>
+                    <div class="vocab-item"><span class="vocab-word">Scenic</span><span class="vocab-example">"The car
+                            is driving along a <strong>scenic</strong> coastal highway."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Spacious</span><span class="vocab-example">"The
+                            office appears very <strong>spacious</strong> due to the large glass windows."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Cluttered</span><span class="vocab-example">"The
+                            desk is <strong>cluttered</strong> with stacks of papers and coffee cups."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Antique</span><span class="vocab-example">"The room
+                            is furnished with <strong>antique</strong> chairs and heavy curtains."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Contemporary</span><span class="vocab-example">"The
+                            building features a <strong>contemporary</strong> design with sharp angles."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Gloomy</span><span class="vocab-example">"The sky
+                            is grey and <strong>gloomy</strong>, suggesting an approaching storm."</span></div>
+                </div>
+
+                <div class="vocab-category">
+                    <h3>Nouns</h3>
+                    <div class="vocab-item"><span class="vocab-word">Pedestrians</span><span
+                            class="vocab-example">"Several <strong>pedestrians</strong> are waiting for the traffic
+                            light to change."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Commuters</span><span class="vocab-example">"The
+                            train station is packed with weary <strong>commuters</strong> heading home."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Siblings</span><span class="vocab-example">"The two
+                            children look alike, suggesting they might be <strong>siblings</strong>."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Colleagues</span><span class="vocab-example">"The
+                            <strong>colleagues</strong> are shaking hands after a meeting."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Patrons</span><span class="vocab-example">"The
+                            restaurant is full of <strong>patrons</strong> enjoying their dinner."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Architecture</span><span class="vocab-example">"The
+                            city displays a mix of modern and gothic <strong>architecture</strong>."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Foliage</span><span class="vocab-example">"The
+                            autumn <strong>foliage</strong> has turned the trees bright orange and red."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Attire</span><span class="vocab-example">"Judging
+                            by their formal <strong>attire</strong>, they are attending a wedding."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Structure</span><span class="vocab-example">"A
+                            large wooden <strong>structure</strong> is visible in the playground."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Horizon</span><span class="vocab-example">"The sun
+                            is just beginning to dip below the <strong>horizon</strong>."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Apparatus</span><span class="vocab-example">"The
+                            gym is equipped with various types of exercise <strong>apparatus</strong>."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Infrastructure</span><span
+                            class="vocab-example">"The photo highlights the city's complex transport
+                            <strong>infrastructure</strong>."</span></div>
+                </div>
+
+                <div class="vocab-category">
+                    <h3>Adverbs & Connectors</h3>
+                    <div class="vocab-item"><span class="vocab-word">Hurriedly</span><span class="vocab-example">"People
+                            are moving <strong>hurriedly</strong> to escape the rain."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Intently</span><span class="vocab-example">"She is
+                            listening <strong>intently</strong> to the instructions."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Leisurely</span><span class="vocab-example">"They
+                            are walking <strong>leisurely</strong> through the garden."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Presumably</span><span class="vocab-example">"They
+                            are <strong>presumably</strong> tourists, given their backpacks and cameras."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Evidently</span><span class="vocab-example">"It is
+                            <strong>evidently</strong> cold, as everyone is wearing scarves."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Partially</span><span class="vocab-example">" The
+                            sun is <strong>partially</strong> obscured by the clouds."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Furthermore</span><span
+                            class="vocab-example">"<strong>Furthermore</strong>, the decorations suggest a holiday
+                            celebration."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Conversely</span><span class="vocab-example">"The
+                            left side is bright; <strong>conversely</strong>, the right side is in shadow."</span></div>
+                    <div class="vocab-item"><span class="vocab-word">Simultaneously</span><span
+                            class="vocab-example">"They are eating and <strong>simultaneously</strong> checking their
+                            phones."</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="starters">
+        <div class="container">
+            <h2>The "Top 7" Sentence Starters</h2>
+
+            <div class="starter-group">
+                <h3>Top 7: Opening Sentences</h3>
+                <div class="starter-card">
+                    <div class="starter-template">"This well-composed image captures a scene set in [Setting]..."</div>
+                    <div class="starter-example">Example: "This well-composed image captures a scene set in <strong>a
+                            brightly lit grocery store</strong>."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"This candid photograph depicts a moment of everyday life in
+                        [Setting]..."</div>
+                    <div class="starter-example">Example: "This candid photograph depicts a moment of everyday life in
+                        <strong>a busy subway station</strong>."
+                    </div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"This visually striking image illustrates a [Type] landscape..."</div>
+                    <div class="starter-example">Example: "This visually striking image illustrates a <strong>barren
+                            desert</strong> landscape."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"The image in question portrays a lively scene situated in..."</div>
+                    <div class="starter-example">Example: "The image in question portrays a lively scene situated in
+                        <strong>an outdoor music festival</strong>."
+                    </div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"Captured from a [high/low] angle, this photo displays..."</div>
+                    <div class="starter-example">Example: "Captured from a <strong>high</strong> angle, this photo
+                        displays <strong>a complex highway intersection</strong>."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"This monochromatic shot focuses primarily on..."</div>
+                    <div class="starter-example">Example: "This monochromatic shot focuses primarily on <strong>the
+                            intricate details of an old statue</strong>."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"This image presents a realistic snapshot of..."</div>
+                    <div class="starter-example">Example: "This image presents a realistic snapshot of <strong>a surgeon
+                            performing a medical procedure</strong>."</div>
+                </div>
+            </div>
+
+            <div class="starter-group">
+                <h3>Top 7: Middle Sentences (Spatial/Action)</h3>
+                <div class="starter-card">
+                    <div class="starter-template">"In the foreground, [Subject] is visible, while the background
+                        features..."</div>
+                    <div class="starter-example">Example: "In the foreground, <strong>a playful dog</strong> is visible,
+                        while the background features <strong>a well-kept lawn</strong>."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"To the left, [Subject] stands prominently, whereas on the right..."
+                    </div>
+                    <div class="starter-example">Example: "To the left, <strong>a tall tree</strong> stands prominently,
+                        whereas on the right, <strong>a small wooden bench</strong> is visible."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"Centrally located is a [Object], which draws the viewer's eye."</div>
+                    <div class="starter-example">Example: "Centrally located is a <strong>bright red sports
+                            car</strong>, which draws the viewer's eye."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"Several individuals appear to be engaged in [Activity] near the..."
+                    </div>
+                    <div class="starter-example">Example: "Several individuals appear to be engaged in <strong>a yoga
+                            session</strong> near the <strong>edge of the lake</strong>."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"The surrounding environment includes [Details], establishing the
+                        context."</div>
+                    <div class="starter-example">Example: "The surrounding environment includes <strong>whiteboards and
+                            projectors</strong>, establishing the context."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"A distinct contrast is visible between the [Object A] and the [Object
+                        B]."</div>
+                    <div class="starter-example">Example: "A distinct contrast is visible between the <strong>modern
+                            glass building</strong> and the <strong>historic stone church</strong>."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"Scattered throughout the scene are various [Items], suggesting..."
+                    </div>
+                    <div class="starter-example">Example: "Scattered throughout the scene are various <strong>toys and
+                            books</strong>, suggesting <strong>a child's playroom</strong>."</div>
+                </div>
+            </div>
+
+            <div class="starter-group">
+                <h3>Top 7: Closing Sentences (Speculation/Mood)</h3>
+                <div class="starter-card">
+                    <div class="starter-template">"Judging by the [Evidence], it appears that [Conclusion]."</div>
+                    <div class="starter-example">Example: "Judging by the <strong>balloons and cake</strong>, it appears
+                        that <strong>a birthday party is taking place</strong>."</div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"Overall, the scene creates a sense of [Mood], likely due to
+                        [Detail]."</div>
+                    <div class="starter-example">Example: "Overall, the scene creates a sense of
+                        <strong>isolation</strong>, likely due to <strong>the thick fog covering the road</strong>."
+                    </div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"Based on their attire, it seems likely that the weather is
+                        [Condition]."</div>
+                    <div class="starter-example">Example: "Based on their attire, it seems likely that the weather is
+                        <strong>extremely cold and windy</strong>."
+                    </div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"One can infer from their expressions that they are feeling
+                        [Emotion]."</div>
+                    <div class="starter-example">Example: "One can infer from their expressions that they are feeling
+                        <strong>anxious and stressed</strong>."
+                    </div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"The lighting suggests that this event is taking place in the [Time of
+                        Day]."</div>
+                    <div class="starter-example">Example: "The lighting suggests that this event is taking place in the
+                        <strong>early morning hours</strong>."
+                    </div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"This implies that the individuals are in the middle of a [Activity]."
+                    </div>
+                    <div class="starter-example">Example: "This implies that the individuals are in the middle of a
+                        <strong>intense negotiation</strong>."
+                    </div>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-template">"Altogether, the image conveys a feeling of [Atmosphere] and
+                        [Emotion]."</div>
+                    <div class="starter-example">Example: "Altogether, the image conveys a feeling of
+                        <strong>nostalgia</strong> and <strong>warmth</strong>."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>150+ Duolingo Expert Preparation Kit</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyTemplate() {
+            // Get the text field
+            var copyText = document.getElementById("masterTemplate").innerText;
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText);
+
+            // Alert the copied text
+            alert("Template copied to clipboard!");
+        }
+    </script>
+
+</body>
+
+</html>
