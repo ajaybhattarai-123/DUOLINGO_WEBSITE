@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duolingo Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .module-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .module-card h3 {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .module-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .category {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid white;
+            padding-left: 15px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 36px;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Duolingo Learning Hub</h1>
+            <p>Choose your learning module and start improving today!</p>
+        </header>
+
+        <div class="category">
+            <h2 class="category-title">📝 Writing Exercises</h2>
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-icon">✍️</div>
+                    <h3>Writing 5 Min Latest</h3>
+                    <p>Practice quick writing exercises with the latest content and challenges.</p>
+                    <a href="WRITING_5_MIN_LATEST.HTML" class="btn">Start Learning</a>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-icon">📸</div>
+                    <h3>Writing Photo</h3>
+                    <p>Write descriptions and captions based on images and visual cues.</p>
+                    <a href="WRITING_PHOTO.HTML" class="btn">Start Learning</a>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-icon">🖼️</div>
+                    <h3>Writing Picture Theory</h3>
+                    <p>Learn writing concepts while analyzing and describing pictures.</p>
+                    <a href="WRITING_PICTURE_THEORY.HTML" class="btn">Start Learning</a>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-icon">📚</div>
+                    <h3>Writing 5 Min Complete</h3>
+                    <p>Complete comprehensive writing exercises in 5-minute sessions.</p>
+                    <a href="WRITING-5-MIN-COMPLETE.HTML" class="btn">Start Learning</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2 class="category-title">🗣️ Speaking & Listening</h2>
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-icon">🎤</div>
+                    <h3>Photo Speaking</h3>
+                    <p>Speak about images and practice pronunciation with visual context.</p>
+                    <a href="photo speaking .html" class="btn">Start Learning</a>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-icon">📢</div>
+                    <h3>Speaking Photo</h3>
+                    <p>Advanced speaking exercises using photo-based prompts and scenarios.</p>
+                    <a href="SPEAKING_PHOTO.HTML" class="btn">Start Learning</a>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-icon">🔊</div>
+                    <h3>Read Speaking</h3>
+                    <p>Read and speak aloud to practice both reading comprehension and pronunciation.</p>
+                    <a href="READ_SPEAKING.HTML" class="btn">Start Learning</a>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-icon">📖</div>
+                    <h3>Vocab Speaking</h3>
+                    <p>Master vocabulary through speaking exercises and interactive lessons.</p>
+                    <a href="VOCAB_SPEAKING.html" class="btn">Start Learning</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2 class="category-title">🎯 Additional Modules</h2>
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-icon">📝</div>
+                    <h3>Letter Gap</h3>
+                    <p>Fill in the missing letters and improve your spelling and vocabulary.</p>
+                    <a href="LETTER_GAP.HTML" class="btn">Start Learning</a>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-icon">🌍</div>
+                    <h3>Mata</h3>
+                    <p>Explore and learn with the Mata learning module.</p>
+                    <a href="Mata.html" class="btn">Start Learning</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🌟 Keep learning, keep growing! 🌟</p>
+            <p style="font-size: 12px; margin-top: 10px;">© 2026 Duolingo Learning Hub | All Rights Reserved</p>
+        </footer>
+    </div>
+</body>
+</html>
