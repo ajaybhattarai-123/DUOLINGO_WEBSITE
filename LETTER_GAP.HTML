@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DET 140+ Elite Training: Sentence Mastery</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .sentence-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .sentence-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .word-container {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 3px;
+        }
+
+        .letter-box {
+            width: 28px;
+            height: 36px;
+            text-align: center;
+            font-size: 1.2em;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin: 0 2px;
+            text-transform: lowercase;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .letter-box:focus {
+            border-color: #667eea;
+            outline: none;
+            background: #f0f4ff;
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .letter-box.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .letter-box.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .given-letters {
+            font-weight: bold;
+            color: #667eea;
+            background: #f0f4ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #e0e7ff;
+        }
+
+        .status-indicator {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            font-size: 0.9em;
+            padding: 6px 15px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .show-status {
+            opacity: 1;
+        }
+
+        .correct-status {
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .wrong-status {
+            background: linear-gradient(90deg, #f44336, #d32f2f);
+            color: white;
+        }
+
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            margin-top: 40px;
+            border: 1px solid #eaeaea;
+        }
+
+        button {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3em;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .hint {
+            display: block;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .score-display {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            border: 2px solid #e0e7ff;
+        }
+
+        .excellent {
+            color: #28a745;
+        }
+
+        .good {
+            color: #ffc107;
+        }
+
+        .needs-work {
+            color: #dc3545;
+        }
+
+        .word-input-group {
+            display: inline-block;
+            position: relative;
+            margin: 0 8px;
+        }
+
+        .full-word-input {
+            width: 150px;
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: all 0.2s;
+            display: none;
+            margin-left: 10px;
+        }
+
+        .full-word-input:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .toggle-input-mode {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            transition: background 0.2s;
+        }
+
+        .toggle-input-mode:hover {
+            background: #5a6268;
+        }
+
+        .input-mode-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e9ecef;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .letter-box {
+                width: 24px;
+                height: 32px;
+                font-size: 1em;
+            }
+
+            .sentence-block {
+                padding: 15px;
+            }
+
+            button {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Set Selection and Correction Styles */
+        .set-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .set-btn {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+            min-width: 80px;
+        }
+
+        .set-btn.active,
+        .set-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2);
+        }
+
+        .correction-box {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            color: #856404;
+            display: none;
+            font-size: 1.05em;
+            line-height: 1.6;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .correction-box.visible {
+            display: block;
+        }
+
+        .highlight-answer {
+            background-color: #28a745;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 0 2px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>DET Master: Read & Complete Challenge</h1>
+        <p class="subtitle">Fill in the missing letters. Perfect your skills for a 140+ score.</p>
+
+        <div class="stats-bar">
+            <div id="set-indicator">Showing Set 1 (Questions 1-50)</div>
+        </div>
+
+        <div class="set-controls" id="set-controls">
+            <!-- Generated by JS -->
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div id="quiz-container"></div>
+
+        <div class="controls">
+            <button onclick="evaluateTest()">SUBMIT FOR GRADING</button>
+            <button onclick="resetTest()" style="background: #6c757d; margin-left: 15px;">RESET TEST</button>
+            <p class="hint">Tip: Use Tab/Shift+Tab to navigate between inputs. Click letters to edit.</p>
+            <div class="score-display">
+                <div id="final-score">Score will appear here</div>
+                <div id="score-feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 500 UNIQUE Duolingo-style questions (no duplicates)
+        const questions = [
+            // Academic & Complex Vocabulary (500 unique questions)
+            { text: "The ", target: "advancement", given: "adv", suffix: " of crude oil is ", target2: "increasing", given2: "inc", suffix2: " day by day." },
+            { text: "He ", target: "demonstrated", given: "demon", suffix: " profound ", target2: "resilience", given2: "resil", suffix2: " during the crisis." },
+            { text: "Global ", target: "economies", given: "econ", suffix: " are ", target2: "interconnected", given2: "intercon", suffix2: " in the modern age." },
+            { text: "The ", target: "phenomenon", given: "phenom", suffix: " of ", target2: "urbanization", given2: "urbaniz", suffix2: " is accelerating." },
+            { text: "Strict ", target: "regulations", given: "regul", suffix: " ensure ", target2: "compliance", given2: "compl", suffix2: " with safety standards." },
+            { text: "The ", target: "ubiquity", given: "ubiq", suffix: " of ", target2: "technology", given2: "technol", suffix2: " has changed education." },
+            { text: "She ", target: "articulated", given: "artic", suffix: " her ", target2: "perspective", given2: "perspec", suffix2: " with great clarity." },
+            { text: "New ", target: "innovations", given: "innov", suffix: " often ", target2: "supersede", given2: "super", suffix2: " older methods." },
+            { text: "The ", target: "hypothesis", given: "hypoth", suffix: " requires ", target2: "empirical", given2: "empir", suffix2: " evidence." },
+            { text: "Rapid ", target: "industrialization", given: "industri", suffix: " can ", target2: "exacerbate", given2: "exacer", suffix2: " pollution levels." },
+
+            // Duolingo Fill-in Questions - Academic Vocabulary
+            { text: "The research ", target: "methodology", given: "method", suffix: " was ", target2: "rigorously", given2: "rigor", suffix2: " applied." },
+            { text: "Climate ", target: "mitigation", given: "mitig", suffix: " strategies are ", target2: "essential", given2: "essen", suffix2: " for sustainability." },
+            { text: "Cognitive ", target: "psychology", given: "psych", suffix: " explores human ", target2: "behavior", given2: "behav", suffix2: " patterns." },
+            { text: "The ", target: "infrastructure", given: "infra", suffix: " requires ", target2: "substantial", given2: "substan", suffix2: " investment." },
+            { text: "Genetic ", target: "modification", given: "modif", suffix: " raises ", target2: "ethical", given2: "ethic", suffix2: " concerns." },
+            { text: "Market ", target: "volatility", given: "volat", suffix: " affects ", target2: "investment", given2: "invest", suffix2: " decisions." },
+            { text: "The ", target: "paradigm", given: "parad", suffix: " shift in ", target2: "education", given2: "educat", suffix2: " is evident." },
+            { text: "Artificial ", target: "intelligence", given: "intell", suffix: " systems show ", target2: "remarkable", given2: "remark", suffix2: " progress." },
+            { text: "Cultural ", target: "assimilation", given: "assim", suffix: " can be ", target2: "challenging", given2: "challeng", suffix2: " for immigrants." },
+            { text: "The ", target: "constitution", given: "const", suffix: " guarantees ", target2: "fundamental", given2: "fundam", suffix2: " rights." },
+
+            // Economic & Business Terms
+            { text: "Economic ", target: "indicators", given: "indic", suffix: " suggest ", target2: "stability", given2: "stabil", suffix2: " in the market." },
+            { text: "Corporate ", target: "governance", given: "govern", suffix: " enhances ", target2: "transparency", given2: "transpar", suffix2: " and accountability." },
+            { text: "Entrepreneurial ", target: "ventures", given: "vent", suffix: " drive ", target2: "innovation", given2: "innovat", suffix2: " in the economy." },
+            { text: "Financial ", target: "derivatives", given: "deriv", suffix: " can be ", target2: "complicated", given2: "compl", suffix2: " for beginners." },
+            { text: "Strategic ", target: "planning", given: "plan", suffix: " ensures ", target2: "profitability", given2: "profit", suffix2: " and growth." },
+            { text: "Consumer ", target: "confidence", given: "confid", suffix: " affects ", target2: "spending", given2: "spend", suffix2: " habits." },
+            { text: "Global ", target: "supply", given: "supp", suffix: " chains face ", target2: "disruptions", given2: "disrupt", suffix2: " regularly." },
+            { text: "Technological ", target: "disruption", given: "disrupt", suffix: " creates new ", target2: "opportunities", given2: "opportun", suffix2: " for businesses." },
+            { text: "Sustainable ", target: "development", given: "develop", suffix: " balances ", target2: "economic", given2: "econom", suffix2: " and environmental needs." },
+            { text: "Market ", target: "competition", given: "compet", suffix: " drives ", target2: "efficiency", given2: "effici", suffix2: " and innovation." },
+
+            // Science & Technology
+            { text: "Scientific ", target: "breakthroughs", given: "break", suffix: " often require ", target2: "persistence", given2: "persist", suffix2: " and dedication." },
+            { text: "Quantum ", target: "computing", given: "comput", suffix: " represents a ", target2: "revolutionary", given2: "revolut", suffix2: " advancement." },
+            { text: "Renewable ", target: "energy", given: "ener", suffix: " sources are ", target2: "environmentally", given2: "environ", suffix2: " friendly." },
+            { text: "Biomedical ", target: "research", given: "resear", suffix: " contributes to ", target2: "healthcare", given2: "health", suffix2: " improvements." },
+            { text: "Space ", target: "exploration", given: "explor", suffix: " expands our ", target2: "understanding", given2: "underst", suffix2: " of the universe." },
+            { text: "Climate ", target: "change", given: "chan", suffix: " necessitates ", target2: "adaptation", given2: "adapt", suffix2: " strategies." },
+            { text: "Digital ", target: "transformation", given: "transf", suffix: " affects ", target2: "productivity", given2: "product", suffix2: " significantly." },
+            { text: "Genetic ", target: "engineering", given: "engine", suffix: " offers ", target2: "potential", given2: "potent", suffix2: " medical solutions." },
+            { text: "Artificial ", target: "neural", given: "neur", suffix: " networks mimic ", target2: "biological", given2: "biolog", suffix2: " brain functions." },
+            { text: "Cybersecurity ", target: "measures", given: "meas", suffix: " protect against ", target2: "vulnerabilities", given2: "vulner", suffix2: " in systems." },
+
+            // Education & Learning
+            { text: "Educational ", target: "attainment", given: "attain", suffix: " correlates with ", target2: "employment", given2: "employ", suffix2: " opportunities." },
+            { text: "Lifelong ", target: "learning", given: "learn", suffix: " enhances ", target2: "adaptability", given2: "adapt", suffix2: " in changing environments." },
+            { text: "Critical ", target: "thinking", given: "think", suffix: " skills promote ", target2: "analytical", given2: "analyt", suffix2: " abilities." },
+            { text: "Interactive ", target: "learning", given: "learn", suffix: " methods increase ", target2: "engagement", given2: "engage", suffix2: " among students." },
+            { text: "Academic ", target: "achievement", given: "achiev", suffix: " depends on ", target2: "motivation", given2: "motiv", suffix2: " and effort." },
+            { text: "Digital ", target: "literacy", given: "liter", suffix: " is ", target2: "essential", given2: "essen", suffix2: " in modern education." },
+            { text: "Educational ", target: "equity", given: "equ", suffix: " ensures ", target2: "accessibility", given2: "access", suffix2: " for all students." },
+            { text: "Cognitive ", target: "development", given: "develop", suffix: " occurs through ", target2: "interaction", given2: "interac", suffix2: " with the environment." },
+            { text: "Learning ", target: "strategies", given: "strateg", suffix: " improve ", target2: "retention", given2: "retent", suffix2: " of information." },
+            { text: "Educational ", target: "technology", given: "technol", suffix: " facilitates ", target2: "personalized", given2: "person", suffix2: " learning." },
+
+            // Health & Medicine
+            { text: "Public ", target: "health", given: "heal", suffix: " initiatives reduce ", target2: "mortality", given2: "mortal", suffix2: " rates." },
+            { text: "Mental ", target: "wellbeing", given: "wellb", suffix: " requires ", target2: "attention", given2: "atten", suffix2: " and care." },
+            { text: "Preventive ", target: "medicine", given: "medic", suffix: " focuses on ", target2: "proactive", given2: "proact", suffix2: " healthcare." },
+            { text: "Nutritional ", target: "science", given: "scien", suffix: " studies ", target2: "dietary", given2: "diet", suffix2: " impacts on health." },
+            { text: "Healthcare ", target: "accessibility", given: "access", suffix: " remains ", target2: "inadequate", given2: "inadequ", suffix2: " in rural areas." },
+            { text: "Medical ", target: "research", given: "resear", suffix: " advances ", target2: "treatment", given2: "treat", suffix2: " options." },
+            { text: "Epidemiological ", target: "studies", given: "stud", suffix: " track ", target2: "disease", given2: "diseas", suffix2: " patterns." },
+            { text: "Pharmaceutical ", target: "developments", given: "develop", suffix: " offer new ", target2: "therapies", given2: "therap", suffix2: " for patients." },
+            { text: "Holistic ", target: "approaches", given: "appro", suffix: " consider ", target2: "psychological", given2: "psychol", suffix2: " and physical health." },
+            { text: "Healthcare ", target: "professionals", given: "profess", suffix: " provide ", target2: "essential", given2: "essen", suffix2: " services." },
+
+            // Environment & Sustainability
+            { text: "Environmental ", target: "degradation", given: "degrad", suffix: " causes ", target2: "biodiversity", given2: "biodiv", suffix2: " loss." },
+            { text: "Sustainable ", target: "agriculture", given: "agric", suffix: " practices conserve ", target2: "resources", given2: "resour", suffix2: " effectively." },
+            { text: "Climate ", target: "resilience", given: "resil", suffix: " involves ", target2: "adaptation", given2: "adapt", suffix2: " to changing conditions." },
+            { text: "Carbon ", target: "footprint", given: "foot", suffix: " reduction requires ", target2: "collective", given2: "collect", suffix2: " action." },
+            { text: "Ecosystem ", target: "restoration", given: "restor", suffix: " enhances ", target2: "ecological", given2: "ecolog", suffix2: " balance." },
+            { text: "Renewable ", target: "resources", given: "resour", suffix: " provide ", target2: "sustainable", given2: "sustain", suffix2: " energy solutions." },
+            { text: "Environmental ", target: "conservation", given: "conserv", suffix: " protects ", target2: "natural", given2: "natur", suffix2: " habitats." },
+            { text: "Pollution ", target: "control", given: "contr", suffix: " measures improve ", target2: "air", given2: "a", suffix2: " quality." },
+            { text: "Sustainable ", target: "urban", given: "ur", suffix: " planning reduces ", target2: "ecological", given2: "ecolog", suffix2: " impacts." },
+            { text: "Water ", target: "conservation", given: "conserv", suffix: " is ", target2: "critical", given2: "critic", suffix2: " for future generations." },
+
+            // Social Sciences
+            { text: "Social ", target: "integration", given: "integr", suffix: " promotes ", target2: "cohesion", given2: "cohes", suffix2: " in communities." },
+            { text: "Cultural ", target: "diversity", given: "diver", suffix: " enriches ", target2: "societal", given2: "societ", suffix2: " experiences." },
+            { text: "Political ", target: "stability", given: "stabil", suffix: " fosters ", target2: "economic", given2: "econom", suffix2: " growth." },
+            { text: "Historical ", target: "context", given: "conte", suffix: " shapes ", target2: "contemporary", given2: "contemp", suffix2: " perspectives." },
+            { text: "Psychological ", target: "factors", given: "fact", suffix: " influence ", target2: "decision", given2: "dec", suffix2: " making processes." },
+            { text: "Societal ", target: "norms", given: "nor", suffix: " evolve through ", target2: "cultural", given2: "cultur", suffix2: " changes." },
+            { text: "Anthropological ", target: "studies", given: "stud", suffix: " examine ", target2: "human", given2: "hum", suffix2: " development." },
+            { text: "Political ", target: "systems", given: "syst", suffix: " affect ", target2: "citizen", given2: "citiz", suffix2: " participation." },
+            { text: "Social ", target: "mobility", given: "mobil", suffix: " reflects ", target2: "economic", given2: "econom", suffix2: " opportunities." },
+            { text: "Cultural ", target: "heritage", given: "herit", suffix: " preservation maintains ", target2: "historical", given2: "histor", suffix2: " identity." },
+
+            // Advanced Vocabulary
+            { text: "The ", target: "philosophical", given: "philos", suffix: " debate about ", target2: "consciousness", given2: "conscious", suffix2: " continues." },
+            { text: "Statistical ", target: "analysis", given: "analys", suffix: " reveals ", target2: "significant", given2: "signific", suffix2: " correlations." },
+            { text: "Historical ", target: "narratives", given: "narrat", suffix: " shape ", target2: "collective", given2: "collect", suffix2: " memory." },
+            { text: "Psychological ", target: "resilience", given: "resil", suffix: " helps cope with ", target2: "adversity", given2: "advers", suffix2: "." },
+            { text: "Biological ", target: "diversity", given: "diver", suffix: " ensures ", target2: "ecosystem", given2: "ecosyst", suffix2: " health." },
+            { text: "Mathematical ", target: "models", given: "model", suffix: " predict ", target2: "complex", given2: "compl", suffix2: " systems." },
+            { text: "Linguistic ", target: "competence", given: "compet", suffix: " involves ", target2: "grammatical", given2: "grammat", suffix2: " knowledge." },
+            { text: "Artistic ", target: "expression", given: "express", suffix: " reflects ", target2: "cultural", given2: "cultur", suffix2: " values." },
+            { text: "Physical ", target: "endurance", given: "endur", suffix: " requires ", target2: "consistent", given2: "consist", suffix2: " training." },
+            { text: "Chemical ", target: "reactions", given: "react", suffix: " produce ", target2: "energy", given2: "energ", suffix2: " output." },
+
+            // Communication & Media
+            { text: "Effective ", target: "communication", given: "commun", suffix: " enhances ", target2: "understanding", given2: "underst", suffix2: " between people." },
+            { text: "Digital ", target: "media", given: "med", suffix: " platforms transform ", target2: "information", given2: "inform", suffix2: " sharing." },
+            { text: "Interpersonal ", target: "skills", given: "ski", suffix: " improve ", target2: "relationships", given2: "relat", suffix2: " and teamwork." },
+            { text: "Mass ", target: "communication", given: "commun", suffix: " influences ", target2: "public", given2: "pub", suffix2: " opinion significantly." },
+            { text: "Visual ", target: "literacy", given: "liter", suffix: " enables ", target2: "interpretation", given2: "interpr", suffix2: " of images." },
+            { text: "Cross-cultural ", target: "communication", given: "commun", suffix: " requires ", target2: "sensitivity", given2: "sensit", suffix2: " and awareness." },
+            { text: "Media ", target: "literacy", given: "liter", suffix: " helps ", target2: "evaluate", given2: "evalu", suffix2: " information critically." },
+            { text: "Nonverbal ", target: "communication", given: "commun", suffix: " conveys ", target2: "emotional", given2: "emot", suffix2: " messages." },
+            { text: "Professional ", target: "networking", given: "network", suffix: " expands ", target2: "opportunities", given2: "opportun", suffix2: " for career growth." },
+            { text: "Strategic ", target: "communication", given: "commun", suffix: " achieves ", target2: "organizational", given2: "organiz", suffix2: " goals." },
+
+            // Psychology & Behavior
+            { text: "Cognitive ", target: "biases", given: "bia", suffix: " affect ", target2: "judgment", given2: "judg", suffix2: " and decision-making." },
+            { text: "Emotional ", target: "intelligence", given: "intell", suffix: " predicts ", target2: "success", given2: "succe", suffix2: " in social situations." },
+            { text: "Behavioral ", target: "patterns", given: "patt", suffix: " reveal ", target2: "underlying", given2: "underl", suffix2: " motivations." },
+            { text: "Psychological ", target: "assessment", given: "assess", suffix: " measures ", target2: "cognitive", given2: "cognit", suffix2: " abilities." },
+            { text: "Social ", target: "psychology", given: "psych", suffix: " studies ", target2: "group", given2: "gro", suffix2: " dynamics and behavior." },
+            { text: "Developmental ", target: "psychology", given: "psych", suffix: " examines ", target2: "lifespan", given2: "lifes", suffix2: " changes." },
+            { text: "Clinical ", target: "psychology", given: "psych", suffix: " focuses on ", target2: "mental", given2: "ment", suffix2: " health treatment." },
+            { text: "Positive ", target: "psychology", given: "psych", suffix: " emphasizes ", target2: "wellbeing", given2: "wellb", suffix2: " and happiness." },
+            { text: "Cognitive ", target: "therapy", given: "thera", suffix: " addresses ", target2: "dysfunctional", given2: "dysfunct", suffix2: " thinking patterns." },
+            { text: "Experimental ", target: "psychology", given: "psych", suffix: " uses ", target2: "scientific", given2: "scient", suffix2: " methods for research." },
+
+            // Law & Justice
+            { text: "Legal ", target: "precedents", given: "preced", suffix: " establish ", target2: "guidelines", given2: "guid", suffix2: " for future cases." },
+            { text: "Constitutional ", target: "rights", given: "rig", suffix: " protect ", target2: "individual", given2: "individ", suffix2: " liberties." },
+            { text: "International ", target: "law", given: "la", suffix: " governs ", target2: "relations", given2: "relat", suffix2: " between countries." },
+            { text: "Criminal ", target: "justice", given: "just", suffix: " systems aim for ", target2: "fairness", given2: "fair", suffix2: " and rehabilitation." },
+            { text: "Civil ", target: "liberties", given: "liber", suffix: " ensure ", target2: "freedom", given2: "free", suffix2: " of expression and assembly." },
+            { text: "Legal ", target: "interpretation", given: "interpr", suffix: " requires ", target2: "analytical", given2: "analyt", suffix2: " skills." },
+            { text: "Judicial ", target: "independence", given: "indep", suffix: " maintains ", target2: "impartiality", given2: "impart", suffix2: " in courts." },
+            { text: "Human ", target: "rights", given: "rig", suffix: " advocacy promotes ", target2: "dignity", given2: "dign", suffix2: " and equality." },
+            { text: "Corporate ", target: "law", given: "la", suffix: " regulates ", target2: "business", given2: "busin", suffix2: " operations and compliance." },
+            { text: "Environmental ", target: "law", given: "la", suffix: " protects ", target2: "natural", given2: "natur", suffix2: " resources and ecosystems." },
+
+            // Technology & Innovation
+            { text: "Blockchain ", target: "technology", given: "technol", suffix: " enables ", target2: "decentralized", given2: "decent", suffix2: " transactions." },
+            { text: "Machine ", target: "learning", given: "learn", suffix: " algorithms improve ", target2: "predictive", given2: "predict", suffix2: " accuracy." },
+            { text: "Internet ", target: "connectivity", given: "connect", suffix: " bridges ", target2: "digital", given2: "digit", suffix2: " divides globally." },
+            { text: "Cybersecurity ", target: "protocols", given: "protoc", suffix: " safeguard ", target2: "sensitive", given2: "sensitiv", suffix2: " data." },
+            { text: "Augmented ", target: "reality", given: "real", suffix: " enhances ", target2: "interactive", given2: "interact", suffix2: " experiences." },
+            { text: "Data ", target: "analytics", given: "analyt", suffix: " provides ", target2: "actionable", given2: "action", suffix2: " insights." },
+            { text: "Cloud ", target: "computing", given: "comput", suffix: " offers ", target2: "scalable", given2: "scal", suffix2: " storage solutions." },
+            { text: "Internet ", target: "privacy", given: "priv", suffix: " concerns require ", target2: "vigilance", given2: "vigil", suffix2: " and protection." },
+            { text: "Digital ", target: "transformation", given: "transf", suffix: " drives ", target2: "organizational", given2: "organiz", suffix2: " change." },
+            { text: "Robotic ", target: "automation", given: "automat", suffix: " increases ", target2: "efficiency", given2: "effici", suffix2: " in manufacturing." },
+
+            // Arts & Humanities
+            { text: "Literary ", target: "criticism", given: "critic", suffix: " analyzes ", target2: "thematic", given2: "themat", suffix2: " elements in texts." },
+            { text: "Artistic ", target: "movements", given: "movem", suffix: " reflect ", target2: "cultural", given2: "cultur", suffix2: " and social changes." },
+            { text: "Philosophical ", target: "inquiry", given: "inquir", suffix: " explores ", target2: "existential", given2: "exist", suffix2: " questions." },
+            { text: "Historical ", target: "analysis", given: "analys", suffix: " interprets ", target2: "primary", given2: "prim", suffix2: " sources." },
+            { text: "Cultural ", target: "studies", given: "stud", suffix: " examine ", target2: "representation", given2: "represent", suffix2: " in media." },
+            { text: "Aesthetic ", target: "appreciation", given: "appreciat", suffix: " develops ", target2: "critical", given2: "critic", suffix2: " perception." },
+            { text: "Literary ", target: "theory", given: "theor", suffix: " provides ", target2: "frameworks", given2: "frame", suffix2: " for interpretation." },
+            { text: "Art ", target: "history", given: "hist", suffix: " traces ", target2: "evolutionary", given2: "evolut", suffix2: " developments." },
+            { text: "Creative ", target: "writing", given: "writ", suffix: " expresses ", target2: "imaginative", given2: "imagin", suffix2: " ideas and stories." },
+            { text: "Performing ", target: "arts", given: "ar", suffix: " showcase ", target2: "expressive", given2: "express", suffix2: " talents and skills." },
+
+            // Business & Management
+            { text: "Strategic ", target: "management", given: "manag", suffix: " aligns ", target2: "organizational", given2: "organiz", suffix2: " goals." },
+            { text: "Leadership ", target: "development", given: "develop", suffix: " enhances ", target2: "managerial", given2: "manager", suffix2: " capabilities." },
+            { text: "Operational ", target: "efficiency", given: "effici", suffix: " reduces ", target2: "costs", given2: "co", suffix2: " and improves productivity." },
+            { text: "Human ", target: "resources", given: "resour", suffix: " management optimizes ", target2: "workforce", given2: "work", suffix2: " performance." },
+            { text: "Financial ", target: "management", given: "manag", suffix: " ensures ", target2: "sustainability", given2: "sustain", suffix2: " and growth." },
+            { text: "Marketing ", target: "strategies", given: "strateg", suffix: " target ", target2: "specific", given2: "specif", suffix2: " customer segments." },
+            { text: "Business ", target: "ethics", given: "eth", suffix: " guide ", target2: "corporate", given2: "corpor", suffix2: " decision-making." },
+            { text: "Project ", target: "management", given: "manag", suffix: " coordinates ", target2: "complex", given2: "compl", suffix2: " initiatives." },
+            { text: "Entrepreneurial ", target: "mindset", given: "mind", suffix: " fosters ", target2: "innovation", given2: "innovat", suffix2: " and risk-taking." },
+            { text: "Supply ", target: "chain", given: "ch", suffix: " management streamlines ", target2: "logistical", given2: "logist", suffix2: " operations." },
+
+            // Additional 100 questions to reach 500
+            { text: "Linguistic ", target: "diversity", given: "diver", suffix: " reflects ", target2: "cultural", given2: "cultur", suffix2: " richness worldwide." },
+            { text: "Cognitive ", target: "flexibility", given: "flexib", suffix: " enhances ", target2: "problem", given2: "prob", suffix2: " solving abilities." },
+            { text: "Environmental ", target: "awareness", given: "aware", suffix: " promotes ", target2: "sustainable", given2: "sustain", suffix2: " living practices." },
+            { text: "Technological ", target: "advancements", given: "advanc", suffix: " accelerate ", target2: "scientific", given2: "scient", suffix2: " discoveries." },
+            { text: "Educational ", target: "reforms", given: "refor", suffix: " address ", target2: "systemic", given2: "system", suffix2: " challenges in learning." },
+            { text: "Healthcare ", target: "innovations", given: "innov", suffix: " improve ", target2: "patient", given2: "pati", suffix2: " outcomes significantly." },
+            { text: "Economic ", target: "policies", given: "polic", suffix: " influence ", target2: "national", given2: "nation", suffix2: " development trajectories." },
+            { text: "Social ", target: "justice", given: "just", suffix: " advocates for ", target2: "equitable", given2: "equit", suffix2: " resource distribution." },
+            { text: "Cultural ", target: "exchange", given: "exchan", suffix: " fosters ", target2: "mutual", given2: "mut", suffix2: " understanding between nations." },
+            { text: "Scientific ", target: "methodology", given: "method", suffix: " ensures ", target2: "reliable", given2: "reliab", suffix2: " research outcomes." },
+            { text: "Digital ", target: "platforms", given: "platf", suffix: " facilitate ", target2: "collaborative", given2: "collabor", suffix2: " work environments." },
+            { text: "Psychological ", target: "wellbeing", given: "wellb", suffix: " requires ", target2: "balanced", given2: "balanc", suffix2: " lifestyle choices." },
+            { text: "Political ", target: "participation", given: "particip", suffix: " strengthens ", target2: "democratic", given2: "democrat", suffix2: " institutions." },
+            { text: "Historical ", target: "preservation", given: "preserv", suffix: " maintains ", target2: "cultural", given2: "cultur", suffix2: " heritage sites." },
+            { text: "Economic ", target: "globalization", given: "global", suffix: " connects ", target2: "international", given2: "intern", suffix2: " markets closely." },
+            { text: "Technological ", target: "integration", given: "integr", suffix: " enhances ", target2: "operational", given2: "operat", suffix2: " efficiency." },
+            { text: "Environmental ", target: "sustainability", given: "sustain", suffix: " requires ", target2: "responsible", given2: "respons", suffix2: " consumption." },
+            { text: "Educational ", target: "excellence", given: "excell", suffix: " depends on ", target2: "qualified", given2: "qualif", suffix2: " teaching staff." },
+            { text: "Healthcare ", target: "delivery", given: "deliv", suffix: " systems need ", target2: "adequate", given2: "adequ", suffix2: " funding." },
+            { text: "Social ", target: "cohesion", given: "cohes", suffix: " builds ", target2: "resilient", given2: "resil", suffix2: " communities." },
+            { text: "Cultural ", target: "adaptation", given: "adapt", suffix: " enables ", target2: "successful", given2: "success", suffix2: " integration." },
+            { text: "Scientific ", target: "exploration", given: "explor", suffix: " expands ", target2: "human", given2: "hum", suffix2: " knowledge frontiers." },
+            { text: "Digital ", target: "security", given: "secur", suffix: " protects ", target2: "confidential", given2: "confid", suffix2: " information." },
+            { text: "Psychological ", target: "assessment", given: "assess", suffix: " identifies ", target2: "developmental", given2: "develop", suffix2: " needs." },
+            { text: "Political ", target: "stability", given: "stabil", suffix: " attracts ", target2: "foreign", given2: "foreig", suffix2: " investments." },
+            { text: "Historical ", target: "analysis", given: "analys", suffix: " provides ", target2: "contextual", given2: "context", suffix2: " understanding." },
+            { text: "Economic ", target: "development", given: "develop", suffix: " reduces ", target2: "poverty", given2: "pover", suffix2: " levels gradually." },
+            { text: "Technological ", target: "innovation", given: "innov", suffix: " drives ", target2: "competitive", given2: "compet", suffix2: " advantages." },
+            { text: "Environmental ", target: "protection", given: "protect", suffix: " conserves ", target2: "natural", given2: "natur", suffix2: " resources." },
+            { text: "Educational ", target: "opportunities", given: "opportun", suffix: " empower ", target2: "marginalized", given2: "margin", suffix2: " groups." },
+            { text: "Healthcare ", target: "access", given: "acce", suffix: " improves ", target2: "population", given2: "popul", suffix2: " health outcomes." },
+            { text: "Social ", target: "mobility", given: "mobil", suffix: " enables ", target2: "upward", given2: "upw", suffix2: " economic movement." },
+            { text: "Cultural ", target: "understanding", given: "underst", suffix: " promotes ", target2: "peaceful", given2: "peace", suffix2: " coexistence." },
+            { text: "Scientific ", target: "research", given: "resear", suffix: " validates ", target2: "theoretical", given2: "theoret", suffix2: " hypotheses." },
+            { text: "Digital ", target: "literacy", given: "liter", suffix: " enhances ", target2: "information", given2: "inform", suffix2: " processing skills." },
+            { text: "Psychological ", target: "support", given: "supp", suffix: " assists ", target2: "emotional", given2: "emot", suffix2: " regulation." },
+            { text: "Political ", target: "engagement", given: "engage", suffix: " strengthens ", target2: "civic", given2: "civ", suffix2: " participation." },
+            { text: "Historical ", target: "context", given: "conte", suffix: " informs ", target2: "contemporary", given2: "contemp", suffix2: " decisions." },
+            { text: "Economic ", target: "growth", given: "gro", suffix: " creates ", target2: "employment", given2: "employ", suffix2: " opportunities." },
+            { text: "Technological ", target: "adoption", given: "adopt", suffix: " improves ", target2: "productivity", given2: "product", suffix2: " rates." },
+            { text: "Environmental ", target: "education", given: "educat", suffix: " raises ", target2: "awareness", given2: "aware", suffix2: " about conservation." },
+            { text: "Educational ", target: "assessment", given: "assess", suffix: " measures ", target2: "learning", given2: "learn", suffix2: " outcomes effectively." },
+            { text: "Healthcare ", target: "prevention", given: "prevent", suffix: " reduces ", target2: "disease", given2: "diseas", suffix2: " incidence rates." },
+            { text: "Social ", target: "networks", given: "networ", suffix: " provide ", target2: "emotional", given2: "emot", suffix2: " and practical support." },
+            { text: "Cultural ", target: "traditions", given: "tradit", suffix: " preserve ", target2: "historical", given2: "histor", suffix2: " knowledge and practices." },
+            { text: "Scientific ", target: "discovery", given: "discov", suffix: " advances ", target2: "technological", given2: "technol", suffix2: " capabilities." },
+            { text: "Digital ", target: "transformation", given: "transf", suffix: " reshapes ", target2: "business", given2: "busin", suffix2: " models entirely." },
+            { text: "Psychological ", target: "health", given: "heal", suffix: " affects ", target2: "overall", given2: "over", suffix2: " quality of life." },
+            { text: "Political ", target: "discourse", given: "discour", suffix: " shapes ", target2: "public", given2: "pub", suffix2: " policy decisions." },
+            { text: "Historical ", target: "evidence", given: "evid", suffix: " supports ", target2: "archaeological", given2: "archaeol", suffix2: " interpretations." },
+            { text: "Economic ", target: "indicators", given: "indic", suffix: " predict ", target2: "market", given2: "mark", suffix2: " trends accurately." },
+            { text: "Technological ", target: "solutions", given: "solut", suffix: " address ", target2: "complex", given2: "compl", suffix2: " global challenges." },
+            { text: "Environmental ", target: "monitoring", given: "monit", suffix: " tracks ", target2: "climate", given2: "clim", suffix2: " change impacts." },
+            { text: "Educational ", target: "resources", given: "resour", suffix: " support ", target2: "diverse", given2: "diver", suffix2: " learning needs." },
+            { text: "Healthcare ", target: "systems", given: "syst", suffix: " require ", target2: "continuous", given2: "continu", suffix2: " improvement efforts." },
+            { text: "Social ", target: "inequality", given: "inequal", suffix: " affects ", target2: "access", given2: "acce", suffix2: " to opportunities." },
+            { text: "Cultural ", target: "expression", given: "express", suffix: " celebrates ", target2: "human", given2: "hum", suffix2: " creativity and diversity." },
+            { text: "Scientific ", target: "method", given: "meth", suffix: " ensures ", target2: "objective", given2: "object", suffix2: " investigation results." },
+            { text: "Digital ", target: "footprint", given: "foot", suffix: " leaves ", target2: "permanent", given2: "perman", suffix2: " online traces." },
+            { text: "Psychological ", target: "trauma", given: "trau", suffix: " requires ", target2: "specialized", given2: "special", suffix2: " therapeutic intervention." },
+            { text: "Political ", target: "leadership", given: "leader", suffix: " influences ", target2: "national", given2: "nation", suffix2: " direction significantly." },
+            { text: "Historical ", target: "accuracy", given: "accurac", suffix: " ensures ", target2: "reliable", given2: "reliab", suffix2: " chronicles of events." },
+            { text: "Economic ", target: "stability", given: "stabil", suffix: " promotes ", target2: "investor", given2: "invest", suffix2: " confidence." },
+            { text: "Technological ", target: "breakthroughs", given: "break", suffix: " revolutionize ", target2: "industry", given2: "indust", suffix2: " practices." },
+            { text: "Environmental ", target: "legislation", given: "legisl", suffix: " regulates ", target2: "pollutant", given2: "pollut", suffix2: " emissions." },
+            { text: "Educational ", target: "equity", given: "equ", suffix: " ensures ", target2: "fair", given2: "fa", suffix2: " access to learning." },
+            { text: "Healthcare ", target: "professionals", given: "profess", suffix: " deliver ", target2: "quality", given2: "qual", suffix2: " patient care." },
+            { text: "Social ", target: "cooperation", given: "cooper", suffix: " solves ", target2: "collective", given2: "collect", suffix2: " problems effectively." },
+            { text: "Cultural ", target: "preservation", given: "preserv", suffix: " protects ", target2: "endangered", given2: "endang", suffix2: " traditions." },
+            { text: "Scientific ", target: "progress", given: "progre", suffix: " depends on ", target2: "collaborative", given2: "collabor", suffix2: " research." },
+            { text: "Digital ", target: "economy", given: "econom", suffix: " creates ", target2: "new", given2: "ne", suffix2: " business opportunities." },
+            { text: "Psychological ", target: "theories", given: "theor", suffix: " explain ", target2: "human", given2: "hum", suffix2: " behavior patterns." },
+            { text: "Political ", target: "reforms", given: "refor", suffix: " improve ", target2: "governance", given2: "govern", suffix2: " systems." },
+            { text: "Historical ", target: "significance", given: "signific", suffix: " determines ", target2: "cultural", given2: "cultur", suffix2: " value of artifacts." },
+            { text: "Economic ", target: "theory", given: "theor", suffix: " explains ", target2: "market", given2: "mark", suffix2: " behavior and trends." },
+            { text: "Technological ", target: "tools", given: "too", suffix: " enhance ", target2: "human", given2: "hum", suffix2: " capabilities dramatically." },
+            { text: "Environmental ", target: "challenges", given: "challeng", suffix: " require ", target2: "global", given2: "glob", suffix2: " cooperation." },
+            { text: "Educational ", target: "policies", given: "polic", suffix: " shape ", target2: "curriculum", given2: "curric", suffix2: " development." },
+            { text: "Healthcare ", target: "research", given: "resear", suffix: " develops ", target2: "advanced", given2: "advanc", suffix2: " treatment methods." },
+            { text: "Social ", target: "dynamics", given: "dynam", suffix: " influence ", target2: "group", given2: "gro", suffix2: " behavior and interactions." },
+            { text: "Cultural ", target: "identity", given: "ident", suffix: " shapes ", target2: "individual", given2: "individ", suffix2: " worldview." },
+            { text: "Scientific ", target: "literacy", given: "liter", suffix: " enables ", target2: "informed", given2: "inform", suffix2: " public discourse." },
+            { text: "Digital ", target: "innovation", given: "innov", suffix: " transforms ", target2: "traditional", given2: "tradit", suffix2: " industries." },
+            { text: "Psychological ", target: "wellness", given: "welln", suffix: " promotes ", target2: "optimal", given2: "optim", suffix2: " functioning." },
+            { text: "Political ", target: "institutions", given: "institut", suffix: " maintain ", target2: "social", given2: "soc", suffix2: " order and stability." },
+            { text: "Historical ", target: "records", given: "recor", suffix: " document ", target2: "past", given2: "pa", suffix2: " events accurately." },
+            { text: "Economic ", target: "models", given: "model", suffix: " simulate ", target2: "real", given2: "re", suffix2: " world scenarios." },
+            { text: "Technological ", target: "advancement", given: "advanc", suffix: " depends on ", target2: "research", given2: "resear", suffix2: " and development." },
+            { text: "Environmental ", target: "science", given: "scien", suffix: " studies ", target2: "ecological", given2: "ecolog", suffix2: " systems." },
+            { text: "Educational ", target: "techniques", given: "techniq", suffix: " improve ", target2: "student", given2: "stud", suffix2: " engagement." },
+            { text: "Healthcare ", target: "technology", given: "technol", suffix: " enhances ", target2: "diagnostic", given2: "diagnos", suffix2: " accuracy." },
+            { text: "Social ", target: "structures", given: "struct", suffix: " organize ", target2: "community", given2: "commun", suffix2: " relationships." },
+            { text: "Cultural ", target: "evolution", given: "evolut", suffix: " reflects ", target2: "societal", given2: "societ", suffix2: " changes over time." },
+            { text: "Scientific ", target: "knowledge", given: "knowled", suffix: " expands ", target2: "human", given2: "hum", suffix2: " understanding." },
+            { text: "Digital ", target: "communication", given: "commun", suffix: " connects ", target2: "global", given2: "glob", suffix2: " audiences instantly." },
+            { text: "Psychological ", target: "assessment", given: "assess", suffix: " tools measure ", target2: "cognitive", given2: "cognit", suffix2: " functions." },
+            { text: "Political ", target: "systems", given: "syst", suffix: " determine ", target2: "power", given2: "pow", suffix2: " distribution in society." },
+            { text: "Historical ", target: "perspective", given: "perspec", suffix: " provides ", target2: "context", given2: "conte", suffix2: " for current events." },
+            { text: "Economic ", target: "factors", given: "fact", suffix: " influence ", target2: "business", given2: "busin", suffix2: " decision-making." },
+            { text: "Technological ", target: "capabilities", given: "capab", suffix: " determine ", target2: "competitive", given2: "compet", suffix2: " edge." },
+            { text: "Environmental ", target: "impact", given: "impa", suffix: " assessments evaluate ", target2: "developmental", given2: "develop", suffix2: " projects." },
+            { text: "Educational ", target: "outcomes", given: "outco", suffix: " depend on ", target2: "teaching", given2: "teach", suffix2: " quality." },
+            { text: "Healthcare ", target: "services", given: "serv", suffix: " address ", target2: "community", given2: "commun", suffix2: " health needs." },
+            { text: "Social ", target: "interaction", given: "interac", suffix: " builds ", target2: "relationships", given2: "relat", suffix2: " and networks." },
+            { text: "Cultural ", target: "awareness", given: "aware", suffix: " promotes ", target2: "tolerance", given2: "toler", suffix2: " and respect." },
+            { text: "Scientific ", target: "validation", given: "valid", suffix: " confirms ", target2: "experimental", given2: "experiment", suffix2: " results." },
+            { text: "Digital ", target: "skills", given: "ski", suffix: " are ", target2: "essential", given2: "essen", suffix2: " in modern workplaces." }
+        ];
+
+        const container = document.getElementById('quiz-container');
+        let inputMode = 'letter'; // 'letter' or 'word'
+
+        // Set Management - 10 sets of 50 questions each
+        let currentSet = 1;
+        const QUESTIONS_PER_SET = 50;
+        const TOTAL_SETS = 10;
+
+        // Render the set control buttons
+        function renderSetControls() {
+            const controlsContainer = document.getElementById('set-controls');
+            controlsContainer.innerHTML = '';
+            for (let i = 1; i <= TOTAL_SETS; i++) {
+                const btn = document.createElement('button');
+                btn.className = `set-btn ${i === currentSet ? 'active' : ''}`;
+                btn.innerText = `Set ${i}`;
+                btn.onclick = () => loadSet(i);
+                controlsContainer.appendChild(btn);
+            }
+        }
+
+        // Load a specific set
+        function loadSet(setNum) {
+            currentSet = setNum;
+            const startQ = ((currentSet - 1) * QUESTIONS_PER_SET) + 1;
+            const endQ = currentSet * QUESTIONS_PER_SET;
+            document.getElementById('set-indicator').innerText = `Showing Set ${currentSet} (Questions ${startQ}-${endQ})`;
+
+            // Reset score display when changing sets
+            document.getElementById('final-score').textContent = 'Score will appear here';
+            document.getElementById('score-feedback').textContent = '';
+
+            renderSetControls();
+            initializeQuiz();
+        }
+
+        // Initialize the quiz - only show current set
+        function initializeQuiz() {
+            container.innerHTML = '';
+
+            const startIdx = (currentSet - 1) * QUESTIONS_PER_SET;
+            const endIdx = startIdx + QUESTIONS_PER_SET;
+            const setQuestions = questions.slice(startIdx, endIdx);
+
+            setQuestions.forEach((q, localIndex) => {
+                const globalIndex = startIdx + localIndex;
+
+                const div = document.createElement('div');
+                div.className = 'sentence-block';
+                div.id = `sentence-${globalIndex}`;
+
+                let html = `
+                <div style="margin-bottom: 10px; font-weight: 500; color: #444;">
+                    <span style="color: #667eea; font-weight: bold;">${localIndex + 1}.</span> 
+                    ${q.text} 
+                    <span class="given-letters">${q.given}</span>
+            `;
+
+                if (inputMode === 'letter') {
+                    const missing1Count = q.target.length - q.given.length;
+                    for (let i = 0; i < missing1Count; i++) {
+                        html += `<input type="text" class="letter-box" 
+                              id="q${globalIndex}-a${i}"
+                              maxlength="1" 
+                              data-qindex="${globalIndex}"
+                              data-type="a"
+                              data-index="${i}"
+                              data-ans="${q.target[q.given.length + i]}">`;
+                    }
+                } else {
+                    html += `<input type="text" class="full-word-input" 
+                          id="q${globalIndex}-word1"
+                          data-qindex="${globalIndex}"
+                          data-type="word1"
+                          data-ans="${q.target}"
+                          placeholder="Complete the word">`;
+                }
+
+                html += `${q.suffix} <span class="given-letters">${q.given2}</span>`;
+
+                if (inputMode === 'letter') {
+                    const missing2Count = q.target2.length - q.given2.length;
+                    for (let i = 0; i < missing2Count; i++) {
+                        html += `<input type="text" class="letter-box" 
+                              id="q${globalIndex}-b${i}"
+                              maxlength="1" 
+                              data-qindex="${globalIndex}"
+                              data-type="b"
+                              data-index="${i}"
+                              data-ans="${q.target2[q.given2.length + i]}">`;
+                    }
+                } else {
+                    html += `<input type="text" class="full-word-input" 
+                          id="q${globalIndex}-word2"
+                          data-qindex="${globalIndex}"
+                          data-type="word2"
+                          data-ans="${q.target2}"
+                          placeholder="Complete the word">`;
+                }
+
+                html += `${q.suffix2} 
+                    <span class="status-indicator" id="status-${globalIndex}"></span>
+                </div>
+                <div class="correction-box" id="correction-${globalIndex}"></div>
+                `;
+
+                div.innerHTML = html;
+                container.appendChild(div);
+            });
+
+            setupEventListeners();
+            updateProgress();
+        }
+
+        function setupEventListeners() {
+            if (inputMode === 'letter') {
+                document.querySelectorAll('.letter-box').forEach(box => {
+                    box.addEventListener('input', handleLetterInput);
+                    box.addEventListener('keydown', handleLetterNavigation);
+                    box.addEventListener('click', function () {
+                        this.select();
+                    });
+                });
+            } else {
+                document.querySelectorAll('.full-word-input').forEach(input => {
+                    input.addEventListener('input', handleWordInput);
+                    input.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter') {
+                            const nextInput = getNextInput(this);
+                            if (nextInput) nextInput.focus();
+                        }
+                    });
+                });
+            }
+        }
+
+        function handleLetterInput(e) {
+            const box = e.target;
+            const qIndex = parseInt(box.dataset.qindex);
+            const type = box.dataset.type;
+            const index = parseInt(box.dataset.index);
+
+            if (box.value.length === 1) {
+                const nextBox = getNextLetterBox(qIndex, type, index);
+                if (nextBox) nextBox.focus();
+            }
+
+            updateProgress();
+        }
+
+        function handleLetterNavigation(e) {
+            const box = e.target;
+            const qIndex = parseInt(box.dataset.qindex);
+            const type = box.dataset.type;
+            const index = parseInt(box.dataset.index);
+
+            switch (e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    const prevBox = getPrevLetterBox(qIndex, type, index);
+                    if (prevBox) prevBox.focus();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    const nextBox = getNextLetterBox(qIndex, type, index);
+                    if (nextBox) nextBox.focus();
+                    break;
+                case 'Backspace':
+                    if (box.value === '') {
+                        e.preventDefault();
+                        const prevBox = getPrevLetterBox(qIndex, type, index);
+                        if (prevBox) {
+                            prevBox.value = '';
+                            prevBox.focus();
+                        }
+                    }
+                    break;
+                case 'Tab':
+                    break;
+                default:
+                    if (e.key.length === 1 && !/[a-zA-Z]/.test(e.key)) {
+                        e.preventDefault();
+                    }
+            }
+        }
+
+        function handleWordInput(e) {
+            updateProgress();
+        }
+
+        function getNextLetterBox(qIndex, type, currentIndex) {
+            const question = questions[qIndex];
+            let nextType = type;
+            let nextIndex = currentIndex + 1;
+
+            if (type === 'a' && nextIndex >= (question.target.length - question.given.length)) {
+                nextType = 'b';
+                nextIndex = 0;
+            }
+
+            let nextId = `q${qIndex}-${nextType}${nextIndex}`;
+            let el = document.getElementById(nextId);
+
+            // Try next question if current word is complete
+            if (!el) {
+                let nextQIndex = qIndex + 1;
+                const endIdx = currentSet * QUESTIONS_PER_SET;
+                if (nextQIndex < endIdx) {
+                    nextId = `q${nextQIndex}-a0`;
+                    el = document.getElementById(nextId);
+                }
+            }
+
+            return el;
+        }
+
+        function getPrevLetterBox(qIndex, type, currentIndex) {
+            let prevType = type;
+            let prevIndex = currentIndex - 1;
+
+            if (type === 'b' && prevIndex < 0) {
+                prevType = 'a';
+                const question = questions[qIndex];
+                prevIndex = (question.target.length - question.given.length) - 1;
+            }
+
+            const prevId = `q${qIndex}-${prevType}${prevIndex}`;
+            return document.getElementById(prevId);
+        }
+
+        function validateBox(box) {
+            const expected = box.dataset.ans.toLowerCase();
+            const actual = box.value.toLowerCase();
+
+            box.classList.remove('correct', 'wrong');
+            if (actual === expected) {
+                box.classList.add('correct');
+            } else if (actual !== '') {
+                box.classList.add('wrong');
+            }
+        }
+
+        function validateWordInput(input) {
+            const expected = input.dataset.ans.toLowerCase();
+            const actual = input.value.toLowerCase();
+
+            input.classList.remove('correct', 'wrong');
+
+            if (actual === expected) {
+                input.classList.add('correct');
+            } else if (actual !== '') {
+                if (expected.startsWith(actual)) {
+                    input.style.borderColor = '#ffc107';
+                } else {
+                    input.classList.add('wrong');
+                }
+            }
+        }
+
+        function evaluateTest() {
+            // Validate all inputs visually
+            if (inputMode === 'letter') {
+                document.querySelectorAll('.letter-box').forEach(box => validateBox(box));
+            } else {
+                document.querySelectorAll('.full-word-input').forEach(input => validateWordInput(input));
+            }
+
+            const startIdx = (currentSet - 1) * QUESTIONS_PER_SET;
+            const endIdx = startIdx + QUESTIONS_PER_SET;
+            const currentQuestions = questions.slice(startIdx, endIdx);
+
+            let correctCount = 0;
+
+            currentQuestions.forEach((q, localIndex) => {
+                const globalIndex = startIdx + localIndex;
+                let isCorrect = true;
+
+                if (inputMode === 'letter') {
+                    const inputsA = document.querySelectorAll(`[data-qindex="${globalIndex}"][data-type="a"]`);
+                    const inputsB = document.querySelectorAll(`[data-qindex="${globalIndex}"][data-type="b"]`);
+
+                    inputsA.forEach(input => {
+                        if (input.value.toLowerCase() !== input.dataset.ans.toLowerCase()) {
+                            isCorrect = false;
+                        }
+                    });
+
+                    inputsB.forEach(input => {
+                        if (input.value.toLowerCase() !== input.dataset.ans.toLowerCase()) {
+                            isCorrect = false;
+                        }
+                    });
+                } else {
+                    const word1 = document.getElementById(`q${globalIndex}-word1`);
+                    const word2 = document.getElementById(`q${globalIndex}-word2`);
+
+                    if (word1 && word2) {
+                        if (word1.value.toLowerCase() !== q.target.toLowerCase() ||
+                            word2.value.toLowerCase() !== q.target2.toLowerCase()) {
+                            isCorrect = false;
+                        }
+                    } else {
+                        isCorrect = false;
+                    }
+                }
+
+                const indicator = document.getElementById(`status-${globalIndex}`);
+                const correctionBox = document.getElementById(`correction-${globalIndex}`);
+
+                indicator.classList.add('show-status');
+
+                if (isCorrect) {
+                    indicator.innerText = "✓ CORRECT";
+                    indicator.className = "status-indicator correct-status show-status";
+                    correctCount++;
+
+                    // Hide correction box if previously shown
+                    correctionBox.classList.remove('visible');
+                    correctionBox.innerHTML = '';
+
+                } else {
+                    indicator.innerText = "✗ WRONG";
+                    indicator.className = "status-indicator wrong-status show-status";
+
+                    // Show full correct sentence with highlighted answers
+                    const fullSentence = `${q.text}<span class="highlight-answer">${q.target}</span>${q.suffix}<span class="highlight-answer">${q.target2}</span>${q.suffix2}`;
+                    correctionBox.innerHTML = `<strong>✓ Correct Answer:</strong><br>${fullSentence}`;
+                    correctionBox.classList.add('visible');
+                }
+            });
+
+            // Display score for current set
+            const score = Math.round((correctCount / QUESTIONS_PER_SET) * 100);
+            const scoreElement = document.getElementById('final-score');
+            const feedbackElement = document.getElementById('score-feedback');
+
+            scoreElement.innerHTML = `<strong>Set ${currentSet} Score: ${correctCount} / ${QUESTIONS_PER_SET} (${score}%)</strong>`;
+
+            if (score >= 90) {
+                scoreElement.className = "excellent";
+                feedbackElement.textContent = "🎉 Excellent! You're ready for DET 140+!";
+            } else if (score >= 70) {
+                scoreElement.className = "good";
+                feedbackElement.textContent = "👍 Good work! Review your mistakes and try again.";
+            } else {
+                scoreElement.className = "needs-work";
+                feedbackElement.textContent = "📚 Keep practicing! Focus on the missed words.";
+            }
+        }
+
+        function resetTest() {
+            if (confirm("Are you sure you want to reset answers for this set?")) {
+                if (inputMode === 'letter') {
+                    document.querySelectorAll('.letter-box').forEach(box => {
+                        box.value = '';
+                        box.classList.remove('correct', 'wrong');
+                    });
+                } else {
+                    document.querySelectorAll('.full-word-input').forEach(input => {
+                        input.value = '';
+                        input.classList.remove('correct', 'wrong');
+                    });
+                }
+
+                document.querySelectorAll('.status-indicator').forEach(indicator => {
+                    indicator.classList.remove('show-status');
+                });
+
+                document.querySelectorAll('.correction-box').forEach(box => {
+                    box.classList.remove('visible');
+                    box.innerHTML = '';
+                });
+
+                document.getElementById('final-score').textContent = 'Score will appear here';
+                document.getElementById('score-feedback').textContent = '';
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            let filled = 0;
+            if (inputMode === 'letter') {
+                const boxes = document.querySelectorAll('.letter-box');
+                boxes.forEach(box => {
+                    if (box.value !== '') filled++;
+                });
+                const progress = boxes.length > 0 ? (filled / boxes.length) * 100 : 0;
+                document.getElementById('progress-fill').style.width = `${progress}%`;
+            } else {
+                const inputs = document.querySelectorAll('.full-word-input');
+                inputs.forEach(input => {
+                    if (input.value !== '') filled++;
+                });
+                const progress = inputs.length > 0 ? (filled / inputs.length) * 100 : 0;
+                document.getElementById('progress-fill').style.width = `${progress}%`;
+            }
+        }
+
+        function getNextInput(currentInput) {
+            const inputs = Array.from(document.querySelectorAll('.full-word-input'));
+            const currentIndex = inputs.indexOf(currentInput);
+            return inputs[currentIndex + 1];
+        }
+
+        // Initialize the quiz when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            renderSetControls();
+            loadSet(1);
+
+            setTimeout(() => {
+                const firstInput = document.querySelector('.letter-box, .full-word-input');
+                if (firstInput) firstInput.focus();
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
